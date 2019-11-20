@@ -1,3 +1,9 @@
+<svelte:head>
+  <title>They Vote For You</title>
+  <meta name="description" content="They want you to vote for them, But do they vote for you?" />
+  <link rel="canonical" href={`https://theyvoteforyou.uk`} />
+</svelte:head>
+
 <div class="outer" in:fade="{{delay:300}}" out:fade="{{duration:300}}">
   <div class="inner">
     <h1>

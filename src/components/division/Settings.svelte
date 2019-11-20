@@ -141,7 +141,7 @@
   label {
     color: hsl(0,0%,100%);
     font-size: var(--fontSizeSmall);
-    font-weight: var(--fontWeightBold);
+    font-weight: bold;
   }
 
   input {
@@ -170,7 +170,7 @@
     box-shadow: 0 0 1px black;
     color: hsl(0,0%,100%);
     font-size: var(--fontSizeSmall);
-    font-weight: var(--fontWeightBold);
+    font-weight: bold;
     letter-spacing: 0.025rem;
     line-height: calc(var(--baseline) * 2);
     padding: calc(var(--baseline) * 0.5 - 1px) var(--baseline);

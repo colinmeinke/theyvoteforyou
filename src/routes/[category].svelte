@@ -133,7 +133,7 @@
   }
 
   .light {
-    color: hsl(0,0%,80%);
+    color: hsl(0,0%,90%);
     font-size: var(--fontSizeSmall);
   }
 

@@ -8,7 +8,7 @@
   li {
     color: var(--fontColorMedium);
     font-size: var(--fontSizeSmall);
-    font-weight: var(--fontWeightBold);
+    font-weight: bold;
     margin-right: calc(var(--gutter) * 0.5);
     letter-spacing: 0.025rem;
   }

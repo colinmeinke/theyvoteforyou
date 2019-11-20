@@ -65,7 +65,7 @@
   label {
     color: hsl(0,0%,100%);
     font-size: var(--fontSizeSmall);
-    font-weight: var(--fontWeightBold);
+    font-weight: bold;
     padding-right: calc(var(--gutter) * 0.25);
   }
 </style>

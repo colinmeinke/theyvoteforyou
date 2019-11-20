@@ -23,8 +23,6 @@
     --fontColorDark: hsl(220,20%,0%);
     --fontColorMedium: hsl(220,20%,15%);
     --fontColorLight: hsl(220,20%,35%);
-    --fontWeightRegular: 400;
-    --fontWeightBold: 800;
     --selectedColor: hsl(200,80%,50%);
   }
 
@@ -34,6 +32,20 @@
     }
   }
 
+  @font-face {
+    font-display: fallback;
+    font-family: 'Source Sans Pro';
+    font-weight: normal;
+    src: url('/fonts/SourceSansPro-Light.otf.woff2') format('woff2');
+  }
+
+  @font-face {
+    font-display: fallback;
+    font-family: 'Source Sans Pro';
+    font-weight: bold;
+    src: url('/fonts/SourceSansPro-Semibold.otf.woff2') format('woff2');
+  }
+
   :global(*) {
     box-sizing: border-box;
   }
@@ -41,17 +53,17 @@
   :global(body) {
     background-color: hsl(0,0%,10%);
     color: hsl(220,20%,15%);
-    font-display: fallback;
-    font-family: 'Nanum Gothic', sans-serif;
-    font-size: 100%;
-    font-weight: var(--fontWeightRegular);
+    font-family: 'Source Sans Pro', sans-serif;
+    font-size: 110%;
+    font-weight: normal;
+    letter-spacing: 0.025rem;
     line-height: calc(var(--baseline) * 2);
     margin: 0;
     position: relative;
   }
 
   :global(strong) {
-    font-weight: var(--fontWeightBold);
+    font-weight: bold;
   }
 
   :global(p,h1,h2,h3) {
