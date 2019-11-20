@@ -1,5 +1,6 @@
 <svelte:head>
   <title>{division.title} | {division.categories[0].title}</title>
+  <meta name="description" content="{division.description}" />
   <link
     rel="canonical"
     href={`https://theyvoteforyou.uk/divisions/${division.categories[0].handle}/${slug}`}
