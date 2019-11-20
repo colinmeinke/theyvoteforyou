@@ -10,7 +10,12 @@
     <p class="description">
       {description}
       {#if link}
-        <a href={link} target="_blank" class="more">View more detail</a>
+        <a
+          href={link}
+          target="_blank"
+          class="more"
+          rel="noopener"
+        >View more detail</a>
       {/if}
     </p>
   {/if}
