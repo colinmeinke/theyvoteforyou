@@ -1,5 +1,5 @@
-<li class:selected={selected}>
-  <a {href}>
+<li>
+  <a {href} class:selected={selected}>
     <slot></slot>
   </a>
 </li>
@@ -35,38 +35,38 @@
     width: 4px;
   }
 
-  li:not(.selected) a {
+  a:not(.selected) {
     color: hsl(0,0%,100%);
   }
 
-  li:not(.selected) a::after {
+  a:not(.selected)::after {
     background-color: hsl(0,0%,100%);
     bottom: 0px;
     left: 0px;
     top: 0px;
   }
 
-  .selected a {
+  .selected {
     background-color: hsl(0,0%,100%);
     color: var(--fontColorMedium);
   }
 
-  .selected a::after {
+  .selected::after {
     background-color: var(--selectedColor);
   }
 
   a:hover,
   a:focus,
-  .selected a:hover,
-  .selected a:focus {
+  .selected:hover,
+  .selected:focus {
     background-color: var(--selectedColor);
     border-color: var(--selectedColor);
     color: hsl(0,0%,100%);
     outline: none;
   }
 
-  li:not(.selected) a:hover::after,
-  li:not(.selected) a:focus::after {
+  a:not(.selected):hover::after,
+  a:not(.selected):focus::after {
     background-color: var(--selectedColor);
   }
 </style>

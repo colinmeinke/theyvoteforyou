@@ -7,7 +7,7 @@
 </svelte:head>
 
 <div in:fade="{{delay:300}}" out:fade="{{duration:300}}">
-  <div class="a">
+  <div class="settings">
     <DivisionSettings
       breakpoint={1000}
       parties={partiesAZ}
@@ -26,7 +26,7 @@
     />
   </div>
 
-  <div class="b">
+  <div class="main">
     <DivisionDetailHeader
       title={division.title}
       description={division.description}
@@ -82,7 +82,7 @@
           <GridItem>
             <Card category={party} repaint={mpRepaint}>
               <h2 slot="title">{name}</h2>
-              <div slot="content" style="height:100%;">
+              <div slot="content">
                 <DivisionMp
                   vote={`${['yes', 'no'].includes(vote.handle) ? 'Voted ' : ''}${vote.title}`}
                   good={vote.handle === selectedCategory.desiredOutcome}
@@ -99,20 +99,20 @@
 </div>
 
 <style>
-  .a {
+  .settings {
     padding-left: calc(var(--gutter) / 2);
     padding-right: calc(var(--gutter) / 2);
     width: 100%;
   }
 
   @media screen and (min-width: 1000px) {
-    .a {
+    .settings {
       --maxWidth: calc(3 * (var(--column) + var(--gutter)));
       max-width: var(--maxWidth);
     }
   }
 
-  .b {
+  .main {
     flex-basis: 0;
     flex-grow: 999999;
     min-width: calc(100% / 3 * 2);

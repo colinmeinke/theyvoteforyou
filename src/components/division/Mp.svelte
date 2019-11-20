@@ -1,37 +1,29 @@
 <div>
-  <p>
-    <strong>{vote}</strong>
+  <p class="vote">
     <span class="icon">{#if good}😍{:else}☠️{/if}</span>
+    <strong>{vote}</strong>
   </p>
 
-  <p class="details">
+  <p>
     {party}{#if constituency}, {constituency}{/if}
   </p>
 </div>
 
 <style>
-  div {
-    display: flex;
-    flex-direction: column;
-    flex-grow: 1;
-    height: 100%;
-  }
-
-  p:first-child {
-    display: flex;
+  .vote {
     margin-bottom: var(--baseline);
   }
 
-  p:first-child > :not(:first-child) {
-    padding-left: calc(var(--gutter) * 0.25);
+  .icon {
+    display: inline-flex;
+    margin-bottom: calc(var(--baseline) * -1);
+    margin-top: calc(var(--baseline) * -1);
+    transform: translateY(2px);
   }
 
   strong {
+    padding-left: calc(var(--gutter) * 0.25);
     text-transform: uppercase;
-  }
-
-  p:last-child {
-    margin-top: auto;
   }
 </style>
 

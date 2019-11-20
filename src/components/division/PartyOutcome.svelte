@@ -1,19 +1,21 @@
-<div>
-  <p><span class="icon">😍</span> <strong>{good}</strong></p>
-  <p><span class="icon">☠️</span> <strong>{bad}</strong></p>
-</div>
+<p>
+  <span class="icon">😍</span> <strong>{good}</strong>
+  <span class="icon margin">☠️</span> <strong>{bad}</strong>
+</p>
 
 <style>
-  div,
-  p {
-    display: flex;
-  }
-
-  p:last-child {
+  .margin {
     margin-left: var(--gutter);
   }
 
-  p > :not(:first-child) {
+  .icon {
+    display: inline-flex;
+    margin-bottom: calc(var(--baseline) * -1);
+    margin-top: calc(var(--baseline) * -1);
+    transform: translateY(2px);
+  }
+
+  strong {
     padding-left: calc(var(--gutter) * 0.25);
   }
 </style>

@@ -47,6 +47,8 @@
   }
 
   :global(*) {
+    background-clip: inherit;
+    -webkit-background-clip: inherit;
     box-sizing: border-box;
   }
 

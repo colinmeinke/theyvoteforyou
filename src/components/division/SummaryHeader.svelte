@@ -1,19 +1,19 @@
 <header>
-  <div class="a">
+  <div class="top">
     <h2>
       <a href={link}>{title}</a>
     </h2>
-    <p>{formattedDate}</p>
+    <p class="date">{formattedDate}</p>
   </div>
 
-  <div class="b">
-    <p>
+  <div class="outcome">
+    <p class="desired">
       <span class="icon">😍</span>
-      <span><span class="underline">Desired</span> outcome:</span>
-      <strong>{desiredOutcome} vote</strong>
+      <span class="margin"><span class="underline">Desired</span> outcome:</span>
+      <strong class="margin uppercase">{desiredOutcome} vote</strong>
     </p>
 
-    <p>
+    <p class="actual">
       <span class="icon">
         {#if desiredOutcome === outcome}
           😍
@@ -21,8 +21,8 @@
           ☠️
         {/if}
       </span>
-      <span><span class="underline">Actual</span> outcome:</span>
-      <strong>
+      <span class="margin"><span class="underline">Actual</span> outcome:</span>
+      <strong class="margin uppercase">
         {outcome}
         {#if outcome !== 'tied'}vote{/if}
       </strong>
@@ -44,28 +44,11 @@
     }
   }
 
-  .a {
+  .top {
     align-items: flex-end;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-  }
-
-  .a p {
-    flex-grow: 1;
-    padding-bottom: calc(var(--baseline) * 0.5);
-    padding-top: calc(var(--baseline) * 0.5);
-    transform: translateY(-1px);
-  }
-
-  .b {
-    padding-bottom: calc(var(--baseline) * 0.5);
-    padding-top: calc(var(--baseline) * 0.5);
-    transform: translateY(-1px);
-  }
-
-  .b p {
-    color: hsl(0,0%,100%);
   }
 
   h2 {
@@ -87,29 +70,39 @@
     background-color: var(--selectedColor);
   }
 
-  .b {
+  .date {
+    flex-grow: 1;
+    padding-bottom: calc(var(--baseline) * 0.5);
+    padding-top: calc(var(--baseline) * 0.5);
+    transform: translateY(-1px);
+  }
+
+  .outcome {
     display: flex;
     flex-wrap: wrap;
     padding-bottom: calc(var(--baseline) * 0.5);
     padding-top: calc(var(--baseline) * 0.5);
+    transform: translateY(-1px);
   }
 
-  .b > p {
+  .desired,
+  .actual {
+    color: hsl(0,0%,100%);
     display: flex;
     flex-wrap: wrap;
     padding-top: var(--baseline);
     transform: translateY(-1px);
   }
 
-  .b > p > *:not(:first-child) {
-    margin-left: calc(var(--gutter) * 0.25);
-  }
-
-  .b > p:first-child {
+  .desired {
     padding-right: var(--gutter);
   }
 
-  strong {
+  .margin {
+    margin-left: calc(var(--gutter) * 0.25);
+  }
+
+  .uppercase {
     text-transform: uppercase;
   }
 </style>

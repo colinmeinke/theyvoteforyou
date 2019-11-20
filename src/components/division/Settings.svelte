@@ -10,11 +10,11 @@
 
   {#if show}
     <form transition:slide|local>
-      <div transition:fade|local class="a">
+      <div transition:fade|local class="parties">
         <h2>Select parties to compare:</h2>
 
         {#each parties as party}
-          <div>
+          <div class="party">
             <input
               type="checkbox"
               id={`party${party.replace(' ', '')}`}
@@ -27,7 +27,7 @@
         {/each}
       </div>
 
-      <div transition:fade|local class="b">
+      <div transition:fade|local class="current-parties">
         <input
           id="currentParties"
           type="checkbox"
@@ -37,7 +37,7 @@
         <label for="currentParties">Show results based on MPs current party?</label>
       </div>
 
-      <div transition:fade|local class="c">
+      <div transition:fade|local class="current-mps">
         <input
           id="currentMps"
           type="checkbox"
@@ -47,12 +47,12 @@
         <label for="currentMps">Only show current MPs?</label>
       </div>
 
-      <div transition:fade|local class="d">
+      <div transition:fade|local class="breakdown">
         <input id="breakdown" type="checkbox" bind:checked={breakdown} />
         <label for="breakdown">Show exact breakdown?</label>
       </div>
 
-      <div transition:fade|local class="e">
+      <div transition:fade|local class="format">
         <label for="resultFormat">Select result format:</label>
         <select
           id="resultFormat"
@@ -65,7 +65,7 @@
         </select>
       </div>
 
-      <div transition:fade|local class="f">
+      <div transition:fade|local class="order">
         <label for="orderBy">Order by:</label>
         <select id="orderBy" bind:value={orderBy}>
           {#each orderByOptions as option}
@@ -94,7 +94,7 @@
     display: flex;
   }
 
-  .a {
+  .parties {
     border-bottom: 1px solid hsla(0,0%,100%,0.2);
     flex-direction: column;
     padding-bottom: calc(var(--baseline) * 1.5 - 1px);
@@ -102,33 +102,9 @@
   }
 
   @media screen and (min-width: 1000px) {
-    .a {
+    .parties {
       padding-top: calc(var(--baseline) * 2);
     }
-  }
-
-  .a div {
-    align-items: center;
-    display: flex;
-  }
-
-  .b,
-  .c,
-  .d {
-    align-items: center;
-    display: flex;
-    padding-bottom: calc(var(--baseline) * 0.5);
-    padding-top: calc(var(--baseline) * 0.5);
-  }
-
-  .b {
-    padding-top: calc(var(--baseline) * 1.5);
-  }
-
-  .e,
-  .f {
-    padding-bottom: calc(var(--baseline) * 0.5);
-    padding-top: calc(var(--baseline) * 0.5);
   }
 
   h2 {
@@ -136,6 +112,30 @@
     padding-bottom: calc(var(--baseline) * 1);
     padding-top: calc(var(--baseline) * 0.5);
     transform: translateY(-1px);
+  }
+
+  .party {
+    align-items: center;
+    display: flex;
+  }
+
+  .current-parties,
+  .current-mps,
+  .breakdown {
+    align-items: center;
+    display: flex;
+    padding-bottom: calc(var(--baseline) * 0.5);
+    padding-top: calc(var(--baseline) * 0.5);
+  }
+
+  .current-parties {
+    padding-top: calc(var(--baseline) * 1.5);
+  }
+
+  .format,
+  .order {
+    padding-bottom: calc(var(--baseline) * 0.5);
+    padding-top: calc(var(--baseline) * 0.5);
   }
 
   label {
@@ -156,8 +156,7 @@
     padding-right: calc(var(--gutter) * 0.25);
   }
 
-  #resultFormat,
-  #orderBy {
+  select {
     flex-grow: 1;
     margin-left: calc(var(--gutter) * 0.5);
   }

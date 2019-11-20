@@ -1,16 +1,16 @@
 <div
-  class="a"
+  class="outer"
   data-category={category}
   data-repaint={repaint}
 >
-  <div class="b">
+  <div class="inner">
     <slot name="title"></slot>
     <slot name="content"></slot>
   </div>
 </div>
 
 <style>
-  .a {
+  .outer {
     --duration: 0.3s;
     background-image: linear-gradient(to bottom, hsl(0,0%,100%) 50%, hsl(0,0%,80%) 50%);
     border-top: var(--baseline) solid hsl(0,0%,80%);
@@ -21,68 +21,70 @@
     position: relative;
     transition: all var(--duration) ease-in-out;
     width: 100%;
-    overflow: hidden;
   }
 
-  .a,
-  .b {
+  .outer::after {
+    box-shadow: calc((var(--gutter) / 4) * 2) calc(var(--baseline) * 2) calc(var(--baseline) * 2) hsla(0,0%,0%,0.2);
+    bottom: 0;
+    content: '';
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    z-index: -1;
+  }
+
+  .outer,
+  .inner {
     background-size: 100% 200%;
   }
 
-  .a:hover {
-    box-shadow: calc((var(--gutter) / 4) * 2) calc(var(--baseline) * 2) calc(var(--baseline) * 2) hsla(0, 0%, 10%, 0.1);
-    transform: translateX(calc(var(--gutter) * -1 / 4)) translateY(calc(var(--baseline) * -1));
-  }
-
-  .a:hover,
-  .a:hover .b {
+  .outer:hover,
+  .outer:hover .inner {
     background-position: 0 -100%;
   }
 
-  .b {
+  .inner {
     color: var(--fontColorMedium);
-    display: flex;
-    flex-direction: column;
-    height: 100%;
     padding: var(--baseline) var(--gutter) calc(var(--baseline) * 3);
     transition: all var(--duration) ease-in-out;
   }
 
   @supports (background-clip: text) or (-webkit-background-clip: text) {
-    .b {
+    .inner {
       background-image: linear-gradient(to bottom, var(--fontColorMedium) 50%, var(--fontColorDark) 50%);
       background-clip: text;
-      color: transparent;
       -webkit-background-clip: text;
+      color: transparent;
     }
 
-    [data-category="Conservatives"] .b,
-    [data-category="DUP"] .b,
-    [data-category="Green Party"] .b,
-    [data-category="Independent Group for Change"] .b,
-    [data-category="Labour"] .b,
-    [data-category="Plaid Cymru"] .b,
-    [data-category="Respect"] .b,
-    [data-category="Sinn Féin"] .b,
-    [data-category="SDLP"] .b,
-    [data-category="UKIP"] .b,
-    [data-category="UUP"] .b {
+    [data-category="Conservatives"] .inner,
+    [data-category="DUP"] .inner,
+    [data-category="Green Party"] .inner,
+    [data-category="Independent Group for Change"] .inner,
+    [data-category="Labour"] .inner,
+    [data-category="Plaid Cymru"] .inner,
+    [data-category="Respect"] .inner,
+    [data-category="Sinn Féin"] .inner,
+    [data-category="SDLP"] .inner,
+    [data-category="UKIP"] .inner,
+    [data-category="UUP"] .inner {
       background-image: linear-gradient(to bottom, var(--fontColorMedium) 50%, hsl(0,0%,100%) 50%);
     }
   }
 
   @supports not ((background-clip: text) or (-webkit-background-clip: text)) {
-    [data-category="Conservatives"]:hover .b,
-    [data-category="DUP"]:hover .b,
-    [data-category="Green Party"]:hover .b,
-    [data-category="Independent Group for Change"]:hover .b,
-    [data-category="Labour"]:hover .b,
-    [data-category="Plaid Cymru"]:hover .b,
-    [data-category="Respect"]:hover .b,
-    [data-category="Sinn Féin"]:hover .b,
-    [data-category="SDLP"]:hover .b,
-    [data-category="UKIP"]:hover .b,
-    [data-category="UUP"]:hover .b {
+    [data-category="Conservatives"]:hover .inner,
+    [data-category="DUP"]:hover .inner,
+    [data-category="Green Party"]:hover .inner,
+    [data-category="Independent Group for Change"]:hover .inner,
+    [data-category="Labour"]:hover .inner,
+    [data-category="Plaid Cymru"]:hover .inner,
+    [data-category="Respect"]:hover .inner,
+    [data-category="Sinn Féin"]:hover .inner,
+    [data-category="SDLP"]:hover .inner,
+    [data-category="UKIP"]:hover .inner,
+    [data-category="UUP"]:hover .inner {
       color: hsl(0,0%,100%);
     }
   }
@@ -157,15 +159,14 @@
     background-image: linear-gradient(to bottom, hsl(0,0%,100%) 50%, #D72026 50%);
   }
 
-  .b > :global(:nth-child(1)) {
+  .inner > :global(:nth-child(1)) {
     font-size: var(--fontSizeMedium);
     line-height: calc(var(--baseline) * 3);
     padding-bottom: calc(var(--baseline) * 0.5);
     padding-top: calc(var(--baseline) * 0.5);
-    /* transform: translateY(1px); */
   }
 
-  .b > :global(:nth-child(2)) {
+  .inner > :global(:nth-child(2)) {
     margin-top: auto;
     padding-bottom: calc(var(--baseline) * 0.5);
     padding-top: calc(var(--baseline) * 0.5);

@@ -5,7 +5,7 @@
 </svelte:head>
 
 <div in:fade="{{delay:300}}" out:fade="{{duration:300}}">
-  <div class="a">
+  <div class="settings">
     <DivisionSettings
       breakpoint={1000}
       parties={partiesAZ}
@@ -23,21 +23,21 @@
     />
   </div>
 
-  <div class="b">
-    <header>
-      <h1>{category.title}</h1>
-      <p>{category.description}</p>
+  <div class="main">
+    <header class="header">
+      <h1 class="title">{category.title}</h1>
+      <p class="description">{category.description}</p>
     </header>
 
     <section>
-      <header>
-        <h2>Overall</h2>
-        <p>
+      <header class="overview">
+        <h2 class="subheader">Overall</h2>
+        <p class="best">
           The best
           {#if bestParties.length > 1}parties are{:else}party is{/if}
           {@html bestPartiesString}.
         </p>
-        <p class="light">
+        <p class="criteria">
           Based on
           <strong>{#if resultFormat === 'Percentage'}percentage{:else}vote count{/if}</strong>
           calculated from <strong>{divisions.length} votes</strong>.
@@ -48,7 +48,7 @@
         {#each overallParties as {party, yes, no, abstained, didNotVote, other, desiredOutcome, undesiredOutcome}}
           <GridItem>
             <Card category={party} repaint={partyRepaint}>
-              <h3 slot="title">{party}</h3>
+              <div slot="title">{party}</div>
               <div slot="content">
                 <DivisionPartyOutcome
                   good={`${desiredOutcome[resultFormat]}${suffix}`}
@@ -62,7 +62,7 @@
     </section>
 
     {#each filteredDs as {handle, title, desiredOutcome, outcome, date, parties}}
-      <section>
+      <section class="gap">
         <DivisionSummaryHeader
           {title}
           {date}
@@ -102,20 +102,20 @@
 </div>
 
 <style>
-  .a {
+  .settings {
     padding-left: calc(var(--gutter) / 2);
     padding-right: calc(var(--gutter) / 2);
     width: 100%;
   }
 
   @media screen and (min-width: 1000px) {
-    .a {
+    .settings {
       --maxWidth: calc(3 * (var(--column) + var(--gutter)));
       max-width: var(--maxWidth);
     }
   }
 
-  .b {
+  .main {
     flex-basis: 0;
     flex-grow: 999999;
     min-width: calc(100% / 3 * 2);
@@ -124,32 +124,20 @@
     color: white;
   }
 
-  section + section {
-    padding-top: calc(var(--baseline) * 5);
-  }
-
-  header {
+  .header {
     color: hsl(0,0%,100%);
-  }
-
-  .light {
-    color: hsl(0,0%,90%);
-    font-size: var(--fontSizeSmall);
-  }
-
-  div > header {
     padding-bottom: calc(var(--baseline) * 2);
     padding-top: calc(var(--baseline) * 3);
     position: relative;
   }
 
   @media screen and (min-width: 1000px) {
-    div > header {
+    .header {
       padding-top: calc(var(--baseline) * 4);
     }
   }
 
-  div > header::after {
+  .header::after {
     background-color: hsla(0,0%,100%,0.2);
     bottom: 0;
     content: '';
@@ -159,35 +147,42 @@
     right: 0;
   }
 
-  h1 {
+  .title {
     font-size: var(--fontSizeLarge);
     line-height: calc(var(--baseline) * 4);
     transform: translateY(-2px);
   }
 
-  h1 + p,
-  h2 + p {
+  .description,
+  .best {
     padding-top: calc(var(--baseline) * 0.5);
     transform: translateY(-1px);
   }
 
-  h1 + p {
+  .description {
     padding-bottom: calc(var(--baseline) * 0.5);
   }
 
-  p + p {
+  .criteria {
+    color: hsl(0,0%,90%);
+    font-size: var(--fontSizeSmall);
     padding-bottom: calc(var(--baseline) * 0.5);
   }
 
-  section > header {
+  .overview {
+    color: hsl(0,0%,100%);
     padding-bottom: calc(var(--baseline) * 1);
     padding-top: calc(var(--baseline) * 2);
   }
 
-  h2 {
+  .subheader {
     font-size: var(--fontSizeMedium);
     line-height: calc(var(--baseline) * 4);
     transform: translateY(1px);
+  }
+
+  .gap {
+    padding-top: calc(var(--baseline) * 5);
   }
 </style>
 

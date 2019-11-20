@@ -1,22 +1,22 @@
 <header>
-  <div class="a">
+  <div class="top">
     <h1>
-      {#if !description && link}<a href={link}>{title}</a>{:else}{title}{/if}
+      {title}
     </h1>
-    <p>{formattedDate}</p>
+    <p class="date">{formattedDate}</p>
   </div>
 
   {#if description}
-    <div class="b">
-      <p>
-        {description}
-        {#if link}<a href={link} target="_blank">View more detail</a>{/if}
-      </p>
-    </div>
+    <p class="description">
+      {description}
+      {#if link}
+        <a href={link} target="_blank" class="more">View more detail</a>
+      {/if}
+    </p>
   {/if}
 
   {#if categories}
-    <div class="c">
+    <div class="categories">
       <Categories>
         {#each categories as category}
           <Category
@@ -30,14 +30,14 @@
     </div>
   {/if}
 
-  <div class="d">
-    <p>
+  <div class="outcome">
+    <p class="desired">
       <span class="icon">😍</span>
-      <span><span class="underline">Desired</span> outcome:</span>
-      <strong>{desiredOutcome} vote</strong>
+      <span class="margin"><span class="underline">Desired</span> outcome:</span>
+      <strong class="margin uppercase">{desiredOutcome} vote</strong>
     </p>
 
-    <p>
+    <p class="actual">
       <span class="icon">
         {#if desiredOutcome === outcome}
           😍
@@ -45,8 +45,8 @@
           ☠️
         {/if}
       </span>
-      <span><span class="underline">Actual</span> outcome:</span>
-      <strong>
+      <span class="margin"><span class="underline">Actual</span> outcome:</span>
+      <strong class="margin uppercase">
         {outcome}
         {#if outcome !== 'tied'}vote{/if}
       </strong>
@@ -78,58 +78,11 @@
     right: 0;
   }
 
-  .a {
+  .top {
     align-items: flex-end;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-  }
-
-  .a p {
-    flex-grow: 1;
-    padding-bottom: calc(var(--baseline) * 0.5);
-    padding-top: calc(var(--baseline) * 0.5);
-    transform: translateY(-1px);
-  }
-
-  .b {
-    padding-bottom: calc(var(--baseline) * 0.5);
-    padding-top: calc(var(--baseline) * 0.5);
-    transform: translateY(-1px);
-  }
-
-  .b p {
-    color: hsl(0,0%,100%);
-  }
-
-  .b a {
-    display: inline-block;
-    padding-left: calc(var(--gutter) * 0.25);
-    padding-right: calc(var(--gutter) * 0.25 + 9px);
-    position: relative;
-  }
-
-  .b a::before,
-  .b a::after {
-    content: '';
-    position: absolute;
-  }
-
-  .b a::before {
-    border-right: 1px solid hsl(0,0%,100%);
-    border-top: 1px solid hsl(0,0%,100%);
-    right: 1px;
-    top: 1px;
-    width: 6px;
-    height: 6px;
-  }
-
-  .b a::after {
-    right: 4px;
-    top: 4px;
-    width: 5px;
-    height: 5px;
-    border: 1px solid hsl(0,0%,100%);
   }
 
   h1 {
@@ -142,43 +95,86 @@
     transform: translateY(-2px);
   }
 
-  a {
-    color: hsl(0,0%,100%);
-    outline: none;
+  .date {
+    flex-grow: 1;
+    padding-bottom: calc(var(--baseline) * 0.5);
+    padding-top: calc(var(--baseline) * 0.5);
+    transform: translateY(-1px);
   }
 
-  a:focus {
+  .description {
+    color: hsl(0,0%,100%);
+    padding-bottom: calc(var(--baseline) * 0.5);
+    padding-top: calc(var(--baseline) * 0.5);
+    transform: translateY(-1px);
+  }
+
+  .more {
+    color: hsl(0,0%,100%);
+    display: inline-block;
+    outline: none;
+    padding-left: calc(var(--gutter) * 0.25);
+    padding-right: calc(var(--gutter) * 0.25 + 9px);
+    position: relative;
+    transition: background-color 0.3s ease-in-out;
+  }
+
+  .more::before,
+  .more::after {
+    content: '';
+    position: absolute;
+  }
+
+  .more::before {
+    border-right: 1px solid hsl(0,0%,100%);
+    border-top: 1px solid hsl(0,0%,100%);
+    right: 1px;
+    top: 1px;
+    width: 6px;
+    height: 6px;
+  }
+
+  .more::after {
+    right: 4px;
+    top: 4px;
+    width: 5px;
+    height: 5px;
+    border: 1px solid hsl(0,0%,100%);
+  }
+
+  .more:focus {
     background-color: var(--selectedColor);
   }
 
-  .c {
+  .categories {
     padding-bottom: calc(var(--baseline) * 0.5);
     padding-top: calc(var(--baseline) * 1.5);
   }
 
-  .d {
+  .outcome {
     display: flex;
     flex-wrap: wrap;
     padding-bottom: calc(var(--baseline) * 0.5);
     padding-top: calc(var(--baseline) * 0.5);
   }
 
-  .d > p {
+  .desired,
+  .actual {
     display: flex;
     flex-wrap: wrap;
     padding-top: var(--baseline);
     transform: translateY(-1px);
   }
 
-  .d > p > *:not(:first-child) {
-    margin-left: calc(var(--gutter) * 0.25);
-  }
-
-  .d > p:first-child {
+  .desired {
     padding-right: var(--gutter);
   }
 
-  strong {
+  .margin {
+    margin-left: calc(var(--gutter) * 0.25);
+  }
+
+  .uppercase {
     text-transform: uppercase;
   }
 </style>

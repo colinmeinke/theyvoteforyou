@@ -1,5 +1,5 @@
 <header>
-  <div class="a">
+  <div class="top">
     <h2>MPs</h2>
     <p>
       Showing <strong class="underline">{count}</strong> of
@@ -8,7 +8,7 @@
   </div>
 
   <form>
-    <div class="b">
+    <div class="filter">
       <label for="mpsFilterBy">Filter by:</label>
       <select
         id="mpsFilterBy"
@@ -33,7 +33,7 @@
     padding-top: calc(var(--baseline) * 4);
   }
 
-  .a {
+  .top {
     flex-basis: 0;
     flex-grow: 999999;
     min-width: 70%;
@@ -58,7 +58,7 @@
     padding-top: calc(var(--baseline) * 0.5);
   }
 
-  .b {
+  .filter {
     display: flex;
   }
 
