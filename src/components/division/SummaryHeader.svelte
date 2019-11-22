@@ -8,20 +8,20 @@
 
   <div class="outcome">
     <p class="desired">
-      <span class="icon">😍</span>
-      <span class="margin"><span class="underline">Desired</span> outcome:</span>
+      <em class="underline">Desired</em> outcome:
+      <span class="icon margin">😍</span>
       <strong class="margin uppercase">{desiredOutcome} vote</strong>
     </p>
 
     <p class="actual">
-      <span class="icon">
+      <em class="underline">Actual</em> outcome:
+      <span class="icon margin">
         {#if desiredOutcome === outcome}
           😍
         {:else}
           ☠️
         {/if}
       </span>
-      <span class="margin"><span class="underline">Actual</span> outcome:</span>
       <strong class="margin uppercase">
         {outcome}
         {#if outcome !== 'tied'}vote{/if}
@@ -96,6 +96,11 @@
 
   .desired {
     padding-right: var(--gutter);
+  }
+
+  em {
+    font-style: inherit;
+    margin-right: calc(var(--baseline) / 4);
   }
 
   .margin {

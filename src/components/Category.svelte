@@ -1,4 +1,4 @@
-<li>
+<li class:vertical={vertical}>
   <a {href} class:selected={selected}>
     <slot></slot>
   </a>
@@ -9,8 +9,12 @@
     color: var(--fontColorMedium);
     font-size: var(--fontSizeSmall);
     font-weight: bold;
-    margin-right: calc(var(--gutter) * 0.5);
     letter-spacing: 0.025rem;
+    margin-top: var(--baseline);
+  }
+
+  li:not(.vertical) {
+    margin-right: calc(var(--gutter) * 0.5);
   }
 
   a {
@@ -74,4 +78,5 @@
 <script>
   export let selected = false
   export let href = null
+  export let vertical = false
 </script>

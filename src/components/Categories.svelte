@@ -1,4 +1,4 @@
-<ul>
+<ul class:center={center} class:vertical={vertical}>
   <slot></slot>
 </ul>
 
@@ -11,4 +11,21 @@
     margin-top: 0;
     padding-left: 0;
   }
+
+  .vertical {
+    flex-direction: column;
+  }
+
+  .center:not(.vertical) {
+    justify-content: center;
+  }
+
+  .center.vertical {
+    align-items: center;
+  }
 </style>
+
+<script>
+  export let center
+  export let vertical
+</script>

@@ -11,13 +11,15 @@
       But do they vote for you?
     </h1>
 
-    <ul>
-      {#each categories as category}
-        <li>
-          <a href={`/${category.handle}`}>{category.title}</a>
-        </li>
-      {/each}
-    </ul>
+    <div class="categories">
+      <Categories center={true} vertical={true}>
+        {#each categories as category}
+          <Category href={`${category.handle}`} vertical={true}>
+            {category.title}
+          </Category>
+        {/each}
+      </Categories>
+    </div>
   </div>
 </div>
 
@@ -38,15 +40,8 @@
     transform: translateY(-2px);
   }
 
-  ul {
-    list-style: none;
-    margin-bottom: 0;
-    margin-top: calc(var(--baseline) * 3);
-    padding-left: 0;
-  }
-
-  a {
-    color: hsl(0,0%,100%);
+  .categories {
+    margin-top: calc(var(--baseline) * 2);
   }
 </style>
 
@@ -65,5 +60,7 @@
 
 <script>
   import {fade} from 'svelte/transition'
+  import Categories from '../components/Categories.svelte'
+  import Category from '../components/Category.svelte'
   export let categories
 </script>

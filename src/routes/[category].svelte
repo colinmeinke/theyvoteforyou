@@ -12,6 +12,7 @@
       {selectedParties}
       {handlePartyUpdate}
       bind:currentParties={currentParties}
+      handleCurrentPartiesChange={() => {partyRepaint = !partyRepaint}}
       bind:currentMps={currentMps}
       handleCurrentMpsChange={() => {partyRepaint = !partyRepaint}}
       bind:breakdown={breakdown}
@@ -40,7 +41,7 @@
         <p class="criteria">
           Based on
           <strong>{#if resultFormat === 'Percentage'}percentage{:else}vote count{/if}</strong>
-          calculated from <strong>{divisions.length} votes</strong>.
+          calculated from <strong>{divisions.length} vote{#if divisions.length > 1}s{/if}</strong>.
         </p>
       </header>
 
