@@ -35,7 +35,7 @@ module.exports = [
     "number": 109,
     "title": "Maintain ban on local government promoting homosexuality",
     "handle": "maintain-ban-on-local-government-promoting-homosexuality",
-    "description": "Which parties voted to maintain the ban on local government promoting homosexuality.",
+    "description": "Which parties voted to maintain the ban on local government promoting homosexuality?",
     "link": "https://www.publicwhip.org.uk/division.php?date=2003-03-10&number=109",
     "categories": [
       {
@@ -169,7 +169,7 @@ module.exports = [
     "date": "2017-01-11",
     "number": 122,
     "title": "Provide immediate extra funding for social care",
-    "handle": "Provide immediate extra funding for social care",
+    "handle": "provide-immediate-extra-funding-for-social-care",
     "description": "Which parties voted to provide immediate extra funding for social care?",
     "link": "https://www.publicwhip.org.uk/division.php?date=2017-01-11&number=122",
     "categories": [
@@ -199,7 +199,7 @@ module.exports = [
     "date": "2012-01-16",
     "number": 423,
     "title": "Reduce the amount of private income NHS hospitals can make",
-    "handle": "reduce-the-amount-of–private-income–nhs-hospitals-can-make",
+    "handle": "reduce-the-amount-of-private-income-nhs-hospitals-can-make",
     "description": "Which parties voted to reduce the amount of private income NHS hospitals can make?",
     "link": "https://www.publicwhip.org.uk/division.php?date=2012-01-16&number=423",
     "categories": [
@@ -215,7 +215,7 @@ module.exports = [
     "number": 268,
     "title": "Drop the market-based approach to restructuring the NHS",
     "handle": "drop-the-market-based-approach-to-restructuring-the-nhs",
-    "description": "Which parties voted to drop the market-based approach to restructuring the NHS",
+    "description": "Which parties voted to drop the market-based approach to restructuring the NHS?",
     "link": "https://www.publicwhip.org.uk/division.php?date=2011-05-09&number=268",
     "categories": [
       {
@@ -230,7 +230,7 @@ module.exports = [
     "number": 95,
     "title": "Address the underfunding of the NHS",
     "handle": "address-the-underfunding-of-the-nhs",
-    "description": "Which parties voted to address the underfunding of the NHS",
+    "description": "Which parties voted to address the underfunding of the NHS?",
     "link": "https://www.publicwhip.org.uk/division.php?date=2016-11-22&number=95",
     "categories": [
       {
