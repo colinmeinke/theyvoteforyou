@@ -4,7 +4,7 @@
   <link rel="canonical" href={`https://theyvoteforyou.uk/${category.handle}`} />
 </svelte:head>
 
-<div in:fade="{{delay:300}}" out:fade="{{duration:300}}">
+<div in:fade={{delay:300}} out:fade={{duration:300}}>
   <div class="settings">
     <DivisionSettings
       breakpoint={1000}

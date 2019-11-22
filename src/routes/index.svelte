@@ -4,7 +4,7 @@
   <link rel="canonical" href={`https://theyvoteforyou.uk`} />
 </svelte:head>
 
-<div class="outer" in:fade="{{delay:300}}" out:fade="{{duration:300}}">
+<div class="outer" in:fade={{delay:300}} out:fade={{duration:300}}>
   <div class="inner">
     <h1>
       They want you to vote for them,<br />
