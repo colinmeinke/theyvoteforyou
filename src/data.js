@@ -124,6 +124,24 @@ const normaliseVote = (id, name, party, type, mps) => {
   }
 }
 
+const mergeDuplicatesWhereVotedBoth = (mps, mp) => {
+  const i = mps.findIndex(({id}) => id === mp.id)
+
+  if (
+    i !== -1 &&
+    (
+      (mps[i].type.handle === 'yes' && mp.type.handle === 'no') ||
+      (mps[i].type.handle === 'no' && mp.type.handle === 'yes')
+    )
+  ) {
+    mps[i].type = {handle: 'abstained', title: 'Abstained'}
+  } else {
+    mps.push(mp)
+  }
+
+  return mps
+}
+
 const mergeDuplicateSpeakerAndDeputies = (mps, mp) => {
   const i = mps.findIndex(({id}) => id === mp.id)
 
@@ -163,6 +181,7 @@ const normaliseVotes = (votes, mps) => votes.map(({
   }
 })
   .reduce((acc, x) => acc.concat(x), [])
+  .reduce(mergeDuplicatesWhereVotedBoth, [])
   .reduce(mergeDuplicateSpeakerAndDeputies, [])
   .filter(({party, type}) => !party.atVote.includes('Speaker') || type.handle !== 'didNotVote')
 

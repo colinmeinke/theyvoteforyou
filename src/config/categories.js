@@ -7,12 +7,17 @@ module.exports = [
   {
     "title": "NHS",
     "handle": "nhs",
-    "description": "Which parties vote to adequately fund the NHS and protect it from privatisation?"
+    "description": "Which parties vote to invest in the NHS and protect it from privatisation?"
   },
   {
     "title": "Truth",
     "handle": "truth",
     "description": "Which parties vote to tell the public the truth?"
+  },
+  {
+    "title": "Environment",
+    "handle": "environment",
+    "description": "Which parties vote to protect the environment and fight climate change?"
   },
 ]
 
