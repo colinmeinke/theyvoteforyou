@@ -155,7 +155,7 @@ const normaliseVoteType = type => {
         title: 'Did Not Vote',
       }
     default:
-      console.log('Vote type', type)
+      console.log('----OTHER VOTE TYPE----', type)
 
       return {
         handle: 'other',
@@ -193,7 +193,7 @@ const getPartiesFromMps = (mps, desiredOutcome) => Object.entries(mps.reduce((pa
 
   Object.keys(parties[party]).forEach(handle => {
     if (handle !== 'totalCount') {
-      parties[party][handle]['Percentage'] = Math.round((parties[party][handle]['Vote Count'] / parties[party].totalCount) * 100)
+      parties[party][handle]['Percentage'] = (parties[party][handle]['Vote Count'] / parties[party].totalCount) * 100
     }
   })
 
@@ -228,7 +228,7 @@ const getPartiesFromDivisions = divisions => {
 
       Object.keys(parties[party]).forEach(handle => {
         if (handle !== 'totalCount') {
-          parties[party][handle]['Percentage'] = Math.round((parties[party][handle]['Vote Count'] / parties[party].totalCount) * 100)
+          parties[party][handle]['Percentage'] = (parties[party][handle]['Vote Count'] / parties[party].totalCount) * 100
         }
       })
     })
@@ -261,6 +261,8 @@ const orderParties = (parties, orderBy, desiredOutcome = 'desiredOutcome') => pa
   return -1
 })
 
+const round = n => n.toFixed(1).replace('.0', '')
+
 module.exports = {
   orderParties,
   formatDate,
@@ -271,4 +273,5 @@ module.exports = {
   getMpsFromVotes,
   getPartiesFromMps,
   getPartiesFromDivisions,
+  round,
 }

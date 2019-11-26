@@ -8,19 +8,19 @@
   },
   "dependencies": {
     "compression": "^1.7.1",
-    "polka": "next",
+    "polka": "^1.0.0-next.9",
     "sirv": "^0.4.0"
   },
   "devDependencies": {
-    "@babel/core": "^7.7.2",
-    "@babel/plugin-syntax-dynamic-import": "^7.0.0",
-    "@babel/plugin-transform-runtime": "^7.0.0",
-    "@babel/preset-env": "^7.7.1",
-    "@babel/runtime": "^7.7.2",
+    "@babel/core": "^7.7.4",
+    "@babel/plugin-syntax-dynamic-import": "^7.7.4",
+    "@babel/plugin-transform-runtime": "^7.7.4",
+    "@babel/preset-env": "^7.7.4",
+    "@babel/runtime": "^7.7.4",
     "node-fetch": "^2.6.0",
     "npm-run-all": "^4.1.5",
     "rimraf": "^3.0.0",
-    "rollup": "^1.26.5",
+    "rollup": "^1.27.5",
     "rollup-plugin-babel": "^4.0.2",
     "rollup-plugin-commonjs": "^10.0.0",
     "rollup-plugin-node-resolve": "^5.2.0",
@@ -28,7 +28,7 @@
     "rollup-plugin-svelte": "^5.1.1",
     "rollup-plugin-terser": "^4.0.4",
     "sapper": "^0.27.0",
-    "svelte": "^3.13.0",
+    "svelte": "^3.15.0",
     "xml2json": "^0.11.2"
   }
 }

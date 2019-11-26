@@ -154,7 +154,7 @@ const mergeDuplicateSpeakerAndDeputies = (mps, mp) => {
         mps[i].party.atVote = mp.party.atVote
       }
     } else {
-      console.log('SOME OTHER DUPLICATE???')
+      console.log('---DUPLICATE---')
       console.log(mps[i])
       console.log(mp)
     }
@@ -173,10 +173,15 @@ const normaliseVotes = (votes, mps) => votes.map(({
 }) => {
   if (Array.isArray(printedName)) {
     const ids = member.map(({_about}) => parseInt(_about.split('/').pop(), 10))
-    return printedName.map(({_value: name}, i) => normaliseVote(ids[i], name, party, type, mps))
+
+    return printedName.map(({_value: name}, i) => {
+      const p = Array.isArray(party) ? party[i] : party
+      return normaliseVote(ids[i], name, p, type, mps)
+    })
   } else {
     const id = parseInt(member[0]._about.split('/').pop(), 10)
     const {_value: name} = printedName
+
     return normaliseVote(id, name, party, type, mps)
   }
 })

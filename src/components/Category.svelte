@@ -6,7 +6,7 @@
 
 <style>
   li {
-    color: var(--fontColorMedium);
+    color: hsl(220,20%,15%);
     font-size: var(--fontSizeSmall);
     font-weight: bold;
     letter-spacing: 0.025rem;
@@ -52,7 +52,7 @@
 
   .selected {
     background-color: hsl(0,0%,100%);
-    color: var(--fontColorMedium);
+    color: hsl(220,20%,15%);
   }
 
   .selected::after {

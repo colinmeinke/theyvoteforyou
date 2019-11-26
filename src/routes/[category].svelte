@@ -4,25 +4,53 @@
   <link rel="canonical" href={`https://theyvoteforyou.uk/${category.handle}`} />
 </svelte:head>
 
-<div in:fade={{delay:300}} out:fade={{duration:300}}>
-  <div class="settings">
-    <DivisionSettings
-      breakpoint={1000}
-      parties={partiesAZ}
-      {selectedParties}
-      {handlePartyUpdate}
-      bind:currentParties={currentParties}
-      handleCurrentPartiesChange={() => {partyRepaint = !partyRepaint}}
-      bind:currentMps={currentMps}
-      handleCurrentMpsChange={() => {partyRepaint = !partyRepaint}}
-      bind:breakdown={breakdown}
-      bind:resultFormat={resultFormat}
-      resultFormatOptions={resultFormatOptions}
-      handleResultFormatChange={() => {partyRepaint = !partyRepaint}}
-      orderByOptions={orderByOptions}
-      bind:orderBy={orderBy}
-    />
-  </div>
+<div in:fade={{delay:300, duration:300}} out:fade={{duration:300}}>
+  <form class="settings" on:submit|preventDefault>
+    <Settings breakpoint={1000}>
+      <CheckboxGroup
+        id="parties"
+        label="Select parties to compare:"
+        options={partyOptions}
+        selectedOptions={selectedParties}
+        handleChange={handlePartyChange}
+      />
+
+      <Checkbox
+        id="currentParties"
+        label="Show results based on MPs current party?"
+        bind:value={currentParties}
+        handleChange={() => {partyRepaint = !partyRepaint}}
+      />
+
+      <Checkbox
+        id="currentMps"
+        label="Only show current MPs?"
+        bind:value={currentMps}
+        handleChange={() => {partyRepaint = !partyRepaint}}
+      />
+
+      <Checkbox
+        id="breakdown"
+        label="Show exact breakdown?"
+        bind:value={breakdown}
+      />
+
+      <Select
+        id="resultFormat"
+        label="Select result format:"
+        options={resultFormatOptions}
+        bind:value={resultFormat}
+        handleChange={() => {partyRepaint = !partyRepaint}}
+      />
+
+      <Select
+        id="orderBy"
+        label="Order by:"
+        options={orderByOptions}
+        bind:value={orderBy}
+      />
+    </Settings>
+  </form>
 
   <div class="main">
     <header class="header">
@@ -46,14 +74,14 @@
       </header>
 
       <Grid>
-        {#each overallParties as {party, yes, no, abstained, didNotVote, other, desiredOutcome, undesiredOutcome}}
+        {#each overallParties as {party, desiredOutcome, undesiredOutcome}}
           <GridItem>
             <Card category={party} repaint={partyRepaint}>
               <div slot="title">{party}</div>
               <div slot="content">
-                <DivisionPartyOutcome
-                  good={`${desiredOutcome[resultFormat]}${suffix}`}
-                  bad={`${undesiredOutcome[resultFormat]}${suffix}`}
+                <PartyOutcome
+                  good={`${round(desiredOutcome[resultFormat])}${suffix}`}
+                  bad={`${round(undesiredOutcome[resultFormat])}${suffix}`}
                 />
               </div>
             </Card>
@@ -80,16 +108,16 @@
                 <div slot="content">
                   {#if breakdown}
                     <DivisionPartyBreakdown items={{
-                      [yes.title]: `${yes[resultFormat]}${suffix}`,
-                      [no.title]: `${no[resultFormat]}${suffix}`,
-                      [abstained.title]: `${abstained[resultFormat]}${suffix}`,
-                      [didNotVote.title]: `${didNotVote[resultFormat]}${suffix}`,
-                      [other.title]: `${other[resultFormat]}${suffix}`,
+                      [yes.title]: `${round(yes[resultFormat])}${suffix}`,
+                      [no.title]: `${round(no[resultFormat])}${suffix}`,
+                      [abstained.title]: `${round(abstained[resultFormat])}${suffix}`,
+                      [didNotVote.title]: `${round(didNotVote[resultFormat])}${suffix}`,
+                      [other.title]: `${round(other[resultFormat])}${suffix}`,
                     }} />
                   {:else}
-                    <DivisionPartyOutcome
-                      good={`${desiredOutcome[resultFormat]}${suffix}`}
-                      bad={`${undesiredOutcome[resultFormat]}${suffix}`}
+                    <PartyOutcome
+                      good={`${round(desiredOutcome[resultFormat])}${suffix}`}
+                      bad={`${round(undesiredOutcome[resultFormat])}${suffix}`}
                     />
                   {/if}
                 </div>
@@ -151,13 +179,12 @@
   .title {
     font-size: var(--fontSizeLarge);
     line-height: calc(var(--baseline) * 4);
-    transform: translateY(-2px);
   }
 
   .description,
   .best {
     padding-top: calc(var(--baseline) * 0.5);
-    transform: translateY(-1px);
+    /* transform: translateY(-1px); */
   }
 
   .description {
@@ -215,14 +242,23 @@
 
 <script>
   import {fade} from 'svelte/transition'
-  import {getMpsFromVotes, getPartiesFromMps, getPartiesFromDivisions, orderParties} from '../helpers'
+  import {
+    getMpsFromVotes,
+    getPartiesFromMps,
+    getPartiesFromDivisions,
+    orderParties,
+    round
+  } from '../helpers'
   import Grid from '../components/Grid.svelte'
   import GridItem from '../components/GridItem.svelte'
   import Card from '../components/Card.svelte'
+  import PartyOutcome from '../components/PartyOutcome.svelte'
   import DivisionSummaryHeader from '../components/division/SummaryHeader.svelte'
   import DivisionPartyBreakdown from '../components/division/PartyBreakdown.svelte'
-  import DivisionPartyOutcome from '../components/division/PartyOutcome.svelte'
-  import DivisionSettings from '../components/division/Settings.svelte'
+  import Settings from '../components/form/Settings.svelte'
+  import Checkbox from '../components/form/Checkbox.svelte'
+  import CheckboxGroup from '../components/form/CheckboxGroup.svelte'
+  import Select from '../components/form/Select.svelte'
 
   export let category
   export let divisions
@@ -253,6 +289,8 @@
       .reduce((acc, x) => acc.concat(x), [])
     )
   ).sort()
+
+  $: partyOptions = partiesAZ.map(party => ({value: party.replace(/ /g, ''), title: party}))
 
   $: availableParties = partiesAZ.filter(party => selectedParties.includes(party))
 
@@ -297,7 +335,7 @@
     `${string}${i === 0 ? '' : `${i === bestParties.length - 1 ? ' and ' : ', '}`}<strong>${party}</strong>`
   ), '')
 
-  const handlePartyUpdate = e => {
+  const handlePartyChange = e => {
     if (e.target.checked) {
       selectedParties = [...selectedParties, e.target.value]
     } else {

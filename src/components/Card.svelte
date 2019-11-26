@@ -45,14 +45,14 @@
   }
 
   .inner {
-    color: var(--fontColorMedium);
+    color: hsl(220,20%,15%);
     padding: var(--baseline) var(--gutter) calc(var(--baseline) * 3);
     transition: all var(--duration) ease-in-out;
   }
 
   @supports (background-clip: text) or (-webkit-background-clip: text) {
     .inner {
-      background-image: linear-gradient(to bottom, var(--fontColorMedium) 50%, var(--fontColorDark) 50%);
+      background-image: linear-gradient(to bottom, hsl(220,20%,15%) 50%, hsl(220,20%,0%) 50%);
       background-clip: text;
       -webkit-background-clip: text;
       color: transparent;
@@ -69,7 +69,7 @@
     [data-category="SDLP"] .inner,
     [data-category="UKIP"] .inner,
     [data-category="UUP"] .inner {
-      background-image: linear-gradient(to bottom, var(--fontColorMedium) 50%, hsl(0,0%,100%) 50%);
+      background-image: linear-gradient(to bottom, hsl(220,20%,15%) 50%, hsl(0,0%,100%) 50%);
     }
   }
 
@@ -179,6 +179,6 @@
 </style>
 
 <script>
-  export let category
-  export let repaint
+  export let category = 'none'
+  export let repaint = false
 </script>

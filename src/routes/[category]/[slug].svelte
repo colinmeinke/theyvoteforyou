@@ -7,25 +7,53 @@
   />
 </svelte:head>
 
-<div in:fade={{delay:300}} out:fade={{duration:300}}>
-  <div class="settings">
-    <DivisionSettings
-      breakpoint={1000}
-      parties={partiesAZ}
-      {selectedParties}
-      {handlePartyUpdate}
-      bind:currentParties={currentParties}
-      handleCurrentPartiesChange={() => {mpRepaint = !mpRepaint; partyRepaint = !partyRepaint}}
-      bind:currentMps={currentMps}
-      handleCurrentMpsChange={() => {partyRepaint = !partyRepaint}}
-      bind:breakdown={breakdown}
-      bind:resultFormat={resultFormat}
-      resultFormatOptions={resultFormatOptions}
-      handleResultFormatChange={() => {partyRepaint = !partyRepaint}}
-      orderByOptions={orderByOptions}
-      bind:orderBy={orderBy}
-    />
-  </div>
+<div in:fade={{delay:300, duration:300}} out:fade={{duration:300}}>
+  <form class="settings" on:submit|preventDefault>
+    <Settings breakpoint={1000}>
+      <CheckboxGroup
+        id="parties"
+        label="Select parasdsadsadties to compare:"
+        options={partyOptions}
+        selectedOptions={selectedParties}
+        handleChange={handlePartyChange}
+      />
+
+      <Checkbox
+        id="currentParties"
+        label="Show results based on MPs current party?"
+        bind:value={currentParties}
+        handleChange={() => {mpRepaint = !mpRepaint; partyRepaint = !partyRepaint}}
+      />
+
+      <Checkbox
+        id="currentMps"
+        label="Only show current MPs?"
+        bind:value={currentMps}
+        handleChange={() => {partyRepaint = !partyRepaint}}
+      />
+
+      <Checkbox
+        id="breakdown"
+        label="Show exact breakdown?"
+        bind:value={breakdown}
+      />
+
+      <Select
+        id="resultFormat"
+        label="Select result format:"
+        options={resultFormatOptions}
+        bind:value={resultFormat}
+        handleChange={() => {partyRepaint = !partyRepaint}}
+      />
+
+      <Select
+        id="orderBy"
+        label="Order by:"
+        options={orderByOptions}
+        bind:value={orderBy}
+      />
+    </Settings>
+  </form>
 
   <div class="main">
     <DivisionDetailHeader
@@ -50,16 +78,16 @@
               <div slot="content">
                 {#if breakdown}
                   <DivisionPartyBreakdown items={{
-                    [yes.title]: `${yes[resultFormat]}${suffix}`,
-                    [no.title]: `${no[resultFormat]}${suffix}`,
-                    [abstained.title]: `${abstained[resultFormat]}${suffix}`,
-                    [didNotVote.title]: `${didNotVote[resultFormat]}${suffix}`,
-                    [other.title]: `${other[resultFormat]}${suffix}`,
+                    [yes.title]: `${round(yes[resultFormat])}${suffix}`,
+                    [no.title]: `${round(no[resultFormat])}${suffix}`,
+                    [abstained.title]: `${round(abstained[resultFormat])}${suffix}`,
+                    [didNotVote.title]: `${round(didNotVote[resultFormat])}${suffix}`,
+                    [other.title]: `${round(other[resultFormat])}${suffix}`,
                   }} />
                 {:else}
-                  <DivisionPartyOutcome
-                    good={`${desiredOutcome[resultFormat]}${suffix}`}
-                    bad={`${undesiredOutcome[resultFormat]}${suffix}`}
+                  <PartyOutcome
+                    good={`${round(desiredOutcome[resultFormat])}${suffix}`}
+                    bad={`${round(undesiredOutcome[resultFormat])}${suffix}`}
                   />
                 {/if}
               </div>
@@ -140,18 +168,21 @@
 </script>
 
 <script>
-  import {orderParties, getMpsFromVotes, getPartiesFromMps} from '../../helpers'
+  import {fade} from 'svelte/transition'
+  import {orderParties, getMpsFromVotes, getPartiesFromMps, round} from '../../helpers'
   import Card from '../../components/Card.svelte'
   import Grid from '../../components/Grid.svelte'
   import GridItem from '../../components/GridItem.svelte'
+  import PartyOutcome from '../../components/PartyOutcome.svelte'
   import DivisionDetailHeader from '../../components/division/DetailHeader.svelte'
-  import DivisionSettings from '../../components/division/Settings.svelte'
   import DivisionPartiesHeader from '../../components/division/PartiesHeader.svelte'
   import DivisionPartyBreakdown from '../../components/division/PartyBreakdown.svelte'
-  import DivisionPartyOutcome from '../../components/division/PartyOutcome.svelte'
   import DivisionMpsHeader from '../../components/division/MpsHeader.svelte'
   import DivisionMp from '../../components/division/Mp.svelte'
-  import {fade} from 'svelte/transition'
+  import Settings from '../../components/form/Settings.svelte'
+  import Checkbox from '../../components/form/Checkbox.svelte'
+  import CheckboxGroup from '../../components/form/CheckboxGroup.svelte'
+  import Select from '../../components/form/Select.svelte'
 
   export let category
   export let slug
@@ -179,6 +210,7 @@
   $: mps = getMpsFromVotes(division.votes, currentMps, currentParties)
   $: parties = getPartiesFromMps(mps, selectedCategory.desiredOutcome)
   $: partiesAZ = parties.map(({party}) => party).sort()
+  $: partyOptions = partiesAZ.map(party => ({value: party, title: party}))
   $: availableParties = partiesAZ.filter(party => selectedParties.includes(party))
 
   $: filteredMps = mps
@@ -201,7 +233,7 @@
     selectedCategory.desiredOutcome
   )
 
-  const handlePartyUpdate = e => {
+  const handlePartyChange = e => {
     if (e.target.checked) {
       selectedParties = [...selectedParties, e.target.value]
     } else {

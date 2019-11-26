@@ -26,6 +26,6 @@
 </style>
 
 <script>
-  export let center
-  export let vertical
+  export let center = false
+  export let vertical = false
 </script>

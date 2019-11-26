@@ -1,4 +1,4 @@
-<div class="outer" in:fade={{delay:300}} out:fade={{duration:300}}>
+<div class="outer" in:fade={{delay:300, duration:300}} out:fade={{duration:300}}>
   <div class="inner">
     <h1>{status}</h1>
     <p>{error.message}</p>

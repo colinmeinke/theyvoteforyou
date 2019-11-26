@@ -1,12 +1,12 @@
 <Header />
 
-<main class="a">
-  <div class="b">
-    <slot></slot>
+<main class="outer">
+  <div class="inner">
+    <slot categories={categories}></slot>
   </div>
 </main>
 
-<Footer />
+<Footer {categories} {segment} />
 
 {#if showLayout}
   <BaselineGrid />
@@ -16,20 +16,11 @@
   :global(:root) {
     --baseline: 0.75rem;
     --column: calc(var(--baseline) * 8);
-    --gutter: var(--baseline);
+    --gutter: calc(var(--baseline) * 2);
     --fontSizeSmall: 80%;
     --fontSizeMedium: 150%;
     --fontSizeLarge: 200%;
-    --fontColorDark: hsl(220,20%,0%);
-    --fontColorMedium: hsl(220,20%,15%);
-    --fontColorLight: hsl(220,20%,35%);
     --selectedColor: hsl(200,80%,50%);
-  }
-
-  @media only screen and (min-width: 1000px) {
-    :global(:root) {
-      --gutter: calc(var(--baseline) * 2);
-    }
   }
 
   @font-face {
@@ -62,6 +53,12 @@
     line-height: calc(var(--baseline) * 2);
     margin: 0;
     position: relative;
+  }
+
+  @media screen and (min-width: 550px) {
+    :global(body) {
+      font-size: 110%;
+    }
   }
 
   :global(strong) {
@@ -115,13 +112,13 @@
   }
   
   
-  .a {
+  .outer {
     display: flex;
     justify-content: center;
     flex-grow: 1;
   }
 
-  .b {
+  .inner {
     --maxWidth: calc(12 * (var(--column) + var(--gutter)) + var(--gutter));
     display: flex;
     max-width: var(--maxWidth);
@@ -132,13 +129,13 @@
     width: 100%;
   }
 
-  .b > :global(div) {
+  .inner > :global(div) {
     display: flex;
     width: 100%;
   }
 
   @media screen and (max-width: 999px) {
-    .b > :global(div) {
+    .inner > :global(div) {
       flex-direction: column;
     }
   }
@@ -163,12 +160,27 @@
   }
 </style>
 
+<script context="module">
+  export async function preload({params: {category: handle}}) {
+    try {
+      const res = await this.fetch(`data/categories.json`)
+      const categories = await res.json()
+      return {categories}
+    } catch (err) {
+      this.error(500, err)
+    }
+  }
+</script>
+
 <script>
   import BaselineGrid from '../components/BaselineGrid.svelte'
   import Header from '../components/Header.svelte'
   import Footer from '../components/Footer.svelte'
   import {onMount} from 'svelte'
   import {fade} from 'svelte/transition'
+
+  export let categories
+  export let segment
 
   let controlDown = false
   let showLayout = false

@@ -3,7 +3,7 @@
     <a href="/" name="Home" >
       <svg class="logo" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16">
         <title>They Vote For You</title>
-        <path fill={colour} d="M7 13v2l-2 1-2-1v-3l2.5-3.75L3 7V4l2-1 2 1v2l2-3V1l2-1 2 1v3l-2.5 3.75L13 9v3l-2 1-2-1v-2z"/>
+        <path class="colour" d="M7 13v2l-2 1-2-1v-3l2.5-3.75L3 7V4l2-1 2 1v2l2-3V1l2-1 2 1v3l-2.5 3.75L13 9v3l-2 1-2-1v-2z"/>
         <path fill="#fff" fill-opacity=".5" d="M9 1l2-1 2 1-2 1zM3 4l2-1 2 1-2 1z"/>
         <path fill="#fff" fill-opacity=".4" d="M5.5 8.25l2 1L5 13l-2-1zM9 3l2 1-2 3-2-1z"/>
         <path fill="#fff" fill-opacity=".1" d="M3 12l2 1v3l-2-1zM9 1l2 1v2L9 3zM3 4l2 1v3L3 7zM9 10l2 1v2l-2-1z"/>
@@ -62,18 +62,17 @@
     overflow: visible;
     width: calc(var(--baseline) * 2);
   }
+
+  @keyframes pathAnimation {
+    0% { fill: hsl(0,90%,40%); }
+    25% { fill: hsl(90,90%,40%); }
+    50% { fill: hsl(180,90%,40%); }
+    75% { fill: hsl(270,90%,40%); }
+    100% { fill: hsl(360,90%,40%); }
+  }
+
+  .colour {
+    animation: pathAnimation 15s linear infinite;
+    fill: hsl(0,90%,40%);
+  }
 </style>
-
-<script>
-  import {onMount} from 'svelte'
-  import {tweened} from 'svelte/motion';
-
-  let h = tweened(0)
-
-  $: colour = `hsl(${$h},90%,40%)`
-
-  const animate = () => h.set(360, {duration: 15000}).then(reset)
-  const reset = () => h.set(0, {duration: 0}).then(animate)
-
-  onMount(animate)
-</script>
