@@ -1,7 +1,10 @@
-<div>
+<div
+  in:hide|local={{duration:transitionDuration, easing: cubicOut}}
+  out:hide|local={{duration:transitionDuration, easing: cubicIn}}
+>
   <label for={id}>{label}</label>
-  <select id={id} bind:value={value} on:change={handleChange}>
-    {#each options as option}
+  <select id={id} bind:value={value} on:change={handleChange} {disabled}>
+    {#each options as option (option)}
       <option value={option}>{option}</option>
     {/each}
   </select>
@@ -31,9 +34,15 @@
 </style>
 
 <script>
+  import {hide} from '../../helpers'
+  import {cubicOut, cubicIn} from 'svelte/easing'
+  import {fade} from 'svelte/transition'
+
   export let id
   export let label
   export let options = []
   export let value
   export let handleChange = () => {}
+  export let disabled = false
+  export let transitionDuration = 300
 </script>

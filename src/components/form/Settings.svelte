@@ -11,7 +11,10 @@
   {/if}
 
   {#if show}
-    <div>
+    <div
+      in:hide|local={{duration:300, easing: cubicOut}}
+      out:hide|local={{duration:300, easing: cubicOut}}
+    >
       <slot></slot>
     </div>
   {/if}
@@ -58,6 +61,9 @@
 
 <script>
   import {onMount} from 'svelte'
+  import {slide} from 'svelte/transition'
+  import {cubicOut, cubicIn} from 'svelte/easing'
+  import {hide} from '../../helpers'
 
   export let breakpoint = 1000
   export let allowHide = true

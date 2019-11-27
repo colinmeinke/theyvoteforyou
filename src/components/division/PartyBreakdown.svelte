@@ -1,4 +1,4 @@
-{#each Object.keys(items) as key}
+{#each Object.keys(items) as key (key)}
   <p>{key} <strong>{items[key]}</strong></p>
 {/each}
 

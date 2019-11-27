@@ -2,7 +2,7 @@
   <div class="inner">
     <h2>Browse by issue:</h2>
     <nav>
-      {#each categories as category}
+      {#each categories as category (category.handle)}
         <a href={`/${category.handle}`}>{category.title}</a>
       {/each}
     </nav>

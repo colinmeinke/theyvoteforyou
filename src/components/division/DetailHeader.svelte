@@ -23,7 +23,7 @@
   {#if categories}
     <div class="categories">
       <Categories>
-        {#each categories as category}
+        {#each categories as category (category.handle)}
           <Category
             selected={selectedCategory && category.handle === selectedCategory.handle}
             href={`${category.handle}`}

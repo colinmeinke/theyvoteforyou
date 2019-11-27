@@ -74,8 +74,13 @@
       </header>
 
       <Grid>
-        {#each overallParties as {party, desiredOutcome, undesiredOutcome}}
-          <GridItem>
+        {#each overallParties as {party, desiredOutcome, undesiredOutcome} (party)}
+          <li
+            class="flex"
+            in:receive|local={{key: party}}
+            out:send|local={{key: party}}
+            animate:flip={{duration: 300}}
+          >
             <Card category={party} repaint={partyRepaint}>
               <div slot="title">{party}</div>
               <div slot="content">
@@ -85,12 +90,12 @@
                 />
               </div>
             </Card>
-          </GridItem>
+          </li>
         {/each}
       </Grid>
     </section>
 
-    {#each filteredDs as {handle, title, desiredOutcome, outcome, date, parties}}
+    {#each filteredDs as {handle, title, desiredOutcome, outcome, date, parties} (handle)}
       <section class="gap">
         <DivisionSummaryHeader
           {title}
@@ -101,8 +106,13 @@
         />
 
         <Grid>
-          {#each parties as {party, yes, no, abstained, didNotVote, other, desiredOutcome, undesiredOutcome}}
-            <GridItem>
+          {#each parties as {party, yes, no, abstained, didNotVote, other, desiredOutcome, undesiredOutcome} (party)}
+            <li
+              class="flex"
+              in:receive|local={{key: party}}
+              out:send|local={{key: party}}
+              animate:flip={{duration: 300}}
+            >
               <Card category={party} repaint={partyRepaint}>
                 <h3 slot="title">{party}</h3>
                 <div slot="content">
@@ -122,7 +132,7 @@
                   {/if}
                 </div>
               </Card>
-            </GridItem>
+            </li>
           {/each}
         </Grid>
       </section>
@@ -212,6 +222,10 @@
   .gap {
     padding-top: calc(var(--baseline) * 5);
   }
+
+  .flex {
+    display: flex;
+  }
 </style>
 
 <script context="module">
@@ -242,15 +256,16 @@
 
 <script>
   import {fade} from 'svelte/transition'
+  import {flip} from 'svelte/animate'
   import {
     getMpsFromVotes,
     getPartiesFromMps,
     getPartiesFromDivisions,
     orderParties,
-    round
+    round,
+    switchItems,
   } from '../helpers'
   import Grid from '../components/Grid.svelte'
-  import GridItem from '../components/GridItem.svelte'
   import Card from '../components/Card.svelte'
   import PartyOutcome from '../components/PartyOutcome.svelte'
   import DivisionSummaryHeader from '../components/division/SummaryHeader.svelte'
@@ -263,6 +278,7 @@
   export let category
   export let divisions
 
+  const [send, receive] = switchItems()
   const resultFormatOptions = ['Percentage', 'Vote Count']
   const orderByOptions = ['Highest Percentage', 'Highest Vote Count', 'A-Z']
 
@@ -290,7 +306,7 @@
     )
   ).sort()
 
-  $: partyOptions = partiesAZ.map(party => ({value: party.replace(/ /g, ''), title: party}))
+  $: partyOptions = partiesAZ.map(party => ({value: party, title: party}))
 
   $: availableParties = partiesAZ.filter(party => selectedParties.includes(party))
 

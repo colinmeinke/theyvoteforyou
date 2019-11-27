@@ -1,3 +1,6 @@
+const {crossfade} = require('svelte/transition')
+const {cubicOut} = require('svelte/easing')
+
 const formatDate = date => { 
   const months = [
     'January',
@@ -263,6 +266,41 @@ const orderParties = (parties, orderBy, desiredOutcome = 'desiredOutcome') => pa
 
 const round = n => n.toFixed(1).replace('.0', '')
 
+const switchItems = (easing = cubicOut) => crossfade({
+  duration: d => Math.sqrt(d * 200),
+  fallback(node, params) {
+    const style = getComputedStyle(node)
+    const transform = style.transform === 'none' ? '' : style.transform
+
+    return {
+      duration: 600,
+      easing,
+      css: t => `
+        transform: ${transform} scale(${t});
+        opacity: ${t}
+      `
+    }
+  }
+})
+
+
+const hide = (node, {delay = 0, duration = 300, easing = cubicOut}) => {
+  const style = getComputedStyle(node)
+  const height = parseFloat(style.height)
+  const transform = style.transform
+
+  return {
+    duration,
+    css: t => `
+      opacity: ${easing(t)};
+      height: ${height * easing(t)}px;
+      transform: ${transform} scale(${easing(t)});
+      transform-origin: left;
+      overflow: hidden;
+    `
+  }
+}
+
 module.exports = {
   orderParties,
   formatDate,
@@ -274,4 +312,6 @@ module.exports = {
   getPartiesFromMps,
   getPartiesFromDivisions,
   round,
+  switchItems,
+  hide,
 }

@@ -71,8 +71,13 @@
       <DivisionPartiesHeader />
 
       <Grid>
-        {#each filteredParties as {party, yes, no, abstained, didNotVote, other, desiredOutcome, undesiredOutcome}}
-          <GridItem>
+        {#each filteredParties as {party, yes, no, abstained, didNotVote, other, desiredOutcome, undesiredOutcome} (party)}
+          <li
+            class="flex"
+            in:receive|local={{key: party}}
+            out:send|local={{key: party}}
+            animate:flip={{duration: 300}}
+          >
             <Card category={party} repaint={partyRepaint}>
               <h3 slot="title">{party}</h3>
               <div slot="content">
@@ -92,7 +97,7 @@
                 {/if}
               </div>
             </Card>
-          </GridItem>
+          </li>
         {/each}
       </Grid>
     </section>
@@ -107,8 +112,8 @@
       />
 
       <Grid>
-        {#each filteredMps as {id, name, vote, party, constituency}}
-          <GridItem>
+        {#each filteredMps as {id, name, vote, party, constituency} (id)}
+          <li class="flex">
             <Card category={party} repaint={mpRepaint}>
               <h2 slot="title">{name}</h2>
               <div slot="content">
@@ -120,7 +125,7 @@
                 />
               </div>
             </Card>
-          </GridItem>
+          </li>
         {/each}
       </Grid>
     <section>
@@ -148,6 +153,10 @@
     padding-left: calc(var(--gutter) / 2);
     padding-right: calc(var(--gutter) / 2);
   }
+
+  .flex {
+    display: flex;
+  }
 </style>
 
 <script context="module">
@@ -169,10 +178,16 @@
 
 <script>
   import {fade} from 'svelte/transition'
-  import {orderParties, getMpsFromVotes, getPartiesFromMps, round} from '../../helpers'
+  import {flip} from 'svelte/animate'
+  import {
+    orderParties,
+    getMpsFromVotes,
+    getPartiesFromMps,
+    round,
+    switchItems
+  } from '../../helpers'
   import Card from '../../components/Card.svelte'
   import Grid from '../../components/Grid.svelte'
-  import GridItem from '../../components/GridItem.svelte'
   import PartyOutcome from '../../components/PartyOutcome.svelte'
   import DivisionDetailHeader from '../../components/division/DetailHeader.svelte'
   import DivisionPartiesHeader from '../../components/division/PartiesHeader.svelte'
@@ -188,6 +203,7 @@
   export let slug
   export let division
 
+  const [send, receive] = switchItems()
   const resultFormatOptions = ['Percentage', 'Vote Count']
   const orderByOptions = ['Highest Percentage', 'Highest Vote Count', 'A-Z']
   const mpsFilterByOptions = ['All', 'Yes', 'No', 'Abstained', 'Did Not Vote']
