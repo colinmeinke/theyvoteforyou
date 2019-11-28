@@ -2,12 +2,18 @@
 
 <aside>
   {#if allowHide}
-    <button
-      type="button"
-      on:click={() => {userPressedButton = true; show = !show}}
+    <div
+      class="container"
+      in:hide={{duration:300, easing: cubicOut}}
+      out:hide={{duration:300, easing: cubicOut}}
     >
-      {`${show ? 'Hide' : 'Show'} Settings`}
-    </button>
+      <button
+        type="button"
+        on:click={() => {userPressedButton = true; show = !show}}
+      >
+        {`${show ? 'Hide' : 'Show'} Settings`}
+      </button>
+    </div>
   {/if}
 
   {#if show}
@@ -33,6 +39,10 @@
     aside {
       padding-top: calc(var(--baseline) * 2);
     }
+  }
+
+  .container {
+    padding-bottom: calc(var(--baseline) * 2);
   }
 
   button {

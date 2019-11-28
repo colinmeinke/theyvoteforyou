@@ -18,7 +18,6 @@
 
 <style>
   footer {
-    margin-top: calc(var(--baseline) * 8);
     background-color: hsl(0,0%,9%);
     display: flex;
     justify-content: center;

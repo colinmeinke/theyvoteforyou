@@ -1,7 +1,4 @@
-<div
-  in:hide|local={{duration:transitionDuration, easing: cubicOut}}
-  out:hide|local={{duration:transitionDuration, easing: cubicIn}}
->
+<div>
   <input
     name={id}
     id={id}
@@ -96,14 +93,11 @@
 </style>
 
 <script>
-  import {hide} from '../../helpers'
   import {fade} from 'svelte/transition'
-  import {cubicOut, cubicIn} from 'svelte/easing'
 
   export let id
   export let label
   export let value
   export let handleChange = () => {}
   export let disabled = false
-  export let transitionDuration = 300
 </script>

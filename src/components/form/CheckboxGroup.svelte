@@ -1,48 +1,41 @@
-<div
-  in:hide|local={{duration:transitionDuration, easing: cubicOut}}
-  out:hide|local={{duration:transitionDuration, easing: cubicIn}}
-  on:introstart={() => console.log('START')}
-  on:introend={() => console.log('END')}
->
-  <fieldset class:fancy>
-    <legend class:drawAttention>{label}</legend>
+<fieldset class:fancy>
+  <legend class:drawAttention>{label}</legend>
 
-    <div class="list">
-      {#each options as option (option.value)}
-        <div
-          class="item"
-          in:receive|local={{key: option.value}}
-          out:send|local={{key: option.value}}
-          animate:flip={{duration: 300}}
-        >
-          <input
-            type="checkbox"
-            name={`${id}${option.value.replace(/ /g, '')}`}
-            id={`${id}${option.value.replace(/ /g, '')}`}
-            value={option.value}
-            checked={selectedOptions.includes(option.value)}
-            on:change={handleChange}
-            {disabled}
-          />
+  <div class="list">
+    {#each options as option (option.value)}
+      <div
+        class="item"
+        in:receive|local={{key: option.value}}
+        out:send|local={{key: option.value}}
+        animate:flip={{duration: 300}}
+      >
+        <input
+          type="checkbox"
+          name={`${id}${option.value.replace(/ /g, '')}`}
+          id={`${id}${option.value.replace(/ /g, '')}`}
+          value={option.value}
+          checked={selectedOptions.includes(option.value)}
+          on:change={handleChange}
+          {disabled}
+        />
 
-          <label for={`${id}${option.value.replace(/ /g, '')}`}>
-            {#if selectedOptions.includes(option.value)}
-              <svg
-                transition:fade|local={{duration:300}}
-                xmlns="http://www.w3.org/2000/svg"
-                width="16"
-                height="14"
-              >
-                <path fill="#FFF" fill-rule="evenodd" d="M5 10l9-10 2 2L5 14 0 9l2-2z"/>
-              </svg>
-            {/if}
-            {option.title}
-          </label>
-        </div>
-      {/each}
-    </div>
-  </fieldset>
-</div>
+        <label for={`${id}${option.value.replace(/ /g, '')}`}>
+          {#if selectedOptions.includes(option.value)}
+            <svg
+              transition:fade|local={{duration:300}}
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="14"
+            >
+              <path fill="#FFF" fill-rule="evenodd" d="M5 10l9-10 2 2L5 14 0 9l2-2z"/>
+            </svg>
+          {/if}
+          {option.title}
+        </label>
+      </div>
+    {/each}
+  </div>
+</fieldset>
 
 <style>
   fieldset {
@@ -51,18 +44,23 @@
     flex-direction: column;
     margin: 0;
     min-inline-size: 0;
-    padding: var(--baseline) 0 calc(var(--baseline) * 2.5);
+    padding: 0 0 calc(var(--baseline) * 2.5);
     position: relative;
   }
 
-  fieldset:not(.fancy)::after {
+  fieldset::after {
     background-color: hsla(0,0%,100%,0.2);
     bottom: var(--baseline);
     content: '';
     height: 1px;
     position: absolute;
     left: 0;
-    right: 0;
+    right: 0%;
+    transition: opacity 0.6s ease-in-out;
+  }
+
+  .fancy::after {
+    opacity: 0;
   }
 
   legend {
@@ -108,6 +106,10 @@
     .fancy .list {
       grid-template-columns: 1fr 1fr 1fr 1fr;
     }
+  }
+
+  .list {
+    padding-top: var(--baseline);
   }
 
   .item {
@@ -178,8 +180,7 @@
 </style>
 
 <script>
-  import {cubicOut, cubicIn} from 'svelte/easing'
-  import {switchItems, hide} from '../../helpers'
+  import {switchItems} from '../../helpers'
   import {flip} from 'svelte/animate'
   import {fade} from 'svelte/transition'
 
@@ -191,7 +192,6 @@
   export let drawAttention = false
   export let fancy = false
   export let disabled = false
-  export let transitionDuration = 300
 
   const [send, receive] = switchItems()
 </script>

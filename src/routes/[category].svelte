@@ -142,6 +142,7 @@
 
 <style>
   .settings {
+    padding-bottom: calc(var(--baseline) * 6);
     padding-left: calc(var(--gutter) / 2);
     padding-right: calc(var(--gutter) / 2);
     width: 100%;
@@ -158,6 +159,7 @@
     flex-basis: 0;
     flex-grow: 999999;
     min-width: calc(100% / 3 * 2);
+    padding-bottom: calc(var(--baseline) * 6);
     padding-left: calc(var(--gutter) / 2);
     padding-right: calc(var(--gutter) / 2);
     color: white;

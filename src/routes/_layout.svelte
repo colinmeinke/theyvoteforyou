@@ -115,7 +115,6 @@
   .outer {
     display: flex;
     justify-content: center;
-    overflow: hidden;
     flex-grow: 1;
   }
 

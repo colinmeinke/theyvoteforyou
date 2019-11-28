@@ -20,15 +20,15 @@
   >
     {#if !comparing}
       <h1
-        in:hide={{duration: transitionDuration, easing: cubicOut}}
-        out:hide={{duration: transitionDuration, easing: cubicIn}}
+        in:titleTransition|local={{duration: transitionDuration, easing: cubicOut}}
+        out:titleTransition|local={{duration: transitionDuration, easing: cubicIn}}
       >
         They want you to vote for them.
         But do <strong>they vote for you?</strong>
       </h1>
     {/if}
 
-    <Settings breakpoint={1000} allowHide={comparing}>
+    <Settings breakpoint={1000} allowHide={comparing && !transitioning}>
       <CheckboxGroup
         id="categories"
         label="Select the issues that matter to you:"
@@ -37,58 +37,55 @@
         handleChange={handleCategoryChange}
         drawAttention={highlightCategorySelect}
         fancy={!comparing}
-        {transitionDuration}
       />
 
       {#if comparing}
-        <CheckboxGroup
-          id="parties"
-          label="Select parties to compare:"
-          options={partyOptions}
-          selectedOptions={selectedParties}
-          handleChange={handlePartyChange}
-          {transitionDuration}
-        />
+        <div
+          in:hide|local={{delay: transitionDuration, duration: 300, easing: cubicOut}}
+          out:hide|local={{duration: 300, easing: cubicIn}}
+        >
+          <CheckboxGroup
+            id="parties"
+            label="Select parties to compare:"
+            options={partyOptions}
+            selectedOptions={selectedParties}
+            handleChange={handlePartyChange}
+          />
 
-        <Checkbox
-          id="currentParties"
-          label="Show results based on MPs current party?"
-          bind:value={currentParties}
-          handleChange={() => partyRepaint = !partyRepaint}
-          {transitionDuration}
-        />
+          <Checkbox
+            id="currentParties"
+            label="Show results based on MPs current party?"
+            bind:value={currentParties}
+            handleChange={() => partyRepaint = !partyRepaint}
+          />
 
-        <Checkbox
-          id="currentMps"
-          label="Only show current MPs?"
-          bind:value={currentMps}
-          handleChange={() => partyRepaint = !partyRepaint}
-          {transitionDuration}
-        />
+          <Checkbox
+            id="currentMps"
+            label="Only show current MPs?"
+            bind:value={currentMps}
+            handleChange={() => partyRepaint = !partyRepaint}
+          />
 
-        <Select
-          id="resultFormat"
-          label="Select result format:"
-          options={resultFormatOptions}
-          bind:value={resultFormat}
-          handleChange={() => partyRepaint = !partyRepaint}
-          {transitionDuration}
-        />
+          <Select
+            id="resultFormat"
+            label="Select result format:"
+            options={resultFormatOptions}
+            bind:value={resultFormat}
+            handleChange={() => partyRepaint = !partyRepaint}
+          />
 
-        <Select
-          id="orderBy"
-          label="Order by:"
-          options={orderByOptions}
-          bind:value={orderBy}
-          handleChange={() => partyRepaint = !partyRepaint}
-          {transitionDuration}
-        />
-      {/if}
-
-      {#if !comparing}
+          <Select
+            id="orderBy"
+            label="Order by:"
+            options={orderByOptions}
+            bind:value={orderBy}
+            handleChange={() => partyRepaint = !partyRepaint}
+          />
+        </div>
+      {:else}
         <button
-          in:hide={{duration: transitionDuration, easing: cubicOut}}
-          out:hide={{duration: transitionDuration, easing: cubicIn}}
+          in:hide|local={{duration: transitionDuration, easing: cubicOut}}
+          out:hide|local={{duration: transitionDuration, easing: cubicIn}}
           type="submit"
         >
           Compare parties
@@ -100,15 +97,15 @@
   {#if comparing}
     <div
       class="main"
-      in:mainIn|local={{duration: transitionDuration}}
-      out:mainOut|local={{duration: transitionDuration}}
+      in:mainTransition|local={{duration: transitionDuration, easing: cubicOut}}
+      out:mainTransition|local={{duration: transitionDuration, easing: cubicIn}}
       on:introend={updateTransitions}
       on:outroend={updateTransitions}
     >
       <div
         class="content"
-        in:contentIn|local={{duration: transitionDuration}}
-        out:contentOut|local={{duration: transitionDuration}}
+        in:contentTransition|local={{duration: transitionDuration, easing: cubicOut}}
+        out:contentTransition|local={{duration: transitionDuration, easing: cubicOut}}
       >
         <section>
           <header class="header">
@@ -201,11 +198,10 @@
   }
 
   form {
+    padding-bottom: calc(var(--baseline) * 6);
     padding-left: calc(var(--gutter) / 2);
     padding-right: calc(var(--gutter) / 2);
-    /* This needs some work - think flip does it's calc pre transition */
-    /* so need to somehoe add this remove this during calc time */
-    /* transition: all 3s ease-in-out; */
+    transition: all 0.6s ease-in-out;
   }
 
   .splash {
@@ -233,6 +229,7 @@
 
   .main {
     flex-grow: 99999;
+    padding-bottom: calc(var(--baseline) * 6);
     width: 100%;
   }
 
@@ -402,8 +399,8 @@
   const resultFormatOptions = ['Percentage', 'Vote Count']
   const orderByOptions = ['Highest Percentage', 'Highest Vote Count', 'A-Z']
   const categoryOptions = categories.map(({handle, title}) => ({value: handle, title}))
-  const transitionDuration = 3000
-
+  const transitionDuration = 600
+  let showTitle = true
   let selectedCategories = []
   let selectedParties = ['Conservatives', 'Labour', 'Liberal Democrats']
   let currentMps = true
@@ -425,13 +422,13 @@
   let comparing = false
   let highlightCategorySelectInterval
   let highlightCategorySelect = false
-  let mainIn = () => {}
-  let mainOut = () => {}
-  let contentIn = () => {}
-  let contentOut = () => {}
+  let mainTransition = () => {}
+  let contentTransition = () => {}
+  let titleTransition = () => {}
   let container
   let aside
   let splashWidth = 0
+  let transitioning = false
 
   $: suffix = resultFormat === 'Percentage' ? '%' : ''
   $: filteredCategories = categories.filter(({handle}) => selectedCategories.includes(handle))
@@ -514,7 +511,9 @@
     }
 
     if (!selectedCategories.length && comparing) {
+      transitioning = true
       comparing = false
+      window.setTimeout(() => transitioning = false, transitionDuration)
     }
 
     partyRepaint = !partyRepaint
@@ -533,7 +532,9 @@
 
     if (selectedCategories.length) {
       highlightCategorySelect = false
+      transitioning = true
       comparing = true
+      window.setTimeout(() => transitioning = false, transitionDuration)
     } else {
       highlightCategorySelect = true
 
@@ -546,7 +547,7 @@
   const createMainTransition = easing => {
     const largeScreen = window.innerWidth >= 1000
 
-    return (node, {delay = 0, duration = 300}) => {
+    return (node, {delay = 0, duration = 300, easing = cubicOut}) => {
       const style = getComputedStyle(node)
       const height = parseFloat(style.height)
       const width = parseFloat(style.width)
@@ -562,32 +563,55 @@
     }
   }
 
-  const createContentTransition = easing => {
-    const viewportWidth = window.innerWidth
-    const containerWidth = parseFloat(getComputedStyle(container).width)
-    const offset = viewportWidth >= 1000
-      ? (containerWidth - (Math.min(splashWidth, viewportWidth))) / 2
-      : 0
+  const createTitleTransition = () => {
+    const width = window.innerWidth >= 1000
+      ? splashWidth - 24
+      : containerWidth
 
-    return (node, {delay = 0, duration = 300}) => {
+    return (node, {delay = 0, duration = 300, easing = cubicOut}) => {
       const style = getComputedStyle(node)
+      const height = parseFloat(style.height)
+      const transform = style.transform
 
       return {
+        delay,
         duration,
         css: t => `
           opacity: ${easing(t)};
-          width: ${style.width};
-          transform: translateX(${offset - offset * easing(t)}px);
+          height: ${height * easing(t)}px;
+          transform: ${transform} scale(${easing(t)});
+          transform-origin: left;
+          overflow: hidden;
+          width: ${width}px;
         `
       }
     }
   }
 
+  const createContentTransition = () => {
+    const viewportWidth = window.innerWidth
+    const containerWidth = parseFloat(getComputedStyle(container).width)
+    const offset = viewportWidth >= 1000
+      ? (containerWidth - (Math.min(splashWidth, containerWidth))) / 2
+      : 0
+    const width = viewportWidth >= 1000
+      ? containerWidth - 360
+      : containerWidth
+
+    return (node, {delay = 0, duration = 300, easing = cubicOut}) => ({
+      duration,
+      css: t => `
+        opacity: ${easing(t)};
+        width: ${width}px;
+        transform: translateX(${offset - offset * easing(t)}px);
+      `
+    })
+  }
+
   const updateTransitions = () => {
-    mainIn = createMainTransition(cubicOut)
-    mainOut = createMainTransition(cubicIn)
-    contentIn = createContentTransition(cubicOut)
-    contentOut = createContentTransition(cubicIn)
+    mainTransition = createMainTransition()
+    contentTransition = createContentTransition()
+    titleTransition = createTitleTransition()
 
     if (!comparing) {
       splashWidth = parseFloat(getComputedStyle(aside).width)

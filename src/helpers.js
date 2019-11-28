@@ -290,6 +290,7 @@ const hide = (node, {delay = 0, duration = 300, easing = cubicOut}) => {
   const transform = style.transform
 
   return {
+    delay,
     duration,
     css: t => `
       opacity: ${easing(t)};
