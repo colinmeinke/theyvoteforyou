@@ -15,7 +15,7 @@
         bind:value={filterBy}
         on:change={handleFilterByChange}
       >
-        {#each filterByOptions as option}
+        {#each filterByOptions as option (option)}
           <option value={option}>{`${['Yes', 'No'].includes(option) ? 'Voted ' : ''}${option}`}</option>
         {/each}
       </select>

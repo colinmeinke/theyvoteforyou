@@ -2,16 +2,25 @@
 
 <aside>
   {#if allowHide}
-    <button
-      type="button"
-      on:click={() => {userPressedButton = true; show = !show}}
+    <div
+      class="container"
+      in:hide|local={{duration: 300, easing: cubicOut}}
+      out:hide|local={{duration: 300, easing: cubicIn}}
     >
-      {`${show ? 'Hide' : 'Show'} Settings`}
-    </button>
+      <button
+        type="button"
+        on:click={() => {userPressedButton = true; show = !show}}
+      >
+        {`${show ? 'Hide' : 'Show'} Settings`}
+      </button>
+    </div>
   {/if}
 
   {#if show}
-    <div>
+    <div
+      in:hide|local={{duration: 300, easing: cubicOut}}
+      out:hide|local={{duration: 300, easing: cubicOut}}
+    >
       <slot></slot>
     </div>
   {/if}
@@ -32,6 +41,10 @@
     }
   }
 
+  .container {
+    padding-bottom: calc(var(--baseline) * 2);
+  }
+
   button {
     background-color: hsl(0,0%,8%);
     border: none;
@@ -45,7 +58,7 @@
     line-height: calc(var(--baseline) * 2);
     padding: calc(var(--baseline) * 0.5 - 1px) var(--baseline);
     transition: all 0.3s ease-in-out;
-    transform: translateY(-2px) translateX(-1px);
+    transform: translateY(-2px);
   }
 
   button:hover,
@@ -58,6 +71,9 @@
 
 <script>
   import {onMount} from 'svelte'
+  import {slide} from 'svelte/transition'
+  import {cubicOut, cubicIn} from 'svelte/easing'
+  import {hide} from '../../helpers'
 
   export let breakpoint = 1000
   export let allowHide = true

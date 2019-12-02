@@ -4,20 +4,32 @@
   <link rel="canonical" href={`https://theyvoteforyou.uk`} />
 </svelte:head>
 
-<div class="inner" in:fade={{delay:300, duration:300}} out:fade={{duration:300}}>
+<svelte:window on:resize={updateTransitions} />
+
+<div
+  class="inner"
+  in:fade={{delay: 300, duration: 300}}
+  out:fade={{duration: 300}}
+  bind:this={containerEl}
+>
   <form
     class:splash={!comparing}
     class:settings={comparing}
     on:submit|preventDefault={handleSubmit}
+    bind:this={asideEl}
   >
     {#if !comparing}
-      <h1>
+      <h1
+        in:titleTransition|local={{delay: transitionDuration / 2 + 300, duration: transitionDuration / 2, easing: cubicOut}}
+        out:titleTransition|local={{duration: transitionDuration, easing: cubicIn}}
+        bind:this={titleEl}
+      >
         They want you to vote for them.
         But do <strong>they vote for you?</strong>
       </h1>
     {/if}
 
-    <Settings breakpoint={1000} allowHide={comparing}>
+    <Settings breakpoint={1000} allowHide={comparing && !transitioning}>
       <CheckboxGroup
         id="categories"
         label="Select the issues that matter to you:"
@@ -29,48 +41,54 @@
       />
 
       {#if comparing}
-        {#await partyOptions then options}
+        <div
+          in:hide|local={{delay: transitionDuration, duration: 300, easing: cubicOut}}
+          out:hide|local={{duration: 300, easing: cubicIn}}
+        >
           <CheckboxGroup
             id="parties"
             label="Select parties to compare:"
-            options={options}
+            options={partyOptions}
             selectedOptions={selectedParties}
             handleChange={handlePartyChange}
           />
-        {/await}
 
-        <Checkbox
-          id="currentParties"
-          label="Show results based on MPs current party?"
-          bind:value={currentParties}
-          handleChange={() => {partyRepaint = !partyRepaint}}
-        />
+          <Checkbox
+            id="currentParties"
+            label="Show results based on MPs current party?"
+            bind:value={currentParties}
+            handleChange={() => partyRepaint = !partyRepaint}
+          />
 
-        <Checkbox
-          id="currentMps"
-          label="Only show current MPs?"
-          bind:value={currentMps}
-          handleChange={() => {partyRepaint = !partyRepaint}}
-        />
+          <Checkbox
+            id="currentMps"
+            label="Only show current MPs?"
+            bind:value={currentMps}
+            handleChange={() => partyRepaint = !partyRepaint}
+          />
 
-        <Select
-          id="resultFormat"
-          label="Select result format:"
-          options={resultFormatOptions}
-          bind:value={resultFormat}
-          handleChange={() => {partyRepaint = !partyRepaint}}
-        />
+          <Select
+            id="resultFormat"
+            label="Select result format:"
+            options={resultFormatOptions}
+            bind:value={resultFormat}
+            handleChange={() => partyRepaint = !partyRepaint}
+          />
 
-        <Select
-          id="orderBy"
-          label="Order by:"
-          options={orderByOptions}
-          bind:value={orderBy}
-        />
-      {/if}
-
-      {#if !comparing}
-        <button type="submit">
+          <Select
+            id="orderBy"
+            label="Order by:"
+            options={orderByOptions}
+            bind:value={orderBy}
+            handleChange={() => partyRepaint = !partyRepaint}
+          />
+        </div>
+      {:else}
+        <button
+          in:hide|local={{delay: transitionDuration / 2 + 300, duration: transitionDuration / 2, easing: cubicOut}}
+          out:hide|local={{duration: transitionDuration, easing: cubicIn}}
+          type="submit"
+        >
           Compare parties
         </button>
       {/if}
@@ -78,20 +96,26 @@
   </form>
 
   {#if comparing}
-    <div class="main" in:fly|local={{x:500, duration:300}}>
-      {#await filteredOverallParties then parties}
-        <section in:fade={{duration:300}}>
+    <div
+      class="main"
+      in:mainTransition|local={{duration: transitionDuration, easing: cubicOut}}
+      out:mainTransition|local={{delay: 300, duration: transitionDuration, easing: cubicIn}}
+      on:introend={updateTransitions}
+      on:outroend={updateTransitions}
+    >
+      <div
+        class="content"
+        in:contentTransition|local={{duration: transitionDuration, easing: cubicOut}}
+        out:contentTransition|local={{delay: 300, duration: transitionDuration, easing: cubicOut}}
+      >
+        <section>
           <header class="header">
             <h1 class="title">Overall</h1>
 
             <p class="best">
               The best
-              {#await bestParties then parties}
-                {#if parties.length > 1}parties are{:else}party is{/if}
-              {/await}
-              {#await bestPartiesString then partiesString}
-                {@html partiesString}.
-              {/await}
+              {#if bestParties.length > 1}parties are{:else}party is{/if}
+              {@html bestPartiesString}.
             </p>
 
             <p class="criteria">
@@ -105,8 +129,13 @@
           </header>
 
           <Grid>
-            {#each parties as {party, desiredOutcome, undesiredOutcome}}
-              <GridItem>
+            {#each filteredOverallParties as {party, desiredOutcome, undesiredOutcome} (party)}
+              <li
+                class="flex"
+                in:receive|local={{key: party}}
+                out:send|local={{key: party}}
+                animate:flip={{duration: 300}}
+              >
                 <Card category={party} repaint={partyRepaint}>
                   <div slot="title">{party}</div>
                   <div slot="content">
@@ -116,20 +145,23 @@
                     />
                   </div>
                 </Card>
-              </GridItem>
+              </li>
             {/each}
           </Grid>
         </section>
-      {/await}
 
-      {#await filteredCategories then cats}
-        {#each cats as {handle, title, description, parties}}
-          <section class="gap" in:fade={{duration:300}}>
+        {#each filteredCategoryParties as {handle, title, description, parties} (handle)}
+          <section class="gap">
             <CategorySummaryHeader {title} {description} link={`/${handle}`}/>
 
             <Grid>
-              {#each parties as {party, desiredOutcome, undesiredOutcome}}
-                <GridItem>
+              {#each parties as {party, desiredOutcome, undesiredOutcome} (party)}
+                <li
+                  class="flex"
+                  in:receive|local={{key: party}}
+                  out:send|local={{key: party}}
+                  animate:flip={{duration: 300}}
+                >
                   <Card category={party} repaint={partyRepaint}>
                     <h3 slot="title">{party}</h3>
                     <div slot="content">
@@ -139,12 +171,12 @@
                       />
                     </div>
                   </Card>
-                </GridItem>
+                </li>
               {/each}
             </Grid>
           </section>
         {/each}
-      {/await}
+      </div>
     </div>
   {/if}
 </div>
@@ -154,9 +186,28 @@
     flex-grow: 1;
   }
 
+  @media screen and (max-width: 999px) {
+    .inner {
+      align-items: center;
+    }
+  }
+
+  @media screen and (min-width: 1000px) {
+    .inner {
+      justify-content: center;
+    }
+  }
+
   form {
     padding-left: calc(var(--gutter) / 2);
     padding-right: calc(var(--gutter) / 2);
+    transition: all 0.6s ease-in-out;
+  }
+
+  @media screen and (min-width: 1000px) {
+    form {
+      padding-bottom: calc(var(--baseline) * 6);
+    }
   }
 
   .splash {
@@ -164,16 +215,22 @@
     display: flex;
     flex-direction: column;
     flex-grow: 1;
-    justify-content: center;
     max-width: var(--maxWidth);
-    margin-left: auto;
-    margin-right: auto;
+    padding-bottom: calc(var(--baseline) * 6);
     padding-top: calc(var(--baseline) * 6);
-    text-align: center;
     width: 100%;
   }
 
+  @media screen and (min-width: 1000px) {
+    .splash {
+      padding-bottom: calc(var(--baseline) * 15);
+      padding-top: calc(var(--baseline) * 15);
+    }
+  }
+
   .settings {
+    flex-basis: 100%;
+    flex-grow: 1;
     width: 100%;
   }
 
@@ -185,9 +242,20 @@
   }
 
   .main {
-    flex-basis: 0;
-    flex-grow: 999999;
-    min-width: calc(100% / 3 * 2);
+    flex-grow: 99999;
+    padding-bottom: calc(var(--baseline) * 6);
+    width: 100%;
+    /* background: red; */
+  }
+
+  @media screen and (min-width: 1000px) {
+    .main {
+      --maxWidth: calc(9 * (var(--column) + var(--gutter)));
+      max-width: var(--maxWidth);
+    }
+  }
+
+  .content {
     padding-left: calc(var(--gutter) / 2);
     padding-right: calc(var(--gutter) / 2);
   }
@@ -264,7 +332,7 @@
     letter-spacing: 0.05rem;
     line-height: calc(var(--baseline) * 2);
     margin-bottom: calc(var(--baseline) * 1.5);
-    margin-top: calc(var(--baseline) * 1.5);
+    margin-top: calc(var(--baseline) * 2.5);
     padding: var(--baseline) var(--gutter);
     text-shadow: 0px -1px hsl(0,20%,15%);
     transform: translateX(2px) translateY(-2px);
@@ -284,14 +352,31 @@
   .gap {
     padding-top: calc(var(--baseline) * 5);
   }
+
+  .flex {
+    display: flex;
+  }
 </style>
 
 <script context="module">
-  export async function preload({params: {category: handle}}) {
+  export async function preload() {
     try {
       const res = await this.fetch(`data/categories.json`)
       const categories = await res.json()
-      return {categories}
+
+      const expandedCategories = await Promise.all(categories.map(async category => {
+        const divisions = await Promise.all(
+          category.divisions.map(handle => new Promise(async res => {
+            const r = await this.fetch(`data/divisions/${handle}.json`)
+            const division = await r.json()
+            res(division)
+          }))
+        )
+
+        return {...category, divisions}
+      }))
+
+      return {categories: expandedCategories}
     } catch (err) {
       this.error(500, err)
     }
@@ -304,14 +389,18 @@
     getPartiesFromMps,
     getPartiesFromDivisions,
     orderParties,
-    round
+    round,
+    switchItems,
+    hide,
   } from '../helpers'
-  import {fade, fly, slide} from 'svelte/transition'
+  import {onMount} from 'svelte'
+  import {fade, slide} from 'svelte/transition'
+  import {flip} from 'svelte/animate'
+  import {cubicIn, cubicOut} from 'svelte/easing'
   import Categories from '../components/Categories.svelte'
   import Category from '../components/Category.svelte'
   import CategorySummaryHeader from '../components/CategorySummaryHeader.svelte'
   import Grid from '../components/Grid.svelte'
-  import GridItem from '../components/GridItem.svelte'
   import Card from '../components/Card.svelte'
   import PartyOutcome from '../components/PartyOutcome.svelte'
   import Settings from '../components/form/Settings.svelte'
@@ -321,141 +410,116 @@
 
   export let categories
 
+  const [send, receive] = switchItems()
   const resultFormatOptions = ['Percentage', 'Vote Count']
   const orderByOptions = ['Highest Percentage', 'Highest Vote Count', 'A-Z']
   const categoryOptions = categories.map(({handle, title}) => ({value: handle, title}))
-
+  const transitionDuration = 600
+  let showTitle = true
   let selectedCategories = []
   let selectedParties = ['Conservatives', 'Labour', 'Liberal Democrats']
   let currentMps = true
   let currentParties = true
   let resultFormat = resultFormatOptions[0]
   let orderBy = orderByOptions[0]
+  let categoriesWithOverall = []
+  let overallParties = []
+  let partiesAZ = []
+  let partyOptions = []
+  let availableParties = []
+  let filteredOverallParties = []
+  let highestPercentage = 0
+  let bestParties = []
+  let bestPartiesString = ''
+  let filteredCategoryParties = []
+  let settingsChange
   let partyRepaint = false
   let comparing = false
   let highlightCategorySelectInterval
   let highlightCategorySelect = false
+  let mainTransition = () => {}
+  let contentTransition = () => {}
+  let titleTransition = () => {}
+  let containerEl
+  let asideEl
+  let titleEl
+  let splashWidth = 0
+  let titleHeight = 0
+  let titleWidth = 0
+  let transitioning = false
 
   $: suffix = resultFormat === 'Percentage' ? '%' : ''
+  $: filteredCategories = categories.filter(({handle}) => selectedCategories.includes(handle))
 
-  const expandCategoryDivisions = category => new Promise(async resolve => {
-    const divisions = await Promise.all(
-      category.divisions.map(handle => new Promise(async res => {
-        const r = await fetch(`data/divisions/${handle}.json`)
-        const division = await r.json()
-        res(division)
-      }))
-    )
+  $: categoriesWithOverall = filteredCategories.map(({divisions, ...category}) => {
+    const ds = divisions.map(({handle, title, date, categories, outcome, votes}) => {
+      const {desiredOutcome} = categories.find(({handle}) => category.handle)
+      const mps = getMpsFromVotes(votes, currentMps, currentParties)
+      const parties = getPartiesFromMps(mps, desiredOutcome)
+      return {handle, title, date, desiredOutcome, outcome, parties}
+    })
 
-    resolve({...category, divisions})
+    const parties = orderParties(getPartiesFromDivisions(ds), orderBy)
+
+    return {...category, parties}
   })
 
-  $: categoriesWithExapandedDivisions = Promise.all(categories
-    .filter(({handle}) => selectedCategories.includes(handle))
-    .map(expandCategoryDivisions)
-  )
-
-  $: categoriesWithOverall = categoriesWithExapandedDivisions.then(cats => (
-    cats.map(({divisions, ...category}) => {
-      const ds = divisions.map(({handle, title, date, categories, outcome, votes}) => {
-        const {desiredOutcome} = categories.find(({handle}) => category.handle)
-        const mps = getMpsFromVotes(votes, currentMps, currentParties)
-        const parties = getPartiesFromMps(mps, desiredOutcome)
-        return {handle, title, date, desiredOutcome, outcome, parties}
-      })
-
-      const parties = orderParties(getPartiesFromDivisions(ds), orderBy)
-
-      return {...category, parties}
-    })
-  )).catch(err => err)
-
-  $: overallParties = categoriesWithOverall.then(cats => {
-    const parties = {}
-
-    cats.forEach(category => {
-      category.parties.forEach(({party, totalCount, desiredOutcome, undesiredOutcome}) => {
-        if (!parties[party]) {
-          parties[party] = {
-            totalCount: 0,
-            desiredOutcome: {'Vote Count': 0},
-            undesiredOutcome: {'Vote Count': 0},
-            categories: [],
-          }
+  $: overallParties = Object.entries(categoriesWithOverall.reduce((parties, category) => {
+    category.parties.forEach(({party, totalCount, desiredOutcome, undesiredOutcome}) => {
+      if (!parties[party]) {
+        parties[party] = {
+          totalCount: 0,
+          desiredOutcome: {'Vote Count': 0},
+          undesiredOutcome: {'Vote Count': 0},
+          categories: [],
         }
+      }
 
-        parties[party].totalCount += totalCount
-        parties[party].desiredOutcome['Vote Count'] += desiredOutcome['Vote Count']
-        parties[party].undesiredOutcome['Vote Count'] += undesiredOutcome['Vote Count']
-        parties[party].categories.push({desiredOutcome, undesiredOutcome})
+      parties[party].totalCount += totalCount
+      parties[party].desiredOutcome['Vote Count'] += desiredOutcome['Vote Count']
+      parties[party].undesiredOutcome['Vote Count'] += undesiredOutcome['Vote Count']
+      parties[party].categories.push({desiredOutcome, undesiredOutcome})
 
-        parties[party].desiredOutcome['Percentage'] =
-          parties[party].categories.reduce((percentage, {desiredOutcome}) => (
-            percentage += desiredOutcome['Percentage']
-          ), 0) / parties[party].categories.length
+      parties[party].desiredOutcome['Percentage'] =
+        parties[party].categories.reduce((percentage, {desiredOutcome}) => (
+          percentage += desiredOutcome['Percentage']
+        ), 0) / parties[party].categories.length
 
-        parties[party].undesiredOutcome['Percentage'] =
-          parties[party].categories.reduce((percentage, {undesiredOutcome}) => (
-            percentage += undesiredOutcome['Percentage']
-          ), 0) / parties[party].categories.length
-      })
+      parties[party].undesiredOutcome['Percentage'] =
+        parties[party].categories.reduce((percentage, {undesiredOutcome}) => (
+          percentage += undesiredOutcome['Percentage']
+        ), 0) / parties[party].categories.length
     })
 
-    return Object.entries(parties).map(([party, props]) => ({party, ...props}))
-  }).catch(err => err)
+    return parties
+  }, {})).map(([party, props]) => ({party, ...props}))
 
-  $: partiesAZ = overallParties
-    .then(parties => Array.from(new Set(parties.map(({party}) => party))).sort())
-    .catch(err => err)
+  $: partiesAZ = Array.from(new Set(overallParties.map(({party}) => party))).sort()
+  $: partyOptions = partiesAZ.map(party => ({value: party, title: party}))
+  $: availableParties = partiesAZ.filter(party => selectedParties.includes(party))
 
-  $: partyOptions = partiesAZ
-    .then(parties => parties.map(party => ({value: party, title: party})))
-    .catch(err => err)
+  $: filteredOverallParties = orderParties(overallParties.filter(({party}) => (
+    availableParties.includes(party)
+  )), orderBy)
 
-  $: availableParties = partiesAZ
-    .then(parties => parties.filter(party => selectedParties.includes(party)))
-    .catch(err => err)
+  $: highestPercentage = filteredOverallParties.reduce((highest, {desiredOutcome}) => (
+    desiredOutcome['Percentage'] > highest ? desiredOutcome['Percentage'] : highest
+  ), 0)
 
-  $: filteredOverallParties = Promise.all([overallParties, availableParties])
-    .then(([overall, available]) => (
-      orderParties(
-        overall.filter(({party}) => available.includes(party)),
-        orderBy
-      )
-    ))
-    .catch(err => err)
+  $: bestParties = filteredOverallParties
+    .filter(({desiredOutcome}) => desiredOutcome['Percentage'] > highestPercentage - 10)
+    .map(({party}) => party)
 
-  $: highestPercentage = filteredOverallParties.then(parties => (
-    parties.reduce((highest, {desiredOutcome}) => (
-      desiredOutcome['Percentage'] > highest ? desiredOutcome['Percentage'] : highest
-    ), 0)
-  ))
+  $: bestPartiesString = bestParties.reduce((string, party, i) => (
+    `${string}${i === 0 ? '' : `${i === bestParties.length - 1 ? ' and ' : ', '}`}<strong>${party}</strong>`
+  ), '')
 
-  $: bestParties = Promise.all([filteredOverallParties, highestPercentage])
-    .then(([parties, highest]) => (
-      parties.filter(({desiredOutcome}) => {
-        return desiredOutcome['Percentage'] > highest - 10
-      })
-      .map(({party}) => party)
-    ))
-
-  $: bestPartiesString = bestParties.then(parties => (
-    parties.reduce((string, party, i) => (
-      `${string}${i === 0 ? '' : `${i === parties.length - 1 ? ' and ' : ', '}`}<strong>${party}</strong>`
-    ), '')
-  ))
-
-  $: filteredCategories = Promise.all([categoriesWithOverall, availableParties])
-    .then(([categories, available]) => categories.map(({title, handle, description, parties}) => ({
-      title,
-      handle,
-      description,
-      parties: orderParties(
-        parties.filter(({party}) => available.includes(party)),
-        orderBy
-      )
-    })))
-    .catch(err => err)
+  $: filteredCategoryParties = categoriesWithOverall.map(({title, handle, description, parties}) => ({
+    title,
+    handle,
+    description,
+    parties: orderParties(parties.filter(({party}) => availableParties.includes(party)), orderBy)
+  }))
 
   const handleCategoryChange = e => {
     if (e.target.checked) {
@@ -464,9 +528,13 @@
       selectedCategories = selectedCategories.filter(v => v !== e.target.value)
     }
 
-    if (!selectedCategories.length) {
+    if (!selectedCategories.length && comparing) {
+      transitioning = true
       comparing = false
+      window.setTimeout(() => transitioning = false, transitionDuration)
     }
+
+    partyRepaint = !partyRepaint
   }
 
   const handlePartyChange = e => {
@@ -475,8 +543,6 @@
     } else {
       selectedParties = selectedParties.filter(v => v !== e.target.value)
     }
-
-    partyRepaint = !partyRepaint
   }
 
   const handleSubmit = () => {
@@ -484,7 +550,9 @@
 
     if (selectedCategories.length) {
       highlightCategorySelect = false
+      transitioning = true
       comparing = true
+      window.setTimeout(() => transitioning = false, transitionDuration)
     } else {
       highlightCategorySelect = true
 
@@ -493,4 +561,82 @@
       }, 3000);
     }
   }
+
+  const createMainTransition = easing => {
+    const largeScreen = window.innerWidth >= 1000
+
+    return (node, {delay = 0, duration = 300, easing = cubicOut}) => {
+      const style = getComputedStyle(node)
+      const height = parseFloat(style.height)
+      const width = parseFloat(style.width)
+
+      return {
+        delay,
+        duration,
+        css: t => `
+          width: ${width * (largeScreen ? easing(t) : 1)}px;
+          max-width: ${width * (largeScreen ? easing(t) : 1)}px;
+          height: ${height * easing(t)}px;
+        `
+      }
+    }
+  }
+
+  const createTitleTransition = () => {
+    const width = window.innerWidth >= 1000
+      ? titleWidth
+      : parseFloat(getComputedStyle(containerEl).width)
+
+    return (node, {delay = 0, duration = 300, easing = cubicOut}) => {
+      const transform = getComputedStyle(node).transform
+
+      return {
+        delay,
+        duration,
+        css: t => `
+          opacity: ${easing(t)};
+          height: ${titleHeight * easing(t)}px;
+          transform: ${transform} scale(${easing(t)});
+          transform-origin: left;
+          overflow: hidden;
+          width: ${width}px;
+        `
+      }
+    }
+  }
+
+  const createContentTransition = () => {
+    const viewportWidth = window.innerWidth
+    const containerWidth = parseFloat(getComputedStyle(containerEl).width)
+    const offset = viewportWidth >= 1000
+      ? (containerWidth - (Math.min(splashWidth, containerWidth))) / 2
+      : 0
+    const width = viewportWidth >= 1000
+      ? containerWidth - 360
+      : containerWidth
+
+    return (node, {delay = 0, duration = 300, easing = cubicOut}) => ({
+      delay,
+      duration,
+      css: t => `
+        opacity: ${easing(t)};
+        width: ${width}px;
+        transform: translateX(${offset - offset * easing(t)}px);
+      `
+    })
+  }
+
+  const updateTransitions = () => {
+    if (!comparing) {
+      splashWidth = parseFloat(getComputedStyle(asideEl).width)
+      titleHeight = parseFloat(getComputedStyle(titleEl).height)
+      titleWidth = parseFloat(getComputedStyle(titleEl).width)
+    }
+
+    mainTransition = createMainTransition()
+    contentTransition = createContentTransition()
+    titleTransition = createTitleTransition()
+  }
+
+  onMount(updateTransitions)
 </script>

@@ -2,7 +2,7 @@
   <div class="inner">
     <h2>Browse by issue:</h2>
     <nav>
-      {#each categories as category}
+      {#each categories as category (category.handle)}
         <a href={`/${category.handle}`}>{category.title}</a>
       {/each}
     </nav>
@@ -18,7 +18,6 @@
 
 <style>
   footer {
-    margin-top: calc(var(--baseline) * 8);
     background-color: hsl(0,0%,9%);
     display: flex;
     justify-content: center;
@@ -47,19 +46,19 @@
     --maxWidth: calc(4 * (var(--column) + var(--gutter)));
     display: grid;
     grid-column-gap: var(--gutter);
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: auto auto;
     max-width: var(--maxWidth);
   }
 
   @media screen and (min-width: 550px) {
     nav {
-      grid-template-columns: 1fr 1fr 1fr;
+      grid-template-columns: auto auto auto;
     }
   }
 
   @media screen and (min-width: 1000px) {
     nav {
-      grid-template-columns: 1fr 1fr 1fr 1fr;
+      grid-template-columns: auto auto auto auto;
     }
   }
 

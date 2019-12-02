@@ -5,6 +5,7 @@
     type="checkbox"
     bind:checked={value}
     on:change={handleChange}
+    {disabled}
   />
   <label for={id}>
     {#if value}
@@ -98,4 +99,5 @@
   export let label
   export let value
   export let handleChange = () => {}
+  export let disabled = false
 </script>
