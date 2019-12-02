@@ -12,7 +12,7 @@
     <Settings breakpoint={1000}>
       <CheckboxGroup
         id="parties"
-        label="Select parasdsadsadties to compare:"
+        label="Select parties to compare:"
         options={partyOptions}
         selectedOptions={selectedParties}
         handleChange={handlePartyChange}
@@ -134,7 +134,6 @@
 
 <style>
   .settings {
-    padding-bottom: calc(var(--baseline) * 6);
     padding-left: calc(var(--gutter) / 2);
     padding-right: calc(var(--gutter) / 2);
     width: 100%;
@@ -144,6 +143,7 @@
     .settings {
       --maxWidth: calc(3 * (var(--column) + var(--gutter)));
       max-width: var(--maxWidth);
+      padding-bottom: calc(var(--baseline) * 6);
     }
   }
 

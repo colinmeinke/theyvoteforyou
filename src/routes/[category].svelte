@@ -142,7 +142,6 @@
 
 <style>
   .settings {
-    padding-bottom: calc(var(--baseline) * 6);
     padding-left: calc(var(--gutter) / 2);
     padding-right: calc(var(--gutter) / 2);
     width: 100%;
@@ -152,6 +151,7 @@
     .settings {
       --maxWidth: calc(3 * (var(--column) + var(--gutter)));
       max-width: var(--maxWidth);
+      padding-bottom: calc(var(--baseline) * 6);
     }
   }
 
@@ -196,7 +196,6 @@
   .description,
   .best {
     padding-top: calc(var(--baseline) * 0.5);
-    /* transform: translateY(-1px); */
   }
 
   .description {

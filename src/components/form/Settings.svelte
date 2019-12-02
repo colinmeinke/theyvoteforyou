@@ -4,8 +4,8 @@
   {#if allowHide}
     <div
       class="container"
-      in:hide={{duration:300, easing: cubicOut}}
-      out:hide={{duration:300, easing: cubicOut}}
+      in:hide|local={{duration: 300, easing: cubicOut}}
+      out:hide|local={{duration: 300, easing: cubicIn}}
     >
       <button
         type="button"
@@ -18,8 +18,8 @@
 
   {#if show}
     <div
-      in:hide|local={{duration:300, easing: cubicOut}}
-      out:hide|local={{duration:300, easing: cubicOut}}
+      in:hide|local={{duration: 300, easing: cubicOut}}
+      out:hide|local={{duration: 300, easing: cubicOut}}
     >
       <slot></slot>
     </div>
@@ -58,7 +58,7 @@
     line-height: calc(var(--baseline) * 2);
     padding: calc(var(--baseline) * 0.5 - 1px) var(--baseline);
     transition: all 0.3s ease-in-out;
-    transform: translateY(-2px) translateX(-1px);
+    transform: translateY(-2px);
   }
 
   button:hover,

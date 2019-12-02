@@ -10,18 +10,19 @@
   class="inner"
   in:fade={{delay: 300, duration: 300}}
   out:fade={{duration: 300}}
-  bind:this={container}
+  bind:this={containerEl}
 >
   <form
     class:splash={!comparing}
     class:settings={comparing}
     on:submit|preventDefault={handleSubmit}
-    bind:this={aside}
+    bind:this={asideEl}
   >
     {#if !comparing}
       <h1
-        in:titleTransition|local={{duration: transitionDuration, easing: cubicOut}}
+        in:titleTransition|local={{delay: transitionDuration / 2 + 300, duration: transitionDuration / 2, easing: cubicOut}}
         out:titleTransition|local={{duration: transitionDuration, easing: cubicIn}}
+        bind:this={titleEl}
       >
         They want you to vote for them.
         But do <strong>they vote for you?</strong>
@@ -84,7 +85,7 @@
         </div>
       {:else}
         <button
-          in:hide|local={{duration: transitionDuration, easing: cubicOut}}
+          in:hide|local={{delay: transitionDuration / 2 + 300, duration: transitionDuration / 2, easing: cubicOut}}
           out:hide|local={{duration: transitionDuration, easing: cubicIn}}
           type="submit"
         >
@@ -98,14 +99,14 @@
     <div
       class="main"
       in:mainTransition|local={{duration: transitionDuration, easing: cubicOut}}
-      out:mainTransition|local={{duration: transitionDuration, easing: cubicIn}}
+      out:mainTransition|local={{delay: 300, duration: transitionDuration, easing: cubicIn}}
       on:introend={updateTransitions}
       on:outroend={updateTransitions}
     >
       <div
         class="content"
         in:contentTransition|local={{duration: transitionDuration, easing: cubicOut}}
-        out:contentTransition|local={{duration: transitionDuration, easing: cubicOut}}
+        out:contentTransition|local={{delay: 300, duration: transitionDuration, easing: cubicOut}}
       >
         <section>
           <header class="header">
@@ -198,10 +199,15 @@
   }
 
   form {
-    padding-bottom: calc(var(--baseline) * 6);
     padding-left: calc(var(--gutter) / 2);
     padding-right: calc(var(--gutter) / 2);
     transition: all 0.6s ease-in-out;
+  }
+
+  @media screen and (min-width: 1000px) {
+    form {
+      padding-bottom: calc(var(--baseline) * 6);
+    }
   }
 
   .splash {
@@ -210,8 +216,16 @@
     flex-direction: column;
     flex-grow: 1;
     max-width: var(--maxWidth);
+    padding-bottom: calc(var(--baseline) * 6);
     padding-top: calc(var(--baseline) * 6);
     width: 100%;
+  }
+
+  @media screen and (min-width: 1000px) {
+    .splash {
+      padding-bottom: calc(var(--baseline) * 15);
+      padding-top: calc(var(--baseline) * 15);
+    }
   }
 
   .settings {
@@ -231,6 +245,7 @@
     flex-grow: 99999;
     padding-bottom: calc(var(--baseline) * 6);
     width: 100%;
+    /* background: red; */
   }
 
   @media screen and (min-width: 1000px) {
@@ -317,7 +332,7 @@
     letter-spacing: 0.05rem;
     line-height: calc(var(--baseline) * 2);
     margin-bottom: calc(var(--baseline) * 1.5);
-    margin-top: calc(var(--baseline) * 3.5);
+    margin-top: calc(var(--baseline) * 2.5);
     padding: var(--baseline) var(--gutter);
     text-shadow: 0px -1px hsl(0,20%,15%);
     transform: translateX(2px) translateY(-2px);
@@ -425,9 +440,12 @@
   let mainTransition = () => {}
   let contentTransition = () => {}
   let titleTransition = () => {}
-  let container
-  let aside
+  let containerEl
+  let asideEl
+  let titleEl
   let splashWidth = 0
+  let titleHeight = 0
+  let titleWidth = 0
   let transitioning = false
 
   $: suffix = resultFormat === 'Percentage' ? '%' : ''
@@ -553,6 +571,7 @@
       const width = parseFloat(style.width)
 
       return {
+        delay,
         duration,
         css: t => `
           width: ${width * (largeScreen ? easing(t) : 1)}px;
@@ -565,20 +584,18 @@
 
   const createTitleTransition = () => {
     const width = window.innerWidth >= 1000
-      ? splashWidth - 24
-      : containerWidth
+      ? titleWidth
+      : parseFloat(getComputedStyle(containerEl).width)
 
     return (node, {delay = 0, duration = 300, easing = cubicOut}) => {
-      const style = getComputedStyle(node)
-      const height = parseFloat(style.height)
-      const transform = style.transform
+      const transform = getComputedStyle(node).transform
 
       return {
         delay,
         duration,
         css: t => `
           opacity: ${easing(t)};
-          height: ${height * easing(t)}px;
+          height: ${titleHeight * easing(t)}px;
           transform: ${transform} scale(${easing(t)});
           transform-origin: left;
           overflow: hidden;
@@ -590,7 +607,7 @@
 
   const createContentTransition = () => {
     const viewportWidth = window.innerWidth
-    const containerWidth = parseFloat(getComputedStyle(container).width)
+    const containerWidth = parseFloat(getComputedStyle(containerEl).width)
     const offset = viewportWidth >= 1000
       ? (containerWidth - (Math.min(splashWidth, containerWidth))) / 2
       : 0
@@ -599,6 +616,7 @@
       : containerWidth
 
     return (node, {delay = 0, duration = 300, easing = cubicOut}) => ({
+      delay,
       duration,
       css: t => `
         opacity: ${easing(t)};
@@ -609,13 +627,15 @@
   }
 
   const updateTransitions = () => {
+    if (!comparing) {
+      splashWidth = parseFloat(getComputedStyle(asideEl).width)
+      titleHeight = parseFloat(getComputedStyle(titleEl).height)
+      titleWidth = parseFloat(getComputedStyle(titleEl).width)
+    }
+
     mainTransition = createMainTransition()
     contentTransition = createContentTransition()
     titleTransition = createTitleTransition()
-
-    if (!comparing) {
-      splashWidth = parseFloat(getComputedStyle(aside).width)
-    }
   }
 
   onMount(updateTransitions)

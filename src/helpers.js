@@ -287,17 +287,22 @@ const switchItems = (easing = cubicOut) => crossfade({
 const hide = (node, {delay = 0, duration = 300, easing = cubicOut}) => {
   const style = getComputedStyle(node)
   const height = parseFloat(style.height)
+  const paddingBottom = parseFloat(style.paddingBottom)
+  const paddingTop = parseFloat(style.paddingTop)
   const transform = style.transform
 
   return {
     delay,
     duration,
     css: t => `
-      opacity: ${easing(t)};
       height: ${height * easing(t)}px;
+      padding-bottom: ${paddingBottom * easing(t)}px;
+      padding-top: ${paddingTop * easing(t)}px;
+      opacity: ${easing(t)};
+      overflow: hidden;
       transform: ${transform} scale(${easing(t)});
       transform-origin: left;
-      overflow: hidden;
+      
     `
   }
 }
