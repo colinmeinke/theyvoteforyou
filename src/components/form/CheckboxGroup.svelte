@@ -1,4 +1,4 @@
-<fieldset class:fancy>
+<fieldset class:fancy class:transitioning>
   <legend class:drawAttention>{label}</legend>
 
   <div class="list" style="--modifier:{modifier};height:{mounted ? listHeight : 'auto'}">
@@ -7,7 +7,7 @@
         class="item item{i * modifier + 1}"
         in:receive|local={{key: option.value}}
         out:send|local={{key: option.value}}
-        animate:flip|local={{duration: 300}}
+        animate:flip|local={{duration: transitionDuration}}
       >
         <input
           type="checkbox"
@@ -56,7 +56,7 @@
     position: absolute;
     left: 0;
     right: 0%;
-    transition: opacity 0.6s ease-in-out;
+    transition: opacity var(--transitionDuration) ease-in-out;
   }
 
   .fancy::after {
@@ -249,8 +249,16 @@
     box-shadow: inset 2px 2px 2px hsla(0,0%,5%,0.5), 1px 1px 0 hsl(0,0%,0%,0);
   }
 
-  input:focus + label::before,
-  input:hover + label::before {
+  fieldset:not(.transitioning) input + label {
+    transition: background-color 0.3s ease-in-out;
+  }
+
+  fieldset:not(.transitioning) input:focus + label {
+    background-color: var(--selectedColor);
+  }
+
+  fieldset:not(.transitioning) input:focus + label::before,
+  fieldset:not(.transitioning) input:hover + label::before {
     background-color: var(--selectedColor);
   }
 
@@ -285,6 +293,14 @@
   export let drawAttention = false
   export let fancy = false
   export let disabled = false
+  export let transitioning = false
+  export let transitionDuration = 0
+
+  $: {
+    // always true but required to trigger on fancy prop change
+    transitioning = fancy || !fancy
+    typeof window !== 'undefined' && window.setTimeout(() => transitioning = false, transitionDuration)
+  }
 
   const getFancyColumns = () => {
     const width = window.innerWidth

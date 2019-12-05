@@ -256,6 +256,37 @@ module.exports = [
     ]
   },
   {
+    "id": 641522,
+    "date": "2016-11-22",
+    "number": 95,
+    "title": "Address the underfunding of the NHS",
+    "handle": "address-the-underfunding-of-the-nhs",
+    "description": "Which parties voted to address the underfunding of the NHS?",
+    "link": "https://www.publicwhip.org.uk/division.php?date=2016-11-22&number=95",
+    "categories": [
+      {
+        "handle": "nhs",
+        "desiredOutcome": "yes"
+      }
+    ]
+  },
+  {
+    "id": 104969,
+    "date": "2011-09-07",
+    "number": 342,
+    "title": "Restructure the NHS and allow more privatisation",
+    "handle": "restructure-the-nhs-and-allow-more-privatisation",
+    "description": "Which parties voted to restructure the NHS and allow more privatisation?",
+    "link": "https://www.publicwhip.org.uk/division.php?date=2011-09-07&number=342",
+    "debate": "https://www.theyworkforyou.com/debates/?id=2011-09-07b.489.0",
+    "categories": [
+      {
+        "handle": "nhs",
+        "desiredOutcome": "no"
+      }
+    ]
+  },
+  {
     "id": 105290,
     "date": "2012-12-12",
     "number": 120,

@@ -11,6 +11,7 @@
   in:fade={{delay: 300, duration: 300}}
   out:fade={{duration: 300}}
   bind:this={containerEl}
+  style="--transitionDuration:{transitionDuration / 1000}s; --transitionOutDelay:{transitionOutDelay / 1000}s;"
 >
   <form
     class:splash={!comparing}
@@ -20,8 +21,15 @@
   >
     {#if !comparing}
       <h1
-        in:titleTransition|local={{delay: transitionDuration / 2 + 300, duration: transitionDuration / 2, easing: cubicOut}}
-        out:titleTransition|local={{duration: transitionDuration, easing: cubicIn}}
+        in:titleTransition|local={{
+          delay: transitionOutDelay,
+          duration: transitionDuration,
+          easing: cubicOut,
+        }}
+        out:titleTransition|local={{
+          duration: transitionDuration,
+          easing: cubicIn,
+        }}
         bind:this={titleEl}
       >
         They want you to vote for them.
@@ -37,12 +45,17 @@
         selectedOptions={selectedCategories}
         handleChange={handleCategoryChange}
         drawAttention={highlightCategorySelect}
-        fancy={!comparing}
+        fancy={fancyCheckboxes}
+        {transitionDuration}
       />
 
       {#if comparing}
         <div
-          in:hide|local={{delay: transitionDuration, duration: 300, easing: cubicOut}}
+          in:hide|local={{
+            delay: transitionDuration,
+            duration: 300,
+            easing: cubicOut,
+          }}
           out:hide|local={{duration: 300, easing: cubicIn}}
         >
           <CheckboxGroup
@@ -51,6 +64,7 @@
             options={partyOptions}
             selectedOptions={selectedParties}
             handleChange={handlePartyChange}
+            {transitionDuration}
           />
 
           <Checkbox
@@ -85,7 +99,11 @@
         </div>
       {:else}
         <button
-          in:hide|local={{delay: transitionDuration / 2 + 300, duration: transitionDuration / 2, easing: cubicOut}}
+          in:hide|local={{
+            delay: transitionOutDelay,
+            duration: transitionDuration,
+            easing: cubicOut,
+          }}
           out:hide|local={{duration: transitionDuration, easing: cubicIn}}
           type="submit"
         >
@@ -98,15 +116,29 @@
   {#if comparing}
     <div
       class="main"
-      in:mainTransition|local={{duration: transitionDuration, easing: cubicOut}}
-      out:mainTransition|local={{delay: 300, duration: transitionDuration, easing: cubicIn}}
+      in:mainTransition|local={{
+        duration: transitionDuration,
+        easing: cubicOut,
+      }}
+      out:mainTransition|local={{
+        delay: transitionOutDelay,
+        duration: transitionDuration,
+        easing: cubicIn,
+      }}
       on:introend={updateTransitions}
       on:outroend={updateTransitions}
     >
       <div
         class="content"
-        in:contentTransition|local={{duration: transitionDuration, easing: cubicOut}}
-        out:contentTransition|local={{delay: 300, duration: transitionDuration, easing: cubicOut}}
+        in:contentTransition|local={{
+          duration: transitionDuration,
+          easing: cubicOut,
+        }}
+        out:contentTransition|local={{
+          delay: transitionOutDelay,
+          duration: transitionDuration,
+          easing: cubicOut,
+        }}
       >
         <section>
           <header class="header">
@@ -201,7 +233,7 @@
   form {
     padding-left: calc(var(--gutter) / 2);
     padding-right: calc(var(--gutter) / 2);
-    transition: all 0.6s ease-in-out;
+    transition: all var(--transitionDuration) ease-in-out;
   }
 
   @media screen and (min-width: 1000px) {
@@ -218,13 +250,14 @@
     max-width: var(--maxWidth);
     padding-bottom: calc(var(--baseline) * 6);
     padding-top: calc(var(--baseline) * 6);
+    transition: all calc(var(--transitionDuration) / 2) var(--transitionOutDelay) ease-in-out;
     width: 100%;
   }
 
   @media screen and (min-width: 1000px) {
     .splash {
-      padding-bottom: calc(var(--baseline) * 15);
-      padding-top: calc(var(--baseline) * 15);
+      padding-bottom: calc(var(--baseline) * 14);
+      padding-top: calc(var(--baseline) * 14);
     }
   }
 
@@ -245,7 +278,6 @@
     flex-grow: 99999;
     padding-bottom: calc(var(--baseline) * 6);
     width: 100%;
-    /* background: red; */
   }
 
   @media screen and (min-width: 1000px) {
@@ -415,6 +447,7 @@
   const orderByOptions = ['Highest Percentage', 'Highest Vote Count', 'A-Z']
   const categoryOptions = categories.map(({handle, title}) => ({value: handle, title}))
   const transitionDuration = 600
+  const transitionOutDelay = 300
   let showTitle = true
   let selectedCategories = []
   let selectedParties = ['Conservatives', 'Labour', 'Liberal Democrats']
@@ -447,6 +480,7 @@
   let titleHeight = 0
   let titleWidth = 0
   let transitioning = false
+  let fancyCheckboxes = true
 
   $: suffix = resultFormat === 'Percentage' ? '%' : ''
   $: filteredCategories = categories.filter(({handle}) => selectedCategories.includes(handle))
@@ -532,6 +566,7 @@
       transitioning = true
       comparing = false
       window.setTimeout(() => transitioning = false, transitionDuration)
+      window.setTimeout(() => fancyCheckboxes = true, transitionOutDelay)
     }
 
     partyRepaint = !partyRepaint
@@ -551,6 +586,7 @@
     if (selectedCategories.length) {
       highlightCategorySelect = false
       transitioning = true
+      fancyCheckboxes = false
       comparing = true
       window.setTimeout(() => transitioning = false, transitionDuration)
     } else {

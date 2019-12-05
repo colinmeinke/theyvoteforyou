@@ -20,8 +20,15 @@ const divisionsDir = path.join(outputDir, 'divisions')
 
 const rm = async dir => await rimraf(dir)
 
-const request = async (url, type = 'json') => {
+const request = async (url, type = 'json', timeout = 10000) => {
+  console.log(`|    Requesting data from ${url}\n`)
+  const t = setTimeout(() => {
+    throw new Error(`${url} did not resolve after ${timeout / 1000} seconds.`)
+  }, timeout)
+
   const response = await fetch(url)
+  console.log(`|    Response received from ${url}\n`)
+  clearTimeout(t)
   return await response[type]()
 }
 
