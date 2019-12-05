@@ -3,7 +3,7 @@
     <h2>Browse by issue:</h2>
     <nav>
       {#each categories as category (category.handle)}
-        <a href={`/${category.handle}`}>{category.title}</a>
+        <a href={`/${category.handle}`} rel="prefetch">{category.title}</a>
       {/each}
     </nav>
     <p>

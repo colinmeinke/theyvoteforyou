@@ -1,7 +1,7 @@
 <header>
   <div>
     <h2>
-      <a href={link}>{title}</a>
+      <a href={link} rel="prefetch">{title}</a>
     </h2>
     <p>{description}</p>
   </div>

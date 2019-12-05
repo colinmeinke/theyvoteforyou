@@ -1,5 +1,5 @@
 <li class:vertical={vertical}>
-  <a {href} class:selected={selected}>
+  <a {href} class:selected={selected} rel="prefetch">
     <slot></slot>
   </a>
 </li>

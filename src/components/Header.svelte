@@ -1,6 +1,6 @@
 <header>
   <nav>
-    <a href="/" name="Home" >
+    <a href="/" name="Home" rel="prefetch">
       <svg class="logo" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16">
         <title>They Vote For You</title>
         <path class="colour" d="M7 13v2l-2 1-2-1v-3l2.5-3.75L3 7V4l2-1 2 1v2l2-3V1l2-1 2 1v3l-2.5 3.75L13 9v3l-2 1-2-1v-2z"/>
