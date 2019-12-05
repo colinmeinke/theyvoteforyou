@@ -561,5 +561,201 @@ module.exports = [
       }
     ]
   },
+  {
+    "id": 102876,
+    "date": "2004-01-27",
+    "number": 38,
+    "title": "Allow universities to charge tuition fees of up to £3,000 per year",
+    "handle": "allow-universities-to-charge-tuition-fees-of-up-to-3000-pounds-per-year",
+    "description": "Which parties voted to allow universities to charge tuition fees of up to £3,000 per year?",
+    "link": "https://www.publicwhip.org.uk/division.php?date=2004-01-27&number=417",
+    "debate": "https://www.theyworkforyou.com/debates/?id=2004-01-27.167.1",
+    "categories": [
+      {
+        "handle": "education",
+        "desiredOutcome": "no"
+      }
+    ]
+  },
+  {
+    "id": 104777,
+    "date": "2010-12-09",
+    "number": 150,
+    "title": "Raise university tuition fee cap to £9,000 per year",
+    "handle": "raise-university-tuition-fee-cap-to-9000-pounds-per-year",
+    "description": "Which parties voted to raise university tuition fee cap to £9,000 per year?",
+    "link": "https://www.publicwhip.org.uk/division.php?date=2010-12-09&number=150",
+    "debate": "https://www.theyworkforyou.com/debates/?id=2010-12-09b.540.0",
+    "categories": [
+      {
+        "handle": "education",
+        "desiredOutcome": "no"
+      }
+    ]
+  },
+  // No record at http://lda.data.parliament.uk/commonsdivisions
+  // Again it's from the the end of 2015
+  // {
+  //   "id": ???,
+  //   "date": "2015-11-18",
+  //   "number": 128,
+  //   "title": "Protect the education budget for students up to the age of 19",
+  //   "handle": "protect-the-education-budget-for-students-up-to-the-age-of-19",
+  //   "description": "Which parties voted to protect the education budget for students up to the age of 19?",
+  //   "link": "https://www.publicwhip.org.uk/division.php?date=2015-11-18&number=128",
+  //   "debate": "https://www.theyworkforyou.com/debates/?id=2015-11-18a.744.0",
+  //   "categories": [
+  //     {
+  //       "handle": "education",
+  //       "desiredOutcome": "yes"
+  //     }
+  //   ]
+  // },
+  {
+    "id": 104804,
+    "date": "2011-01-19",
+    "number": 177,
+    "title": "Scrap the Education Maintenance Allowance (EMA) in England",
+    "handle": "scrap-the-education-aaintenance-allowance-in-england",
+    "description": "Which parties voted to scrap the Education Maintenance Allowance (EMA) in England?",
+    "link": "https://www.publicwhip.org.uk/division.php?date=2011-01-19&number=177",
+    "debate": "https://www.theyworkforyou.com/debates/?id=2011-01-19b.860.1",
+    "categories": [
+      {
+        "handle": "education",
+        "desiredOutcome": "no"
+      }
+    ]
+  },
+  {
+    "id": 640712,
+    "date": "2016-11-21",
+    "number": 93,
+    "title": "Reduce restrictions on new universities and make universities compete for funding",
+    "handle": "reduce-restrictions-on-new-universities-and-make-universities-compete-for-funding",
+    "description": "Which parties voted to reduce restrictions on new universities and make universities compete for funding?",
+    "link": "https://www.publicwhip.org.uk/division.php?date=2016-11-21&number=93",
+    "debate": "https://hansard.parliament.uk/commons/2016-11-21/debates/3C2C0C73-35CF-4108-B68D-44820B49059B/HigherEducationAndResearchBill#contribution-05CE4572-2B96-4A0D-8B3A-388A3FD14631",
+    "categories": [
+      {
+        "handle": "education",
+        "desiredOutcome": "no"
+      }
+    ]
+  },
+  {
+    "id": 104676,
+    "date": "2010-07-26",
+    "number": 49,
+    "title": "Allow all schools to become acadamies",
+    "handle": "allow-all-schools-to-become-acadamies",
+    "description": "Which parties voted to allow all schools to become acadamies?",
+    "link": "https://www.publicwhip.org.uk/division.php?date=2010-07-26&number=49",
+    "debate": "https://www.theyworkforyou.com/debates/?id=2010-07-26b.815.0",
+    "categories": [
+      {
+        "handle": "education",
+        "desiredOutcome": "no"
+      }
+    ]
+  },
+  {
+    "id": 104898,
+    "date": "2011-05-11",
+    "number": 271,
+    "title": "Further increase the role of acadamies in schooling",
+    "handle": "further-increase-the-role-of-acadamies-in-schooling",
+    "description": "Which parties voted to further increase the role of acadamies in schooling?",
+    "link": "https://www.publicwhip.org.uk/division.php?date=2011-05-11&number=271",
+    "debate": "https://www.theyworkforyou.com/debates/?id=2011-05-11d.1267.6",
+    "categories": [
+      {
+        "handle": "education",
+        "desiredOutcome": "no"
+      }
+    ]
+  },
+  // No record at http://lda.data.parliament.uk/commonsdivisions
+  // Again it's from the the end of 2015
+  // {
+  //   "id": ???,
+  //   "date": "2015-09-16",
+  //   "number": 73,
+  //   "title": "Increase government powers to convert a state school to an acdaemy",
+  //   "handle": "increase-government-powers-to-convert-a-state-school-to-an-acdaemy",
+  //   "description": "Which parties voted to increase government powers to convert a state school to an acdaemy?",
+  //   "link": "https://www.publicwhip.org.uk/division.php?date=2015-09-16&number=73",
+  //   "debate": "https://hansard.parliament.uk/Commons/2015-09-16/debates/15091635000001/EducationAndAdoptionBil",
+  //   "categories": [
+  //     {
+  //       "handle": "education",
+  //       "desiredOutcome": "no"
+  //     }
+  //   ]
+  // },
+  {
+    "id": 511680,
+    "date": "2016-04-13",
+    "number": 236,
+    "title": "Force all primary and secondary schools to become academies",
+    "handle": "force-all-primary-and-secondary-schools-to-become-academies",
+    "description": "Which parties voted to force all primary and secondary schools to become academies?",
+    "link": "https://www.publicwhip.org.uk/division.php?date=2016-04-13&number=236",
+    "debate": "https://www.theyworkforyou.com/debates/?id=2016-04-13c.415.0",
+    "categories": [
+      {
+        "handle": "education",
+        "desiredOutcome": "no"
+      }
+    ]
+  },
+  {
+    "id": 105594,
+    "date": "2014-01-29",
+    "number": 196,
+    "title": "Require employment of qualified teachers in state schools (attempt 2)",
+    "handle": "require-employment-of-qualified-teachers-in-state-schools-2",
+    "description": "Which parties voted to require employment of qualified teachers in state schools (attempt 2)?",
+    "link": "https://www.publicwhip.org.uk/division.php?date=2014-01-29&number=196",
+    "debate": "https://www.theyworkforyou.com/debates/?id=2014-01-29a.922.0",
+    "categories": [
+      {
+        "handle": "education",
+        "desiredOutcome": "yes"
+      }
+    ]
+  },
+  {
+    "id": 105512,
+    "date": "2013-10-30",
+    "number": 114,
+    "title": "Require employment of qualified teachers in state schools (attempt 1)",
+    "handle": "require-employment-of-qualified-teachers-in-state-schools-1",
+    "description": "Which parties voted to require employment of qualified teachers in state schools (attempt 1)?",
+    "link": "https://www.publicwhip.org.uk/division.php?date=2013-10-30&number=114",
+    "debate": "",
+    "categories": [
+      {
+        "handle": "education",
+        "desiredOutcome": "yes"
+      }
+    ]
+  },
+  // {
+  //   "id": ,
+  //   "date": "",
+  //   "number": ,
+  //   "title": "",
+  //   "handle": "",
+  //   "description": "Which parties voted to ...?",
+  //   "link": "https://www.publicwhip.org.uk/division.php?date=&number=",
+  //   "debate": "",
+  //   "categories": [
+  //     {
+  //       "handle": "education",
+  //       "desiredOutcome": ""
+  //     }
+  //   ]
+  // },
 ]
 

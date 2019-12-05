@@ -51,19 +51,19 @@
     --maxWidth: calc(4 * (var(--column) + var(--gutter)));
     display: grid;
     grid-column-gap: var(--gutter);
-    grid-template-columns: auto auto;
+    grid-template-columns: auto auto auto;
     max-width: var(--maxWidth);
   }
 
   @media screen and (min-width: 550px) {
     nav {
-      grid-template-columns: auto auto auto;
+      grid-template-columns: auto auto auto auto auto;
     }
   }
 
   @media screen and (min-width: 1000px) {
     nav {
-      grid-template-columns: auto auto auto auto;
+      grid-template-columns: auto auto auto auto auto auto auto auto;
     }
   }
 

@@ -1,5 +1,10 @@
 module.exports = [
   {
+    "title": "Education",
+    "handle": "education",
+    "description": "Which parties vote to keep education public, accessible and well funded?"
+  },
+  {
     "title": "Environment",
     "handle": "environment",
     "description": "Which parties vote to protect the environment and fight climate change?"
