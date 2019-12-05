@@ -7,6 +7,11 @@
       {/each}
     </nav>
     <p>
+      Politicians are notorious for saying one thing and then doing another.
+      This site compiles voting records of MPs in the House of Commons to make 
+      it easier to understand how political parties vote in practice.
+    </p>
+    <p>
       All data on this site is taken from
       <a href="http://www.data.parliament.uk" target="_blank" rel="noopener">data.parliament.uk</a>.
       You can
@@ -78,7 +83,12 @@
     font-size: var(--fontSizeSmall);
     margin-bottom: calc(var(--baseline) * 0.5);
     margin-top: calc(var(--baseline) * 1.5);
+    max-width: 1000px;
     opacity: 0.8;
+  }
+
+  p + p {
+    margin-top: calc(var(--baseline) * 0.5);
   }
 
   p a {

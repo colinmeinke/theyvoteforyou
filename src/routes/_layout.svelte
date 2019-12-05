@@ -99,19 +99,10 @@
     outline-color: var(--selectedColor);
   }
 
-  :global(input + label) {
-    transition: background-color 0.3s ease-in-out;
-  }
-
-  :global(input:focus + label) {
-    background-color: var(--selectedColor);
-  }
-
   :global(option:checked) {
     background-color: var(--selectedColor) !important;
   }
-  
-  
+
   .outer {
     display: flex;
     justify-content: center;
