@@ -256,7 +256,7 @@
 
   @media screen and (min-width: 1000px) {
     .splash {
-      padding-bottom: calc(var(--baseline) * 14);
+      padding-bottom: calc(var(--baseline) * 7);
       padding-top: calc(var(--baseline) * 14);
     }
   }

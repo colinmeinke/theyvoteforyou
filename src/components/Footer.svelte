@@ -72,6 +72,7 @@
     font-size: var(--fontSizeSmall);
     padding-bottom: calc(var(--baseline) * 0.5);
     padding-top: calc(var(--baseline) * 0.5);
+    white-space: nowrap;
   }
 
   a {

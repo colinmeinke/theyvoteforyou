@@ -1,5 +1,4 @@
 module.exports = [
-  
   {
     "id": 1137716,
     "date": "2019-07-09",
@@ -68,6 +67,22 @@ module.exports = [
     "handle": "ban-discrimination-based-on-sexual-orientation",
     "description": "Which parties voted to ban discrimination based on sexual orientation?",
     "link": "https://www.publicwhip.org.uk/division.php?date=2007-03-19&number=79",
+    "categories": [
+      {
+        "handle": "lgbt-rights",
+        "desiredOutcome": "yes"
+      }
+    ]
+  },
+  {
+    "id": 102702,
+    "date": "2003-06-25",
+    "number": 255,
+    "title": "Ban discrimination in the workplace based on sexual orientation",
+    "handle": "ban-discrimination-in-the-workplace-based-on-sexual-orientation",
+    "description": "Which parties voted to ban discrimination in the workplace based on sexual orientation?",
+    "link": "https://www.publicwhip.org.uk/division.php?date=2003-06-25&number=255",
+    "debate": "https://www.theyworkforyou.com/debates/?id=2003-06-25.1177.0",
     "categories": [
       {
         "handle": "lgbt-rights",
@@ -726,6 +741,175 @@ module.exports = [
       }
     ]
   },
+  {
+    "id": 104504,
+    "date": "2009-12-02",
+    "number": 13,
+    "title": "Ban discrimination based on race or religion",
+    "handle": "ban-discrimination-based-on-race-or-religion",
+    "description": "Which parties voted to ban discrimination based on race or religion?",
+    "link": "https://www.publicwhip.org.uk/division.php?date=2009-12-02&number=13",
+    "debate": "https://www.theyworkforyou.com/debates/?id=2009-12-02d.1225.2",
+    "categories": [
+      // This is the Equality Act 2010 and also applies to LGBT Rights
+      {
+        "handle": "race-equality",
+        "desiredOutcome": "yes"
+      }
+    ]
+  },
+  {
+    "id": 105599,
+    "date": "2014-01-30",
+    "number": 201,
+    "title": "Reduce the rights of migrants in the UK and enable long-standing UK residents (Windrush generation) to be deportated",
+    "handle": "reduce-the-rights-of-migrants-in-the-uk-and-enable-long-standing-UK-residents-windrush-generation-to-be-deportated",
+    "description": "Which parties voted to reduce the rights of migrants in the UK and enable long-standing UK residents (Windrush generation) to be deportated?",
+    "link": "https://www.publicwhip.org.uk/division.php?date=2014-01-30&number=201",
+    "debate": "https://www.theyworkforyou.com/debates/?id=2014-01-30b.1122.0",
+    "categories": [
+      {
+        "handle": "race-equality",
+        "desiredOutcome": "no"
+      }
+    ]
+  },
+  {
+    "id": 896218,
+    "date": "2018-05-02",
+    "number": 148,
+    "title": "Release data on the Windrush scandal",
+    "handle": "release-data-on-the-Windrush-scandal",
+    "description": "Which parties voted to release data on the Windrush scandal?",
+    "link": "https://www.publicwhip.org.uk/division.php?date=2018-05-02&number=148",
+    "debate": "https://www.theyworkforyou.com/debates/?id=2018-05-02a.340.0",
+    "categories": [
+      {
+        "handle": "race-equality",
+        "desiredOutcome": "yes",
+      },
+      {
+        "handle": "truth",
+        "desiredOutcome": "yes",
+      }
+    ]
+  },
+  // No record at http://lda.data.parliament.uk/commonsdivisions
+  // Again it's from the the end of 2015
+  // {
+  //   "id": ???,
+  //   "date": "2015-12-01",
+  //   "number": 137,
+  //   "title": "Further reduce the rights of migrants and asylum seekers in the UK",
+  //   "handle": "further-reduce-the-rights-of-migrants-and-asylum-seekers-in-the-uk",
+  //   "description": "Which parties voted to further reduce the rights of migrants and asylum seekers in the UK?",
+  //   "link": "https://www.publicwhip.org.uk/division.php?date=2015-12-01&number=137",
+  //   "debate": "https://hansard.parliament.uk/Commons/2015-12-01/debates/15120141000002/ImmigrationBill",
+  //   "categories": [
+  //     {
+  //       "handle": "race-equality",
+  //       "desiredOutcome": "no"
+  //     }
+  //   ]
+  // },
+  {
+    "id": 103369,
+    "date": "2005-07-11",
+    "number": 35,
+    "title": "Make incitement of racial or religious hatred a crime",
+    "handle": "make-incitement-of-racial-or-religious-hatred-a-crime",
+    "description": "Which parties voted to make incitement of racial or religious hatred a crime?",
+    "link": "https://www.publicwhip.org.uk/division.php?date=2005-07-11&number=35",
+    "debate": "https://www.theyworkforyou.com/debates/?id=2005-07-11a.653.0",
+    "categories": [
+      {
+        "handle": "race-equality",
+        "desiredOutcome": "yes"
+      }
+    ]
+  },
+  {
+    "id": 102688,
+    "date": "2003-06-18",
+    "number": 241,
+    "title": "Ban racial discrimination of seafarers hired outside of the UK",
+    "handle": "ban-racial-discrimination-of-seafarers-hired-outside-of-the-uk",
+    "description": "Which parties voted to ban racial discrimination of seafarers hired outside of the UK?",
+    "link": "https://www.publicwhip.org.uk/division.php?date=2003-06-18&number=241",
+    "debate": "https://www.theyworkforyou.com/debates/?id=2003-06-18.477.0",
+    "categories": [
+      {
+        "handle": "race-equality",
+        "desiredOutcome": "yes"
+      }
+    ]
+  },
+  {
+    "id": 105378,
+    "date": "2013-04-16",
+    "number": 207,
+    "title": "Reject caste based discrimination ban",
+    "handle": "reject-caste-based-discrimination-ban",
+    "description": "Which parties voted to reject caste based discrimination ban?",
+    "link": "https://www.publicwhip.org.uk/division.php?date=2013-04-16&number=207",
+    "debate": "https://www.theyworkforyou.com/debates/?id=2013-04-16b.255.0",
+    "categories": [
+      {
+        "handle": "race-equality",
+        "desiredOutcome": "no"
+      }
+    ]
+  },
+  {
+    "id": 796706,
+    "date": "2017-11-29",
+    "number": 50,
+    "title": "Call on the government to help women affected by changes to state pension",
+    "handle": "call-on-the-government-to-help-women-affected-by-changes-to-state-pension",
+    "description": "Which parties voted to call on the government to help women affected by changes to state pension?",
+    "link": "https://www.publicwhip.org.uk/division.php?date=2017-11-29&number=50",
+    "debate": "https://www.theyworkforyou.com/debates/?id=2017-11-29c.366.0",
+    "categories": [
+      {
+        "handle": "gender-equality",
+        "desiredOutcome": "yes"
+      }
+    ]
+  },
+  // No record at http://lda.data.parliament.uk/commonsdivisions
+  // Again it's from the the end of 2015
+  // {
+  //   "id": ???,
+  //   "date": "2016-02-03",
+  //   "number": 184,
+  //   "title": "Publish full details of the government's tax settlement with Google",
+  //   "handle": "publish-full-details-of-the-governments-tax-settlement-with-google",
+  //   "description": "Which parties voted to publish full details of the government's tax settlement with Google?",
+  //   "link": "https://www.publicwhip.org.uk/division.php?date=2016-02-03&number=184",
+  //   "debate": "https://www.theyworkforyou.com/debates/?id=2016-02-03a.965.0",
+  //   "categories": [
+  //     {
+  //       "handle": "truth",
+  //       "desiredOutcome": "yes"
+  //     }
+  //   ]
+  // },
+  {
+    "id": 103532,
+    "date": "2006-03-21",
+    "number": 198,
+    "title": "Introduce national identity cards",
+    "handle": "introduce-national-identity-cards",
+    "description": "Which parties voted to introduce national identity cards?",
+    "link": "https://www.publicwhip.org.uk/division.php?date=2006-03-16&number=198",
+    "debate": "https://www.theyworkforyou.com/debates/?id=2006-03-21b.181.0",
+    "categories": [
+      {
+        "handle": "race-equality",
+        "desiredOutcome": "no"
+      }
+    ]
+  },
   // {
   //   "id": ,
   //   "date": "",
@@ -737,7 +921,7 @@ module.exports = [
   //   "debate": "",
   //   "categories": [
   //     {
-  //       "handle": "education",
+  //       "handle": "race-equality",
   //       "desiredOutcome": ""
   //     }
   //   ]

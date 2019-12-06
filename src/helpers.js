@@ -38,7 +38,7 @@ const filterIgnoredParties = party => {
 }
 
 const normaliseConstituency = constituency => {
-  if (constituency === 'Life peer') {
+  if (!constituency || constituency === 'Life peer') {
     return null
   }
 

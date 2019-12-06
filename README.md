@@ -14,6 +14,12 @@
 
 ### Stage
 
+### Teller
+
+### Aye
+
+### No
+
 ## Process
 
 A bill goes through multiple stages in the commons and the lords before being
