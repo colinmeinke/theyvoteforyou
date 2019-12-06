@@ -256,21 +256,6 @@ module.exports = [
     ]
   },
   {
-    "id": 641522,
-    "date": "2016-11-22",
-    "number": 95,
-    "title": "Address the underfunding of the NHS",
-    "handle": "address-the-underfunding-of-the-nhs",
-    "description": "Which parties voted to address the underfunding of the NHS?",
-    "link": "https://www.publicwhip.org.uk/division.php?date=2016-11-22&number=95",
-    "categories": [
-      {
-        "handle": "nhs",
-        "desiredOutcome": "yes"
-      }
-    ]
-  },
-  {
     "id": 104969,
     "date": "2011-09-07",
     "number": 342,
