@@ -398,8 +398,8 @@
 
       const expandedCategories = await Promise.all(categories.map(async category => {
         const divisions = await Promise.all(
-          category.divisions.map(handle => new Promise(async res => {
-            const r = await this.fetch(`data/divisions/${handle}.json`)
+          category.divisions.map(([date, number]) => new Promise(async res => {
+            const r = await this.fetch(`data/divisions/${date}-${number}.json`)
             const division = await r.json()
             res(division)
           }))

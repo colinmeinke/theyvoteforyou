@@ -198,7 +198,6 @@ const normaliseVotes = (votes, mps) => votes.map(({
   .filter(({party, type}) => !party.atVote.includes('Speaker') || type.handle !== 'didNotVote')
 
 const normaliseDivision = ({
-  title: fullTitle,
   date: {_value: date},
   AbstainCount: [{_value: abstain}],
   AyesCount: [{_value: yes}],
@@ -228,7 +227,6 @@ const normaliseDivision = ({
 
   return {
     date,
-    fullTitle,
     count,
     outcome,
     margin,
@@ -239,13 +237,13 @@ const normaliseDivision = ({
 const getDivisions = async (divisions, mps) => (
   await Promise.all(divisions.map(async division => {
     const {result: {primaryTopic: result}} = await request(`http://lda.data.parliament.uk/commonsdivisions/${division.id}.json`)
-    // const {result: {items: [result]}} = await request(`http://lda.data.parliament.uk/commonsdivisions.json?uin=CD:${division.date}:${division.number}`)
 
     return {
       ...division,
       ...normaliseDivision(result, mps),
       categories: division.categories
         .map(category => ({
+          divisionTitle: category.title,
           ...category,
           ...categoriesConfig.find(c => c.handle === category.handle),
         })),
@@ -271,7 +269,7 @@ const getDivisions = async (divisions, mps) => (
 
     await Promise.all(divisions.map(async division => (
       await fs.writeFile(
-        path.join(divisionsDir, `${division.handle}.json`),
+        path.join(divisionsDir, `${division.date}-${division.number}.json`),
         JSON.stringify(division)
       )
     )))
@@ -280,7 +278,7 @@ const getDivisions = async (divisions, mps) => (
       ...category,
       divisions: divisionsConfig
         .filter(division => division.categories.find(cat => cat.handle === category.handle))
-        .map(division => division.handle),
+        .map(division => [division.date, division.number]),
     }))
 
     await fs.writeFile(

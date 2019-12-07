@@ -95,14 +95,14 @@
       </Grid>
     </section>
 
-    {#each filteredDs as {handle, title, desiredOutcome, outcome, date, parties} (handle)}
+    {#each filteredDs as {date, number, title, slug, desiredOutcome, outcome, parties} (`${date}${number}`)}
       <section class="gap">
         <DivisionSummaryHeader
           {title}
           {date}
           {outcome}
           {desiredOutcome}
-          link={`/${category.handle}/${handle}`}
+          link={`/${category.handle}/${date}-${number}-${slug}`}
         />
 
         <Grid>
@@ -241,8 +241,8 @@
       }
 
       const divisions = await Promise.all(
-        category.divisions.map(handle => new Promise(async resolve => {
-          const r = await this.fetch(`data/divisions/${handle}.json`)
+        category.divisions.map(([date, number]) => new Promise(async resolve => {
+          const r = await this.fetch(`data/divisions/${date}-${number}.json`)
           const division = await r.json()
           resolve(division)
         }))
@@ -293,11 +293,11 @@
 
   $: suffix = resultFormat === 'Percentage' ? '%' : ''
 
-  $: ds = divisions.map(({handle, title, date, categories, outcome, votes}) => {
-    const {desiredOutcome} = categories.find(({handle}) => category.handle)
+  $: ds = divisions.map(({date, number, categories, outcome, votes}) => {
+    const {divisionTitle: title, slug, desiredOutcome} = categories.find(({handle}) => handle === category.handle)
     const mps = getMpsFromVotes(votes, currentMps, currentParties)
     const parties = getPartiesFromMps(mps, desiredOutcome)
-    return {handle, title, date, desiredOutcome, outcome, parties}
+    return {date, number, title, slug, desiredOutcome, outcome, parties}
   })
 
   $: partiesAZ = Array.from(

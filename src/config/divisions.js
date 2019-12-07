@@ -3,14 +3,18 @@ module.exports = [
     "id": 1137716,
     "date": "2019-07-09",
     "number": 427,
-    "title": "Allow marriage between same sex couples in Northern Ireland",
-    "handle": "allow-marriage-between-same-sex-couples-in-northern-ireland",
-    "description": "Which parties voted to allow marriage between same sex couples in Northern Ireland?",
-    "link": "https://www.publicwhip.org.uk/division.php?date=2019-07-09-&number=427",
     "categories": [
       {
         "handle": "lgbt-rights",
-        "desiredOutcome": "yes"
+        "desiredOutcome": "yes",
+        "title": "Allow marriage between same sex couples in Northern Ireland",
+        "slug": "allow-marriage-between-same-sex-couples-in-northern-ireland",
+      },
+      {
+        "handle": "gender-equality",
+        "desiredOutcome": "yes",
+        "title": "Allow abortion in Northern Ireland",
+        "slug": "allow-abortion-in-northern-ireland",
       }
     ]
   },
@@ -18,14 +22,12 @@ module.exports = [
     "id": 105409,
     "date": "2013-05-21",
     "number": 11,
-    "title": "Allow marriage between same sex couples",
-    "handle": "allow-marriage-between-same-sex-couples",
-    "description": "Which parties voted to allow marriage between same sex couples?",
-    "link": "https://www.publicwhip.org.uk/division.php?date=2013-05-21&number=11",
     "categories": [
       {
         "handle": "lgbt-rights",
-        "desiredOutcome": "yes"
+        "desiredOutcome": "yes",
+        "title": "Allow marriage between same sex couples",
+        "slug": "allow-marriage-between-same-sex-couples",
       }
     ]
   },
@@ -33,14 +35,12 @@ module.exports = [
     "id": 102431,
     "date": "2002-11-04",
     "number": 345,
-    "title": "Allow unmarried couples to adopt",
-    "handle": "allow-unmarried-couples-to-adopt",
-    "description": "Which parties voted to allow unmarried couples (including same-sex couples) to adopt?",
-    "link": "https://www.publicwhip.org.uk/division.php?date=2002-11-04&number=345",
     "categories": [
       {
         "handle": "lgbt-rights",
-        "desiredOutcome": "yes"
+        "desiredOutcome": "yes",
+        "title": "Allow unmarried couples to adopt",
+        "slug": "allow-unmarried-couples-to-adopt",
       }
     ]
   },
@@ -48,14 +48,12 @@ module.exports = [
     "id": 102556,
     "date": "2003-03-10",
     "number": 109,
-    "title": "Maintain ban on local government promoting homosexuality",
-    "handle": "maintain-ban-on-local-government-promoting-homosexuality",
-    "description": "Which parties voted to maintain the ban on local government promoting homosexuality?",
-    "link": "https://www.publicwhip.org.uk/division.php?date=2003-03-10&number=109",
     "categories": [
       {
         "handle": "lgbt-rights",
-        "desiredOutcome": "no"
+        "desiredOutcome": "no",
+        "title": "Maintain ban on local government promoting homosexuality",
+        "slug": "maintain-ban-on-local-government-promoting-homosexuality",
       }
     ]
   },
@@ -63,14 +61,12 @@ module.exports = [
     "id": 103757,
     "date": "2007-03-19",
     "number": 79,
-    "title": "Ban discrimination based on sexual orientation",
-    "handle": "ban-discrimination-based-on-sexual-orientation",
-    "description": "Which parties voted to ban discrimination based on sexual orientation?",
-    "link": "https://www.publicwhip.org.uk/division.php?date=2007-03-19&number=79",
     "categories": [
       {
         "handle": "lgbt-rights",
-        "desiredOutcome": "yes"
+        "desiredOutcome": "yes",
+        "title": "Ban discrimination based on sexual orientation",
+        "slug": "ban-discrimination-based-on-sexual-orientation",
       }
     ]
   },
@@ -78,15 +74,13 @@ module.exports = [
     "id": 102702,
     "date": "2003-06-25",
     "number": 255,
-    "title": "Ban discrimination in the workplace based on sexual orientation",
-    "handle": "ban-discrimination-in-the-workplace-based-on-sexual-orientation",
-    "description": "Which parties voted to ban discrimination in the workplace based on sexual orientation?",
-    "link": "https://www.publicwhip.org.uk/division.php?date=2003-06-25&number=255",
     "debate": "https://www.theyworkforyou.com/debates/?id=2003-06-25.1177.0",
     "categories": [
       {
         "handle": "lgbt-rights",
-        "desiredOutcome": "yes"
+        "desiredOutcome": "yes",
+        "title": "Ban discrimination in the workplace based on sexual orientation",
+        "slug": "ban-discrimination-in-the-workplace-based-on-sexual-orientation",
       }
     ]
   },
@@ -94,14 +88,12 @@ module.exports = [
     "id": 103094,
     "date": "2004-10-12",
     "number": 256,
-    "title": "Legally recognise relationships between same sex couples",
-    "handle": "legally-recognise-relationships-between-same-sex-couples",
-    "description": "Which parties voted to legally recognise partnerships between same sex couples?",
-    "link": "https://www.publicwhip.org.uk/division.php?date=2004-10-12&number=256",
     "categories": [
       {
         "handle": "lgbt-rights",
-        "desiredOutcome": "yes"
+        "desiredOutcome": "yes",
+        "title": "Legally recognise relationships between same sex couples",
+        "slug": "legally-recognise-relationships-between-same-sex-couples",
       }
     ]
   },
@@ -109,14 +101,12 @@ module.exports = [
     "id": 910143,
     "date": "2018-05-23",
     "number": 164,
-    "title": "Disclose NHS papers relating to privatisation and outsourcing",
-    "handle": "disclose-nhs-papers-relating-to-privatisation-and-outsourcing",
-    "description": "Which parties voted to disclose NHS papers relating to privatisation and outsourcing?",
-    "link": "https://www.publicwhip.org.uk/division.php?date=2018-05-23&number=164",
     "categories": [
       {
         "handle": "nhs",
-        "desiredOutcome": "yes"
+        "desiredOutcome": "yes",
+        "title": "Disclose NHS papers relating to privatisation and outsourcing",
+        "slug": "disclose-nhs-papers-relating-to-privatisation-and-outsourcing",
       }
     ]
   },
@@ -124,14 +114,12 @@ module.exports = [
     "id": 900347,
     "date": "2018-05-09",
     "number": 156,
-    "title": "Stop removal of NHS student bursaries (attempt 2)",
-    "handle": "stop-removal-of-nhs-student-bursaries-2",
-    "description": "Which parties voted to stop the removal of bursaries from NHS students?",
-    "link": "https://www.publicwhip.org.uk/division.php?date=2018-05-09&number=156",
     "categories": [
       {
         "handle": "nhs",
-        "desiredOutcome": "yes"
+        "desiredOutcome": "yes",
+        "title": "Stop removal of NHS student bursaries (attempt 2)",
+        "slug": "stop-removal-of-nhs-student-bursaries-2",
       }
     ]
   },
@@ -139,14 +127,12 @@ module.exports = [
     "id": 517278,
     "date": "2016-05-04",
     "number": 263,
-    "title": "Stop removal of NHS student bursaries (attempt 1)",
-    "handle": "stop-removal-of-nhs-student-bursaries-1",
-    "description": "Which parties voted to stop the removal of bursaries from NHS students?",
-    "link": "https://www.publicwhip.org.uk/division.php?date=2016-05-04&number=263",
     "categories": [
       {
         "handle": "nhs",
-        "desiredOutcome": "yes"
+        "desiredOutcome": "yes",
+        "title": "Stop removal of NHS student bursaries (attempt 1)",
+        "slug": "stop-removal-of-nhs-student-bursaries-1",
       }
     ]
   },
@@ -154,14 +140,12 @@ module.exports = [
     "id": 177239,
     "date": "2015-01-28",
     "number": 143,
-    "title": "Stop further public spending cuts",
-    "handle": "stop-further-public-spending-cuts",
-    "description": "Which parties voted to stop further public spending cuts?",
-    "link": "https://www.publicwhip.org.uk/division.php?date=2015-01-28&number=143",
     "categories": [
       {
         "handle": "nhs",
-        "desiredOutcome": "yes"
+        "desiredOutcome": "yes",
+        "title": "Stop further public spending cuts",
+        "slug": "stop-further-public-spending-cuts",
       }
     ]
   },
@@ -169,14 +153,12 @@ module.exports = [
     "id": 175831,
     "date": "2015-01-21",
     "number": 135,
-    "title": "Increase NHS funding by £2.5 billion per year",
-    "handle": "increase-nhs-funding-by-2-5-billion-per-year",
-    "description": "Which parties voted to increase NHS funding by £2.5 billion per year?",
-    "link": "https://www.publicwhip.org.uk/division.php?date=2015-01-21&number=135",
     "categories": [
       {
         "handle": "nhs",
-        "desiredOutcome": "yes"
+        "desiredOutcome": "yes",
+        "title": "Increase NHS funding by £2.5 billion per year",
+        "slug": "increase-nhs-funding-by-2-5-billion-per-year",
       }
     ]
   },
@@ -184,14 +166,12 @@ module.exports = [
     "id": 582798,
     "date": "2016-09-14",
     "number": 67,
-    "title": "Publish plans for NHS restrucuring",
-    "handle": "publish-plans-for-nhs-restructuring",
-    "description": "Which parties voted to publish the plans for restruturing the NHS?",
-    "link": "https://www.publicwhip.org.uk/division.php?date=2016-09-14&number=67",
     "categories": [
       {
         "handle": "nhs",
-        "desiredOutcome": "yes"
+        "desiredOutcome": "yes",
+        "title": "Publish plans for NHS restrucuring",
+        "slug": "publish-plans-for-nhs-restructuring",
       }
     ]
   },
@@ -199,14 +179,12 @@ module.exports = [
     "id": 671450,
     "date": "2017-01-11",
     "number": 122,
-    "title": "Provide immediate extra funding for social care",
-    "handle": "provide-immediate-extra-funding-for-social-care",
-    "description": "Which parties voted to provide immediate extra funding for social care?",
-    "link": "https://www.publicwhip.org.uk/division.php?date=2017-01-11&number=122",
     "categories": [
       {
         "handle": "nhs",
-        "desiredOutcome": "yes"
+        "desiredOutcome": "yes",
+        "title": "Provide immediate extra funding for social care",
+        "slug": "provide-immediate-extra-funding-for-social-care",
       }
     ]
   },
@@ -214,14 +192,12 @@ module.exports = [
     "id": 105602,
     "date": "2014-02-05",
     "number": 204,
-    "title": "Reverse NHS competition policy",
-    "handle": "reverse-nhs-competition-policy",
-    "description": "Which parties voted to reverse NHS competition policy?",
-    "link": "https://www.publicwhip.org.uk/division.php?date=2014-02-05&number=204",
     "categories": [
       {
         "handle": "nhs",
-        "desiredOutcome": "yes"
+        "desiredOutcome": "yes",
+        "title": "Reverse NHS competition policy",
+        "slug": "reverse-nhs-competition-policy",
       }
     ]
   },
@@ -229,14 +205,12 @@ module.exports = [
     "id": 105050,
     "date": "2012-01-16",
     "number": 423,
-    "title": "Reduce the amount of private income NHS hospitals can make",
-    "handle": "reduce-the-amount-of-private-income-nhs-hospitals-can-make",
-    "description": "Which parties voted to reduce the amount of private income NHS hospitals can make?",
-    "link": "https://www.publicwhip.org.uk/division.php?date=2012-01-16&number=423",
     "categories": [
       {
         "handle": "nhs",
-        "desiredOutcome": "yes"
+        "desiredOutcome": "yes",
+        "title": "Reduce the amount of private income NHS hospitals can make",
+        "slug": "reduce-the-amount-of-private-income-nhs-hospitals-can-make",
       }
     ]
   },
@@ -244,14 +218,12 @@ module.exports = [
     "id": 104895,
     "date": "2011-05-09",
     "number": 268,
-    "title": "Drop the market-based approach to restructuring the NHS",
-    "handle": "drop-the-market-based-approach-to-restructuring-the-nhs",
-    "description": "Which parties voted to drop the market-based approach to restructuring the NHS?",
-    "link": "https://www.publicwhip.org.uk/division.php?date=2011-05-09&number=268",
     "categories": [
       {
         "handle": "nhs",
-        "desiredOutcome": "yes"
+        "desiredOutcome": "yes",
+        "title": "Drop the market-based approach to restructuring the NHS",
+        "slug": "drop-the-market-based-approach-to-restructuring-the-nhs",
       }
     ]
   },
@@ -259,14 +231,12 @@ module.exports = [
     "id": 641522,
     "date": "2016-11-22",
     "number": 95,
-    "title": "Address the underfunding of the NHS",
-    "handle": "address-the-underfunding-of-the-nhs",
-    "description": "Which parties voted to address the underfunding of the NHS?",
-    "link": "https://www.publicwhip.org.uk/division.php?date=2016-11-22&number=95",
     "categories": [
       {
         "handle": "nhs",
-        "desiredOutcome": "yes"
+        "desiredOutcome": "yes",
+        "title": "Address the underfunding of the NHS",
+        "slug": "address-the-underfunding-of-the-nhs",
       }
     ]
   },
@@ -274,15 +244,13 @@ module.exports = [
     "id": 104969,
     "date": "2011-09-07",
     "number": 342,
-    "title": "Restructure the NHS and allow more privatisation",
-    "handle": "restructure-the-nhs-and-allow-more-privatisation",
-    "description": "Which parties voted to restructure the NHS and allow more privatisation?",
-    "link": "https://www.publicwhip.org.uk/division.php?date=2011-09-07&number=342",
     "debate": "https://www.theyworkforyou.com/debates/?id=2011-09-07b.489.0",
     "categories": [
       {
         "handle": "nhs",
-        "desiredOutcome": "no"
+        "desiredOutcome": "no",
+        "title": "Restructure the NHS and allow more privatisation",
+        "slug": "restructure-the-nhs-and-allow-more-privatisation",
       }
     ]
   },
@@ -290,14 +258,12 @@ module.exports = [
     "id": 105290,
     "date": "2012-12-12",
     "number": 120,
-    "title": "Use official health spending statistics in public statements",
-    "handle": "use-official-health-spending-statistics-in-public-statements",
-    "description": "Which parties voted to use official health spending statistics in public statements?",
-    "link": "https://www.publicwhip.org.uk/division.php?date=2012-12-12&number=120",
     "categories": [
       {
         "handle": "truth",
-        "desiredOutcome": "yes"
+        "desiredOutcome": "yes",
+        "title": "Use official health spending statistics in public statements",
+        "slug": "use-official-health-spending-statistics-in-public-statements",
       }
     ]
   },
@@ -305,14 +271,12 @@ module.exports = [
     "id": 177235,
     "date": "2015-01-26",
     "number": 139,
-    "title": "Ban fracking for at least 18 months and review impact on climate change",
-    "handle": "ban-fracking-for-at-least-18-months-and-review-impact-on-climate-change",
-    "description": "Which parties voted to ban fracking for at least 18 months and review impact on climate change?",
-    "link": "https://www.publicwhip.org.uk/division.php?date=2015-01-26&number=139",
     "categories": [
       {
         "handle": "environment",
-        "desiredOutcome": "yes"
+        "desiredOutcome": "yes",
+        "title": "Ban fracking for at least 18 months and review impact on climate change",
+        "slug": "ban-fracking-for-at-least-18-months-and-review-impact-on-climate-change",
       }
     ]
   },
@@ -320,14 +284,12 @@ module.exports = [
     "id": 177241,
     "date": "2015-01-26",
     "number": 137,
-    "title": "Require an environmental permit for fracking",
-    "handle": "require-an-environmental-permit-for-fracking",
-    "description": "Which parties voted to require an environmental permit for fracking?",
-    "link": "https://www.publicwhip.org.uk/division.php?date=2015-01-26&number=137",
     "categories": [
       {
         "handle": "environment",
-        "desiredOutcome": "yes"
+        "desiredOutcome": "yes",
+        "title": "Require an environmental permit for fracking",
+        "slug": "require-an-environmental-permit-for-fracking",
       }
     ]
   },
@@ -335,14 +297,12 @@ module.exports = [
     "id": 221500,
     "date": "2015-02-11",
     "number": 156,
-    "title": "Weaken proposed regulation on fracking",
-    "handle": "weaken-proposed-regulation-on-fracking",
-    "description": "Which parties voted to weaken proposed regulation on fracking?",
-    "link": "https://www.publicwhip.org.uk/division.php?date=2015-02-11&number=156",
     "categories": [
       {
         "handle": "environment",
-        "desiredOutcome": "no"
+        "desiredOutcome": "no",
+        "title": "Weaken proposed regulation on fracking",
+        "slug": "weaken-proposed-regulation-on-fracking",
       }
     ]
   },
@@ -354,14 +314,12 @@ module.exports = [
   //   "id": ???,
   //   "date": "2015-12-16",
   //   "number": 151,
-  //   "title": "Allow fracking under national parks",
-  //   "handle": "allow-fracking-under-national-parks",
-  //   "description": "Which parties voted to allow fracking under national parks?",
-  //   "link": "https://www.publicwhip.org.uk/division.php?date=2015-12-16&number=151",
   //   "categories": [
   //     {
   //       "handle": "environment",
-  //       "desiredOutcome": "no"
+  //       "desiredOutcome": "no",
+  //       "title": "Allow fracking under national parks",
+  //       "slug": "allow-fracking-under-national-parks",
   //     }
   //   ]
   // },
@@ -369,15 +327,13 @@ module.exports = [
     "id": 104815,
     "date": "2011-02-02",
     "number": 188,
-    "title": "Stop the sale of public forests",
-    "handle": "stop-the-sale-of-public-forests",
-    "description": "Which parties voted to stop the sale of public forests?",
-    "link": "https://www.publicwhip.org.uk/division.php?date=2011-02-02&number=188",
     "debate": "https://www.theyworkforyou.com/debates/?id=2011-02-02a.925.0",
     "categories": [
       {
         "handle": "environment",
-        "desiredOutcome": "yes"
+        "desiredOutcome": "yes",
+        "title": "Stop the sale of public forests",
+        "slug": "stop-the-sale-of-public-forests",
       }
     ]
   },
@@ -385,15 +341,13 @@ module.exports = [
     "id": 105417,
     "date": "2013-06-04",
     "number": 19,
-    "title": "Reduce limit on financial incentives for small scale low carbon energy production",
-    "handle": "reduce-limit-on-financial-incentives-for-small-scale-low-carbon-energy-production",
-    "description": "Which parties voted to reduce limit on financial incentives for small scale low carbon energy production?",
-    "link": "https://www.publicwhip.org.uk/division.php?date=2013-06-04&number=19",
     "debate": "https://publications.parliament.uk/pa/cm201314/cmhansrd/cm130604/debtext/130604-0003.htm#130604-0003.htm_div19",
     "categories": [
       {
         "handle": "environment",
-        "desiredOutcome": "yes"
+        "desiredOutcome": "yes",
+        "title": "Reduce limit on financial incentives for small scale low carbon energy production",
+        "slug": "reduce-limit-on-financial-incentives-for-small-scale-low-carbon-energy-production",
       }
     ]
   },
@@ -401,15 +355,13 @@ module.exports = [
     "id": 930955,
     "date": "2018-06-25",
     "number": 192,
-    "title": "Build a third runway at Heathrow airport",
-    "handle": "build-a-third-runway-at-heathrow-airport",
-    "description": "Which parties voted to build a third runway at Heathrow airport?",
-    "link": "https://www.publicwhip.org.uk/division.php?date=2018-06-25&number=192",
     "debate": "https://www.theyworkforyou.com/debates/?id=2018-06-25d.648.10",
     "categories": [
       {
         "handle": "environment",
-        "desiredOutcome": "no"
+        "desiredOutcome": "no",
+        "title": "Build a third runway at Heathrow airport",
+        "slug": "build-a-third-runway-at-heathrow-airport",
       }
     ]
   },
@@ -417,15 +369,13 @@ module.exports = [
     "id": 486072,
     "date": "2016-03-14",
     "number": 214,
-    "title": "Delay the removal of suppliers requirement to provide onshore wind energy",
-    "handle": "delay-the-removal-of-suppliers-requirement-to-provide-onshore-wind-energy",
-    "description": "Which parties voted to delay the removal of suppliers requirement to provide onshore wind energy?",
-    "link": "https://www.publicwhip.org.uk/division.php?date=2016-03-14&number=214",
     "debate": "https://publications.parliament.uk/pa/cm201516/cmhansrd/cm160314/debtext/160314-0002.htm#160314-0002.htm_div214",
     "categories": [
       {
         "handle": "environment",
-        "desiredOutcome": "yes"
+        "desiredOutcome": "yes",
+        "title": "Delay the removal of suppliers requirement to provide onshore wind energy",
+        "slug": "delay-the-removal-of-suppliers-requirement-to-provide-onshore-wind-energy",
       }
     ]
   },
@@ -433,15 +383,13 @@ module.exports = [
     "id": 483356,
     "date": "2016-03-14",
     "number": 217,
-    "title": "Set an electricity decarbonisation target (attempt 2)",
-    "handle": "set-an-electricity-decarbonisation-target-2",
-    "description": "Which parties voted to set an electricity decarbonisation target?",
-    "link": "https://www.publicwhip.org.uk/division.php?date=2016-03-14&number=217",
     "debate": "https://publications.parliament.uk/pa/cm201516/cmhansrd/cm160314/debtext/160314-0003.htm#160314-0003.htm_div217",
     "categories": [
       {
         "handle": "environment",
-        "desiredOutcome": "yes"
+        "desiredOutcome": "yes",
+        "title": "Set an electricity decarbonisation target (attempt 2)",
+        "slug": "set-an-electricity-decarbonisation-target-2",
       }
     ]
   },
@@ -449,15 +397,13 @@ module.exports = [
     "id": 483355,
     "date": "2016-03-14",
     "number": 216,
-    "title": "Develop national strategy for carbon capture and storage",
-    "handle": "develop-national-strategy-for-carbon-capture-and-storage",
-    "description": "Which parties voted to develop national strategy for carbon capture and storage?",
-    "link": "https://www.publicwhip.org.uk/division.php?date=2016-03-14&number=216",
     "debate": "https://publications.parliament.uk/pa/cm201516/cmhansrd/cm160314/debtext/160314-0002.htm#160314-0002.htm_subhd3",
     "categories": [
       {
         "handle": "environment",
-        "desiredOutcome": "yes"
+        "desiredOutcome": "yes",
+        "title": "Develop national strategy for carbon capture and storage",
+        "slug": "develop-national-strategy-for-carbon-capture-and-storage",
       }
     ]
   },
@@ -467,15 +413,13 @@ module.exports = [
   //   "id": ???,
   //   "date": "2015-10-26",
   //   "number": 89,
-  //   "title": "More closely link Vehicle Exercise Duty to carbon dioxide emissions",
-  //   "handle": "more-closely-link-vehicle-exercise-duty-to-carbon-dioxide-emissions",
-  //   "description": "Which parties voted to more closely link Vehicle Exercise Duty to carbon dioxide emissions?",
-  //   "link": "https://www.publicwhip.org.uk/division.php?date=2015-10-26&number=89",
   //   "debate": "https://publications.parliament.uk/pa/cm201516/cmhansrd/cm151026/debtext/151026-0002.htm#151026-0002.htm_amdt388",
   //   "categories": [
   //     {
   //       "handle": "environment",
-  //       "desiredOutcome": "yes"
+  //       "desiredOutcome": "yes",
+  //       "title": "More closely link Vehicle Exercise Duty to carbon dioxide emissions",
+  //       "slug": "more-closely-link-vehicle-exercise-duty-to-carbon-dioxide-emissions",
   //     }
   //   ]
   // },
@@ -485,15 +429,13 @@ module.exports = [
   //   "id": ???,
   //   "date": "2015-09-08",
   //   "number": 63,
-  //   "title": "Remove renewable energy exemption from the Climate Change Levy",
-  //   "handle": "remove-renewable-energy-exemption-from-the-climate-change-levy",
-  //   "description": "Which parties voted to ...?",
-  //   "link": "https://www.publicwhip.org.uk/division.php?date=2015-09-08&number=63",
   //   "debate": "https://www.theyworkforyou.com/debates/?id=2015-09-08c.319.0",
   //   "categories": [
   //     {
   //       "handle": "environment",
-  //       "desiredOutcome": "no"
+  //       "desiredOutcome": "no",
+  //       "title": "Remove renewable energy exemption from the Climate Change Levy",
+  //       "slug": "remove-renewable-energy-exemption-from-the-climate-change-levy",
   //     }
   //   ]
   // },
@@ -501,15 +443,13 @@ module.exports = [
     "id": 105416,
     "date": "2013-06-04",
     "number": 18,
-    "title": "Set an electricity decarbonisation target (attempt 1)",
-    "handle": "set-an-electricity-decarbonisation-target-1",
-    "description": "Which parties voted to set an electricity decarbonisation target?",
-    "link": "https://www.publicwhip.org.uk/division.php?date=2013-06-04&number=18",
     "debate": "https://www.theyworkforyou.com/debates/?id=2013-06-04b.1387.3",
     "categories": [
       {
         "handle": "environment",
-        "desiredOutcome": "yes"
+        "desiredOutcome": "yes",
+        "title": "Set an electricity decarbonisation target (attempt 1)",
+        "slug": "set-an-electricity-decarbonisation-target-1",
       }
     ]
   },
@@ -517,15 +457,13 @@ module.exports = [
     "id": 104472,
     "date": "2009-10-21",
     "number": 229,
-    "title": "Reduce greenhouse gas emissions by 10% by the end of 2010",
-    "handle": "reduce-greenhouse-gas-emissions-by-10-percent-by-the-end-of-2010",
-    "description": "Which parties voted to reduce greenhouse gas emissions by 10% by the end of 2010?",
-    "link": "https://www.publicwhip.org.uk/division.php?date=2009-10-21&number=229",
     "debate": "https://www.theyworkforyou.com/debates/?id=2009-10-21c.976.0",
     "categories": [
       {
         "handle": "environment",
-        "desiredOutcome": "yes"
+        "desiredOutcome": "yes",
+        "title": "Reduce greenhouse gas emissions by 10% by the end of 2010",
+        "slug": "reduce-greenhouse-gas-emissions-by-10-percent-by-the-end-of-2010",
       }
     ]
   },
@@ -533,15 +471,13 @@ module.exports = [
     "id": 104279,
     "date": "2009-02-24",
     "number": 38,
-    "title": "Approve airport expansion",
-    "handle": "approve-airport-expansion",
-    "description": "Which parties voted to approve airport expansion?",
-    "link": "https://www.publicwhip.org.uk/division.php?date=2009-02-24&number=38",
     "debate": "https://www.theyworkforyou.com/debates/?id=2009-02-24c.170.0",
     "categories": [
       {
         "handle": "environment",
-        "desiredOutcome": "no"
+        "desiredOutcome": "no",
+        "title": "Approve airport expansion",
+        "slug": "approve-airport-expansion",
       }
     ]
   },
@@ -549,15 +485,13 @@ module.exports = [
     "id": 104198,
     "date": "2008-10-28",
     "number": 298,
-    "title": "Reduce greenhouse gas emissions by 2050",
-    "handle": "reduce-greenhouse-gas-emissions-by-2050",
-    "description": "Which parties voted to reduce greenhouse gas emissions?",
-    "link": "https://www.publicwhip.org.uk/division.php?date=2008-10-28&number=298",
     "debate": "https://www.theyworkforyou.com/debates/?id=2008-10-28b.833.0",
     "categories": [
       {
         "handle": "environment",
-        "desiredOutcome": "yes"
+        "desiredOutcome": "yes",
+        "title": "Reduce greenhouse gas emissions by 2050",
+        "slug": "reduce-greenhouse-gas-emissions-by-2050",
       }
     ]
   },
@@ -565,15 +499,13 @@ module.exports = [
     "id": 102876,
     "date": "2004-01-27",
     "number": 38,
-    "title": "Allow universities to charge tuition fees of up to £3,000 per year",
-    "handle": "allow-universities-to-charge-tuition-fees-of-up-to-3000-pounds-per-year",
-    "description": "Which parties voted to allow universities to charge tuition fees of up to £3,000 per year?",
-    "link": "https://www.publicwhip.org.uk/division.php?date=2004-01-27&number=417",
     "debate": "https://www.theyworkforyou.com/debates/?id=2004-01-27.167.1",
     "categories": [
       {
         "handle": "education",
-        "desiredOutcome": "no"
+        "desiredOutcome": "no",
+        "title": "Allow universities to charge tuition fees of up to £3,000 per year",
+        "slug": "allow-universities-to-charge-tuition-fees-of-up-to-3000-pounds-per-year",
       }
     ]
   },
@@ -581,15 +513,13 @@ module.exports = [
     "id": 104777,
     "date": "2010-12-09",
     "number": 150,
-    "title": "Raise university tuition fee cap to £9,000 per year",
-    "handle": "raise-university-tuition-fee-cap-to-9000-pounds-per-year",
-    "description": "Which parties voted to raise university tuition fee cap to £9,000 per year?",
-    "link": "https://www.publicwhip.org.uk/division.php?date=2010-12-09&number=150",
     "debate": "https://www.theyworkforyou.com/debates/?id=2010-12-09b.540.0",
     "categories": [
       {
         "handle": "education",
-        "desiredOutcome": "no"
+        "desiredOutcome": "no",
+        "title": "Raise university tuition fee cap to £9,000 per year",
+        "slug": "raise-university-tuition-fee-cap-to-9000-pounds-per-year",
       }
     ]
   },
@@ -599,15 +529,13 @@ module.exports = [
   //   "id": ???,
   //   "date": "2015-11-18",
   //   "number": 128,
-  //   "title": "Protect the education budget for students up to the age of 19",
-  //   "handle": "protect-the-education-budget-for-students-up-to-the-age-of-19",
-  //   "description": "Which parties voted to protect the education budget for students up to the age of 19?",
-  //   "link": "https://www.publicwhip.org.uk/division.php?date=2015-11-18&number=128",
   //   "debate": "https://www.theyworkforyou.com/debates/?id=2015-11-18a.744.0",
   //   "categories": [
   //     {
   //       "handle": "education",
-  //       "desiredOutcome": "yes"
+  //       "desiredOutcome": "yes",
+  //       "title": "Protect the education budget for students up to the age of 19",
+  //       "slug": "protect-the-education-budget-for-students-up-to-the-age-of-19",
   //     }
   //   ]
   // },
@@ -615,15 +543,13 @@ module.exports = [
     "id": 104804,
     "date": "2011-01-19",
     "number": 177,
-    "title": "Scrap the Education Maintenance Allowance (EMA) in England",
-    "handle": "scrap-the-education-aaintenance-allowance-in-england",
-    "description": "Which parties voted to scrap the Education Maintenance Allowance (EMA) in England?",
-    "link": "https://www.publicwhip.org.uk/division.php?date=2011-01-19&number=177",
     "debate": "https://www.theyworkforyou.com/debates/?id=2011-01-19b.860.1",
     "categories": [
       {
         "handle": "education",
-        "desiredOutcome": "no"
+        "desiredOutcome": "no",
+        "title": "Scrap the Education Maintenance Allowance (EMA) in England",
+        "slug": "scrap-the-education-aaintenance-allowance-in-england",
       }
     ]
   },
@@ -631,15 +557,13 @@ module.exports = [
     "id": 640712,
     "date": "2016-11-21",
     "number": 93,
-    "title": "Reduce restrictions on new universities and make universities compete for funding",
-    "handle": "reduce-restrictions-on-new-universities-and-make-universities-compete-for-funding",
-    "description": "Which parties voted to reduce restrictions on new universities and make universities compete for funding?",
-    "link": "https://www.publicwhip.org.uk/division.php?date=2016-11-21&number=93",
     "debate": "https://hansard.parliament.uk/commons/2016-11-21/debates/3C2C0C73-35CF-4108-B68D-44820B49059B/HigherEducationAndResearchBill#contribution-05CE4572-2B96-4A0D-8B3A-388A3FD14631",
     "categories": [
       {
         "handle": "education",
-        "desiredOutcome": "no"
+        "desiredOutcome": "no",
+        "title": "Reduce restrictions on new universities and make universities compete for funding",
+        "slug": "reduce-restrictions-on-new-universities-and-make-universities-compete-for-funding",
       }
     ]
   },
@@ -647,15 +571,13 @@ module.exports = [
     "id": 104676,
     "date": "2010-07-26",
     "number": 49,
-    "title": "Allow all schools to become acadamies",
-    "handle": "allow-all-schools-to-become-acadamies",
-    "description": "Which parties voted to allow all schools to become acadamies?",
-    "link": "https://www.publicwhip.org.uk/division.php?date=2010-07-26&number=49",
     "debate": "https://www.theyworkforyou.com/debates/?id=2010-07-26b.815.0",
     "categories": [
       {
         "handle": "education",
-        "desiredOutcome": "no"
+        "desiredOutcome": "no",
+        "title": "Allow all schools to become acadamies",
+        "slug": "allow-all-schools-to-become-acadamies",
       }
     ]
   },
@@ -663,15 +585,13 @@ module.exports = [
     "id": 104898,
     "date": "2011-05-11",
     "number": 271,
-    "title": "Further increase the role of acadamies in schooling",
-    "handle": "further-increase-the-role-of-acadamies-in-schooling",
-    "description": "Which parties voted to further increase the role of acadamies in schooling?",
-    "link": "https://www.publicwhip.org.uk/division.php?date=2011-05-11&number=271",
     "debate": "https://www.theyworkforyou.com/debates/?id=2011-05-11d.1267.6",
     "categories": [
       {
         "handle": "education",
-        "desiredOutcome": "no"
+        "desiredOutcome": "no",
+        "title": "Further increase the role of acadamies in schooling",
+        "slug": "further-increase-the-role-of-acadamies-in-schooling",
       }
     ]
   },
@@ -681,15 +601,13 @@ module.exports = [
   //   "id": ???,
   //   "date": "2015-09-16",
   //   "number": 73,
-  //   "title": "Increase government powers to convert a state school to an acdaemy",
-  //   "handle": "increase-government-powers-to-convert-a-state-school-to-an-acdaemy",
-  //   "description": "Which parties voted to increase government powers to convert a state school to an acdaemy?",
-  //   "link": "https://www.publicwhip.org.uk/division.php?date=2015-09-16&number=73",
   //   "debate": "https://hansard.parliament.uk/Commons/2015-09-16/debates/15091635000001/EducationAndAdoptionBil",
   //   "categories": [
   //     {
   //       "handle": "education",
-  //       "desiredOutcome": "no"
+  //       "desiredOutcome": "no",
+  //       "title": "Increase government powers to convert a state school to an acdaemy",
+  //       "slug": "increase-government-powers-to-convert-a-state-school-to-an-acdaemy",
   //     }
   //   ]
   // },
@@ -697,15 +615,13 @@ module.exports = [
     "id": 511680,
     "date": "2016-04-13",
     "number": 236,
-    "title": "Force all primary and secondary schools to become academies",
-    "handle": "force-all-primary-and-secondary-schools-to-become-academies",
-    "description": "Which parties voted to force all primary and secondary schools to become academies?",
-    "link": "https://www.publicwhip.org.uk/division.php?date=2016-04-13&number=236",
     "debate": "https://www.theyworkforyou.com/debates/?id=2016-04-13c.415.0",
     "categories": [
       {
         "handle": "education",
-        "desiredOutcome": "no"
+        "desiredOutcome": "no",
+        "title": "Force all primary and secondary schools to become academies",
+        "slug": "force-all-primary-and-secondary-schools-to-become-academies",
       }
     ]
   },
@@ -713,15 +629,13 @@ module.exports = [
     "id": 105594,
     "date": "2014-01-29",
     "number": 196,
-    "title": "Require employment of qualified teachers in state schools (attempt 2)",
-    "handle": "require-employment-of-qualified-teachers-in-state-schools-2",
-    "description": "Which parties voted to require employment of qualified teachers in state schools (attempt 2)?",
-    "link": "https://www.publicwhip.org.uk/division.php?date=2014-01-29&number=196",
     "debate": "https://www.theyworkforyou.com/debates/?id=2014-01-29a.922.0",
     "categories": [
       {
         "handle": "education",
-        "desiredOutcome": "yes"
+        "desiredOutcome": "yes",
+        "title": "Require employment of qualified teachers in state schools (attempt 2)",
+        "slug": "require-employment-of-qualified-teachers-in-state-schools-2",
       }
     ]
   },
@@ -729,32 +643,39 @@ module.exports = [
     "id": 105512,
     "date": "2013-10-30",
     "number": 114,
-    "title": "Require employment of qualified teachers in state schools (attempt 1)",
-    "handle": "require-employment-of-qualified-teachers-in-state-schools-1",
-    "description": "Which parties voted to require employment of qualified teachers in state schools (attempt 1)?",
-    "link": "https://www.publicwhip.org.uk/division.php?date=2013-10-30&number=114",
-    "debate": "",
     "categories": [
       {
         "handle": "education",
-        "desiredOutcome": "yes"
+        "desiredOutcome": "yes",
+        "title": "Require employment of qualified teachers in state schools (attempt 1)",
+        "slug": "require-employment-of-qualified-teachers-in-state-schools-1",
       }
     ]
   },
   {
+    "title": "Equality Act 2010",
     "id": 104504,
     "date": "2009-12-02",
     "number": 13,
-    "title": "Ban discrimination based on race or religion",
-    "handle": "ban-discrimination-based-on-race-or-religion",
-    "description": "Which parties voted to ban discrimination based on race or religion?",
-    "link": "https://www.publicwhip.org.uk/division.php?date=2009-12-02&number=13",
     "debate": "https://www.theyworkforyou.com/debates/?id=2009-12-02d.1225.2",
     "categories": [
-      // This is the Equality Act 2010 and also applies to LGBT Rights
       {
         "handle": "race-equality",
-        "desiredOutcome": "yes"
+        "desiredOutcome": "yes",
+        "title": "Strengthen laws against discrimination based on race or religion",
+        "slug": "strengthen-laws-against-discrimination-based-on-race-or-religion",
+      },
+      {
+        "handle": "lgbt-rights",
+        "desiredOutcome": "yes",
+        "title": "Strengthen laws against discrimination based on sexual orientation",
+        "slug": "strengthen-laws-against-discrimination-based-on-sexual-orientation",
+      },
+      {
+        "handle": "gender-equality",
+        "desiredOutcome": "yes",
+        "title": "Strengthen laws against discrimination based on sex or gender reassignment",
+        "slug": "strengthen-laws-against-discrimination-based-on-sex-or-gender-reassignment",
       }
     ]
   },
@@ -762,15 +683,13 @@ module.exports = [
     "id": 105599,
     "date": "2014-01-30",
     "number": 201,
-    "title": "Reduce the rights of migrants in the UK and enable long-standing UK residents (Windrush generation) to be deportated",
-    "handle": "reduce-the-rights-of-migrants-in-the-uk-and-enable-long-standing-UK-residents-windrush-generation-to-be-deportated",
-    "description": "Which parties voted to reduce the rights of migrants in the UK and enable long-standing UK residents (Windrush generation) to be deportated?",
-    "link": "https://www.publicwhip.org.uk/division.php?date=2014-01-30&number=201",
     "debate": "https://www.theyworkforyou.com/debates/?id=2014-01-30b.1122.0",
     "categories": [
       {
         "handle": "race-equality",
-        "desiredOutcome": "no"
+        "desiredOutcome": "no",
+        "title": "Reduce the rights of migrants in the UK and enable long-standing UK residents (Windrush generation) to be deportated",
+        "slug": "reduce-the-rights-of-migrants-in-the-uk-and-enable-long-standing-UK-residents-windrush-generation-to-be-deportated",
       }
     ]
   },
@@ -778,19 +697,19 @@ module.exports = [
     "id": 896218,
     "date": "2018-05-02",
     "number": 148,
-    "title": "Release data on the Windrush scandal",
-    "handle": "release-data-on-the-Windrush-scandal",
-    "description": "Which parties voted to release data on the Windrush scandal?",
-    "link": "https://www.publicwhip.org.uk/division.php?date=2018-05-02&number=148",
     "debate": "https://www.theyworkforyou.com/debates/?id=2018-05-02a.340.0",
     "categories": [
       {
         "handle": "race-equality",
         "desiredOutcome": "yes",
+        "title": "Release data on the Windrush scandal",
+        "slug": "release-data-on-the-Windrush-scandal",
       },
       {
         "handle": "truth",
         "desiredOutcome": "yes",
+        "title": "Release data on the Windrush scandal",
+        "slug": "release-data-on-the-Windrush-scandal",
       }
     ]
   },
@@ -800,15 +719,13 @@ module.exports = [
   //   "id": ???,
   //   "date": "2015-12-01",
   //   "number": 137,
-  //   "title": "Further reduce the rights of migrants and asylum seekers in the UK",
-  //   "handle": "further-reduce-the-rights-of-migrants-and-asylum-seekers-in-the-uk",
-  //   "description": "Which parties voted to further reduce the rights of migrants and asylum seekers in the UK?",
-  //   "link": "https://www.publicwhip.org.uk/division.php?date=2015-12-01&number=137",
   //   "debate": "https://hansard.parliament.uk/Commons/2015-12-01/debates/15120141000002/ImmigrationBill",
   //   "categories": [
   //     {
   //       "handle": "race-equality",
-  //       "desiredOutcome": "no"
+  //       "desiredOutcome": "no",
+  //       "title": "Further reduce the rights of migrants and asylum seekers in the UK",
+  //       "slug": "further-reduce-the-rights-of-migrants-and-asylum-seekers-in-the-uk",
   //     }
   //   ]
   // },
@@ -816,15 +733,13 @@ module.exports = [
     "id": 103369,
     "date": "2005-07-11",
     "number": 35,
-    "title": "Make incitement of racial or religious hatred a crime",
-    "handle": "make-incitement-of-racial-or-religious-hatred-a-crime",
-    "description": "Which parties voted to make incitement of racial or religious hatred a crime?",
-    "link": "https://www.publicwhip.org.uk/division.php?date=2005-07-11&number=35",
     "debate": "https://www.theyworkforyou.com/debates/?id=2005-07-11a.653.0",
     "categories": [
       {
         "handle": "race-equality",
-        "desiredOutcome": "yes"
+        "desiredOutcome": "yes",
+        "title": "Make incitement of racial or religious hatred a crime",
+        "slug": "make-incitement-of-racial-or-religious-hatred-a-crime",
       }
     ]
   },
@@ -832,15 +747,13 @@ module.exports = [
     "id": 102688,
     "date": "2003-06-18",
     "number": 241,
-    "title": "Ban racial discrimination of seafarers hired outside of the UK",
-    "handle": "ban-racial-discrimination-of-seafarers-hired-outside-of-the-uk",
-    "description": "Which parties voted to ban racial discrimination of seafarers hired outside of the UK?",
-    "link": "https://www.publicwhip.org.uk/division.php?date=2003-06-18&number=241",
     "debate": "https://www.theyworkforyou.com/debates/?id=2003-06-18.477.0",
     "categories": [
       {
         "handle": "race-equality",
-        "desiredOutcome": "yes"
+        "desiredOutcome": "yes",
+        "title": "Ban racial discrimination of seafarers hired outside of the UK",
+        "slug": "ban-racial-discrimination-of-seafarers-hired-outside-of-the-uk",
       }
     ]
   },
@@ -848,31 +761,13 @@ module.exports = [
     "id": 105378,
     "date": "2013-04-16",
     "number": 207,
-    "title": "Reject caste based discrimination ban",
-    "handle": "reject-caste-based-discrimination-ban",
-    "description": "Which parties voted to reject caste based discrimination ban?",
-    "link": "https://www.publicwhip.org.uk/division.php?date=2013-04-16&number=207",
     "debate": "https://www.theyworkforyou.com/debates/?id=2013-04-16b.255.0",
     "categories": [
       {
         "handle": "race-equality",
-        "desiredOutcome": "no"
-      }
-    ]
-  },
-  {
-    "id": 796706,
-    "date": "2017-11-29",
-    "number": 50,
-    "title": "Call on the government to help women affected by changes to state pension",
-    "handle": "call-on-the-government-to-help-women-affected-by-changes-to-state-pension",
-    "description": "Which parties voted to call on the government to help women affected by changes to state pension?",
-    "link": "https://www.publicwhip.org.uk/division.php?date=2017-11-29&number=50",
-    "debate": "https://www.theyworkforyou.com/debates/?id=2017-11-29c.366.0",
-    "categories": [
-      {
-        "handle": "gender-equality",
-        "desiredOutcome": "yes"
+        "desiredOutcome": "no",
+        "title": "Reject caste based discrimination ban",
+        "slug": "reject-caste-based-discrimination-ban",
       }
     ]
   },
@@ -882,15 +777,13 @@ module.exports = [
   //   "id": ???,
   //   "date": "2016-02-03",
   //   "number": 184,
-  //   "title": "Publish full details of the government's tax settlement with Google",
-  //   "handle": "publish-full-details-of-the-governments-tax-settlement-with-google",
-  //   "description": "Which parties voted to publish full details of the government's tax settlement with Google?",
-  //   "link": "https://www.publicwhip.org.uk/division.php?date=2016-02-03&number=184",
   //   "debate": "https://www.theyworkforyou.com/debates/?id=2016-02-03a.965.0",
   //   "categories": [
   //     {
   //       "handle": "truth",
-  //       "desiredOutcome": "yes"
+  //       "desiredOutcome": "yes",
+  //       "title": "Publish full details of the government's tax settlement with Google",
+  //       "slug": "publish-full-details-of-the-governments-tax-settlement-with-google",
   //     }
   //   ]
   // },
@@ -898,31 +791,290 @@ module.exports = [
     "id": 103532,
     "date": "2006-03-21",
     "number": 198,
-    "title": "Introduce national identity cards",
-    "handle": "introduce-national-identity-cards",
-    "description": "Which parties voted to introduce national identity cards?",
-    "link": "https://www.publicwhip.org.uk/division.php?date=2006-03-16&number=198",
     "debate": "https://www.theyworkforyou.com/debates/?id=2006-03-21b.181.0",
     "categories": [
       {
         "handle": "race-equality",
-        "desiredOutcome": "no"
+        "desiredOutcome": "no",
+        "title": "Introduce national identity cards",
+        "slug": "introduce-national-identity-cards",
+      }
+    ]
+  },
+  {
+    "id": 796706,
+    "date": "2017-11-29",
+    "number": 50,
+    "debate": "https://www.theyworkforyou.com/debates/?id=2017-11-29c.366.0",
+    "categories": [
+      {
+        "handle": "gender-equality",
+        "desiredOutcome": "yes",
+        "title": "Call on the government to help women affected by changes to state pension",
+        "slug": "call-on-the-government-to-help-women-affected-by-changes-to-state-pension",
+      }
+    ]
+  },
+  {
+    "id": 104995,
+    "date": "2011-10-18",
+    "number": 368,
+    "debate": "https://www.theyworkforyou.com/debates/?id=2011-10-18b.849.2",
+    "categories": [
+      {
+        "handle": "gender-equality",
+        "desiredOutcome": "no",
+        "title": "Speed up increase of women's state pension age",
+        "slug": "speed-up-increase-of-womens-state-pension-age",
+      }
+    ]
+  },
+  {
+    "id": 648387,
+    "date": "2016-11-30",
+    "number": 100,
+    "debate": "https://www.theyworkforyou.com/debates/?id=2016-11-30b.1585.0",
+    "categories": [
+      {
+        "handle": "gender-equality",
+        "desiredOutcome": "yes",
+        "title": "Slow the increase in women's state pension age",
+        "slug": "slow-the-increase-in-womens-state-pension-age",
+      }
+    ]
+  },
+  // No record at http://lda.data.parliament.uk/commonsdivisions
+  // Again it's from the the end of 2015
+  // {
+  //   "id": ???,
+  //   "date": "2015-10-26",
+  //   "number": 92,
+  //   "debate": "https://www.theyworkforyou.com/debates/?id=2015-10-26c.137.0",
+  //   "categories": [
+  //     {
+  //       "handle": "gender-equality",
+  //       "desiredOutcome": "yes",
+  //       "title": "Negotiate with EU to end VAT on women's sanitary products",
+  //       "slug": "negotiate-with-eu-to-end-vat-on-womens-sanitary-products",
+  //     }
+  //   ]
+  // },
+  {
+    "id": 576346,
+    "date": "2016-09-05",
+    "number": 57,
+    "debate": "https://www.theyworkforyou.com/debates/?id=2016-09-05a.171.1",
+    "categories": [
+      {
+        "handle": "gender-equality",
+        "desiredOutcome": "yes",
+        "title": "Excempt women's sanitary products from VAT",
+        "slug": "excempt-womens-sanitary-products-from-vat",
+      }
+    ]
+  },
+  {
+    "title": "Abortion Bill 2017-2019",
+    "id": 993443,
+    "date": "2018-10-23",
+    "number": 244,
+    "debate": "https://www.theyworkforyou.com/debates/?id=2018-10-23c.140.4",
+    "categories": [
+      {
+        "handle": "gender-equality",
+        "desiredOutcome": "yes",
+        "title": "Decriminalise all abortions up to 24 weeks",
+        "slug": "decriminalise-all-abortions-up-to-24-weeks",
+      }
+    ]
+  },
+  {
+    "title": "Human Fertilisation and Embryology Bill - Change abortion limit from 24 weeks to 12 weeks",
+    "id": 104099,
+    "date": "2008-05-20",
+    "number": 199,
+    "debate": "http://www.theyworkforyou.com/debates/?id=2008-05-20b.222.0",
+    "categories": [
+      {
+        "handle": "gender-equality",
+        "desiredOutcome": "no",
+        "title": "Half abortion limit to 12 weeks",
+        "slug": "half-abortion-limit-to-12-weeks",
+      }
+    ]
+  },
+  {
+    "title": "Preventing and Combating Violence Against Women and Domestic Violence (Ratification of Convention) Act 2017",
+    "id": 694170,
+    "date": "2017-02-24",
+    "number": 171,
+    "debate": "https://www.theyworkforyou.com/debates/?id=2017-02-24a.1331.0",
+    "categories": [
+      {
+        "handle": "gender-equality",
+        "desiredOutcome": "yes",
+        "title": "Prevent and combat violence against women and domestic violence",
+        "slug": "prevent-and-combat-violence-against-women-and-domestic-violence",
+      }
+    ]
+  },
+  // No record at http://lda.data.parliament.uk/commonsdivisions
+  // Again it's from the the end of 2015
+  // {
+  //   "title": "Impact of Policies on Women",
+  //   "id": ???,
+  //   "date": "2015-12-09",
+  //   "number": 147,
+  //   "debate": "https://www.theyworkforyou.com/debates/?id=2015-12-09b.1057.0",
+  //   "categories": [
+  //     {
+  //       "handle": "gender-equality",
+  //       "desiredOutcome": "yes",
+  //       "title": "Assess and remedy the disproportionate effect of austerity on women",
+  //       "slug": "assess-and-remedy-the-disproportionate-effect-of-austerity-on-women",
+  //     }
+  //   ]
+  // },
+  {
+    "title": "Gender Recognition Act 2004",
+    "id": 103027,
+    "date": "2004-05-25",
+    "number": 189,
+    "debate": "https://www.theyworkforyou.com/debates/?id=2004-05-25.1521.1",
+    "categories": [
+      {
+        "handle": "lgbt-rights",
+        "desiredOutcome": "yes",
+        "title": "Allow some trans people to have their sex legally recognised",
+        "slug": "allow-some-trans-people-to-have-their-sex-legally-recognised",
+      },
+      {
+        "handle": "gender-equality",
+        "desiredOutcome": "yes",
+        "title": "Allow some trans people to have their sex legally recognised",
+        "slug": "allow-some-trans-people-to-have-their-sex-legally-recognised",
+      }
+    ]
+  },
+  // No record at http://lda.data.parliament.uk/commonsdivisions
+  // Again it's from the the end of 2015
+  // {
+  //   "title": "Equal Pay and the Gender Pay Gap",
+  //   "id": ???,
+  //   "date": "2015-07-01",
+  //   "number": 37,
+  //   "debate": "https://www.theyworkforyou.com/debates/?id=2015-07-01b.1521.1",
+  //   "categories": [
+  //     {
+  //       "handle": "gender-equality",
+  //       "desiredOutcome": "yes",
+  //       "title": "Ensure progress in closing the gender pay gap",
+  //       "slug": "ensure-progress-in-closing-the-gender-pay-gap",
+  //     }
+  //   ]
+  // },
+  {
+    "title": "Equal Pay (Transparency) Bill",
+    "id": 171743,
+    "date": "2014-12-16",
+    "number": 117,
+    "debate": "https://www.theyworkforyou.com/debates/?id=2014-12-16a.1300.0",
+    "categories": [
+      {
+        "handle": "gender-equality",
+        "desiredOutcome": "yes",
+        "title": "Require employers of more than 250 people to publish gender pay differences",
+        "slug": "require-employers-of-more-than-250-people-to-publish-gender-pay-differences",
+      }
+    ]
+  },
+  {
+    "title": "Sex Discrimination (Election Candidates) Act 2002",
+    "id": 102123,
+    "date": "2001-10-24",
+    "number": 42,
+    "debate": "https://www.theyworkforyou.com/debates/?id=2001-10-24.382.8",
+    "categories": [
+      {
+        "handle": "gender-equality",
+        "desiredOutcome": "yes",
+        "title": "Allow all women shortlists of election candidates",
+        "slug": "allow-all-women-shortlists-of-election-candidates",
+      }
+    ]
+  },
+  {
+    "title": "Reporting Amendments to EU Laws Forming Part of UK Law - Workers' Rights",
+    "id": 792888,
+    "date": "2017-11-21",
+    "number": 44,
+    "debate": "https://www.theyworkforyou.com/debates/?id=2017-11-21c.990.1",
+    "categories": [
+      {
+        "handle": "gender-equality",
+        "desiredOutcome": "yes",
+        "title": "Require reporting and consideration of changes to gender equality caused by EU withdrawel",
+        "slug": "require-reporting-and-consideration-of-changes-to-gender-equality-caused-by-eu-withdrawel",
+      }
+    ]
+  },
+  {
+    "title": "Coroners and Justice Bill - Clause 45 - Sexual infidelity as a partial defence to a muder charge",
+    "id": 104485,
+    "date": "2009-11-09",
+    "number": 242,
+    "debate": "https://www.theyworkforyou.com/debates/?id=2009-11-09d.78.0",
+    "categories": [
+      {
+        "handle": "gender-equality",
+        "desiredOutcome": "yes",
+        "title": "Ban sexual infidelity to be used as a partial defence against murder",
+        "slug": "ban-sexual-infidelity-to-be-used-as-a-partial-defence-against-murder",
+      }
+    ]
+  },
+  {
+    "title": "Pension Age for Women - Policies Widening Inequality Between Men and Women",
+    "id": 104914,
+    "date": "2011-06-08",
+    "number": 287,
+    "debate": "https://www.theyworkforyou.com/debates/?id=2011-06-08b.175.1",
+    "categories": [
+      {
+        "handle": "gender-equality",
+        "desiredOutcome": "yes",
+        "title": "Prevent policies that wide inequality between men and women",
+        "slug": "prevent-policies-that-wide-inequality-between-men-and-women",
+      }
+    ]
+  },
+  {
+    "title": "Sexual Offences Act 2003",
+    "id": 102738,
+    "date": "2003-07-15",
+    "number": 291,
+    "debate": "https://www.theyworkforyou.com/debates/?id=2003-07-15.177.0",
+    "categories": [
+      {
+        "handle": "gender-equality",
+        "desiredOutcome": "yes",
+        "title": "Tighten law on rape and sexual assult",
+        "slug": "tighten-law-on-rape-and-sexual-assult",
       }
     ]
   },
   // {
+  //   "title": "",
   //   "id": ,
   //   "date": "",
   //   "number": ,
-  //   "title": "",
-  //   "handle": "",
-  //   "description": "Which parties voted to ...?",
-  //   "link": "https://www.publicwhip.org.uk/division.php?date=&number=",
   //   "debate": "",
   //   "categories": [
   //     {
-  //       "handle": "race-equality",
-  //       "desiredOutcome": ""
+  //       "handle": "gender-equality",
+  //       "desiredOutcome": "",
+  //       "title": "",
+  //       "slug": "",
   //     }
   //   ]
   // },

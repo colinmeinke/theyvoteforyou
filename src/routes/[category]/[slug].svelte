@@ -1,9 +1,9 @@
 <svelte:head>
-  <title>{division.title} | {division.categories[0].title}</title>
-  <meta name="description" content="{division.description}" />
+  <title>{selectedCategory.divisionTitle} | {selectedCategory.title}</title>
+  <meta name="description" content="{description}" />
   <link
     rel="canonical"
-    href={`https://theyvoteforyou.uk/divisions/${division.categories[0].handle}/${slug}`}
+    href={`https://theyvoteforyou.uk/${selectedCategory.handle}/${slug}`}
   />
 </svelte:head>
 
@@ -57,9 +57,9 @@
 
   <div class="main">
     <DivisionDetailHeader
-      title={division.title}
-      description={division.description}
-      link={division.link}
+      title={selectedCategory.divisionTitle}
+      {description}
+      link="https://www.publicwhip.org.uk/division.php?date={division.date}&number={division.number}"
       date={division.date}
       outcome={division.outcome}
       desiredOutcome={selectedCategory.desiredOutcome}
@@ -164,11 +164,13 @@
 <script context="module">
   export async function preload({params: {category, slug}}) {
     try {
-      const res = await this.fetch(`data/divisions/${slug}.json`)
+      const [date] = slug.match(/^[0-9]{4}-[0-9]{2}-[0-9]{2}/)
+      const [number] = slug.substr(11).match(/^[0-9]+/)
+      const res = await this.fetch(`data/divisions/${date}-${number}.json`)
       const division = await res.json()
 
       if (!division.categories.map(({handle}) => handle).includes(category)) {
-        throw new Error(`Division "${slug}" does not include category "${category}"`)
+        throw new Error(`Division ${date} ${number} does not include category "${category}"`)
       }
 
       return {category, slug, division}
@@ -209,6 +211,7 @@
   const resultFormatOptions = ['Percentage', 'Vote Count']
   const orderByOptions = ['Highest Percentage', 'Highest Vote Count', 'A-Z']
   const mpsFilterByOptions = ['All', 'Yes', 'No', 'Abstained', 'Did Not Vote']
+  const description = `Which parties voted to ${division.title}?`
 
   let selectedCategory = division.categories.find(({handle}) => handle === category)
   let selectedParties = ['Conservatives', 'Labour', 'Liberal Democrats']
