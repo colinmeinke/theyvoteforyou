@@ -1063,6 +1063,258 @@ module.exports = [
       }
     ]
   },
+  {
+    "title": "Finance Act 2010 (June)",
+    "id": 104659,
+    "date": "2010-07-20",
+    "number": 32,
+    "debate": "https://www.theyworkforyou.com/debates/?id=2010-07-20c.192.0",
+    "categories": [
+      {
+        "handle": "economic-equality",
+        "desiredOutcome": "no",
+        "title": "Increase VAT, reduce corporation tax, reduce welfare spending, introduce a public sector pay freeze, freeze child benefits, cap housing benefits",
+        "slug": "increase-vat-reduce-corporation-tax-reduce-welfare-spending-introduce-a-public-sector-pay-freeze-freeze-child-benefits-cap-housing-benefits",
+      },
+      // This also introduced medical assessment for Disability Living Allowance
+      // which will be relevant for a disability rights category
+    ]
+  },
+  {
+    "title": "Finance (No.2) Bill - New Clause 3 - Bank taxation",
+    "id": 104739,
+    "date": "2010-11-08",
+    "number": 112,
+    "debate": "https://www.theyworkforyou.com/debates/?id=2010-11-08a.73.0",
+    "categories": [
+      {
+        "handle": "economic-equality",
+        "desiredOutcome": "yes",
+        "title": "Publish a report on the level of tax paid by banks and financial services",
+        "slug": "publish-a-report-on-the-level-of-tax-paid-by-banks-and-financial-services",
+      }
+    ]
+  },
+  {
+    "title": "Finance Act 2012",
+    "id": 105212,
+    "date": "2012-07-03",
+    "number": 41,
+    "debate": "https://www.theyworkforyou.com/debates/?id=2012-07-03c.872.0",
+    "categories": [
+      {
+        "handle": "economic-equality",
+        "desiredOutcome": "no",
+        "title": "Reduce corporation tax, cut the top rate of income tax, additional reductions to welfare spending",
+        "slug": "reduce-corporation-tax-cut-the-top-rate-of-income-tax-additional-reductions-to-welfare-spending",
+      }
+    ]
+  },
+  {
+    "title": "Finance Act 2015",
+    "id": 229688,
+    "date": "2015-03-25",
+    "number": 187,
+    "debate": "https://www.theyworkforyou.com/debates/?id=2015-03-25b.1513.0",
+    "categories": [
+      {
+        "handle": "economic-equality",
+        "desiredOutcome": "no",
+        "title": "Reduce corporation tax, increase threshold on inheritance tax, cap public sector pay rise at 1%, further reductions to welfare spending",
+        "slug": "reduce-corporation-tax-increase-threshold-on-inheritance-tax-cap-public-sector-pay-rise-at-1-percent-further-reductions-to-welfare-spending",
+      }
+    ]
+  },
+  {
+    "title": "Finance Act 2016",
+    "id": 576630,
+    "date": "2016-09-06",
+    "number": 61,
+    "debate": "https://www.theyworkforyou.com/debates/?id=2016-09-06a.290.2",
+    "categories": [
+      {
+        "handle": "economic-equality",
+        "desiredOutcome": "no",
+        "title": "Reduce corporation tax, further £3.5bn spending cuts",
+        "slug": "Reduce corporation tax, further £3.5bn spending cuts",
+      }
+    ]
+  },
+  {
+    "title": "Additional Rate of Income Tax",
+    "id": 155643,
+    "date": "2014-11-05",
+    "number": 73,
+    "debate": "https://www.theyworkforyou.com/debates/?id=2014-11-05a.844.1",
+    "categories": [
+      {
+        "handle": "economic-equality",
+        "desiredOutcome": "yes",
+        "title": "Rule out further reductions in the top rate of income tax",
+        "slug": "rule-out-further-reductions-in-the-top-rate-of-income-tax",
+      }
+    ]
+  },
+  {
+    "title": "Mansion tax",
+    "id": 105382,
+    "date": "2013-04-17",
+    "number": 211,
+    "debate": "https://www.theyworkforyou.com/debates/?id=2013-04-17a.364.0",
+    "categories": [
+      {
+        "handle": "economic-equality",
+        "desiredOutcome": "yes",
+        "title": "Review the possibility of introducing a mansion tax on houses worth over £2m",
+        "slug": "review-the-possibility-of-introducing-a-mansion-tax-on-houses-worth-over-2-million-pounds",
+      }
+    ]
+  },
+  {
+    "title": "Universal Credit - Briefing Papers and Analysis",
+    "id": 989442,
+    "date": "2018-10-17",
+    "number": 243,
+    "debate": "http://www.theyworkforyou.com/debates/?id=2018-10-17b.648.0",
+    "categories": [
+      {
+        "handle": "economic-equality",
+        "desiredOutcome": "yes",
+        "title": "Release data on the impact of Universal Credit",
+        "slug": "release-data-on-the-impact-of-universal-credit",
+      },
+      {
+        "handle": "truth",
+        "desiredOutcome": "yes",
+        "title": "Release data on the impact of Universal Credit",
+        "slug": "release-data-on-the-impact-of-universal-credit",
+      }
+    ]
+  },
+  {
+    "title": "Welfare Reform Act 2012",
+    "id": 104924,
+    "date": "2011-06-15",
+    "number": 297,
+    "debate": "https://www.theyworkforyou.com/debates/?id=2011-06-15b.877.0",
+    "categories": [
+      {
+        "handle": "economic-equality",
+        "desiredOutcome": "no",
+        "title": "Introduce Universal Credit, cap benefits, create a bedroom tax, replace Disability Living Allowance",
+        "slug": "introduce-universal-credit-cap-benefits-create-a-bedroom-tax-replace-disability-living-allowance",
+      }
+    ]
+  },
+  // No record at http://lda.data.parliament.uk/commonsdivisions
+  // Again it's from the the end of 2015
+  // {
+  //   "title": "Welfare Reform Act 2016",
+  //   "id": ???,
+  //   "date": "2015-10-27",
+  //   "number": 98,
+  //   "debate": "https://www.theyworkforyou.com/debates/?id=2015-10-27b.302.0",
+  //   "categories": [
+  //     {
+  //       "handle": "economic-equality",
+  //       "desiredOutcome": "no",
+  //       "title": "Abandon duty to end child poverty by 2020, cut tax credits, lower benefit cap, freeze benefits, two child limit on benefits",
+  //       "slug": "abandon-duty-to-end-child-poverty-by-2020-cut-tax-credits-lower-benefit-cap-freeze-benefits-two-child-limit-on-benefits",
+  //     }
+  //   ]
+  // },
+  {
+    "title": "Universal Credit and Welfare Reform",
+    "id": 105233,
+    "date": "2012-09-11",
+    "number": 62,
+    "debate": "http://www.theyworkforyou.com/debates/?id=2012-09-11b.143.1",
+    "categories": [
+      {
+        "handle": "economic-equality",
+        "desiredOutcome": "yes",
+        "title": "Address the deep flaws in Universal Credit",
+        "slug": "address-the-deep-flaws-in-universal-credit",
+      }
+    ]
+  },
+  {
+    "title": "Welfare Benefits Up-rating Act 2013",
+    "id": 105308,
+    "date": "2013-01-21",
+    "number": 138,
+    "debate": "https://www.theyworkforyou.com/debates/?id=2013-01-21a.50.4",
+    "categories": [
+      {
+        "handle": "economic-equality",
+        "desiredOutcome": "no",
+        "title": "Cap increase in benefits and tax credits at 1%",
+        "slug": "cap-increase-in-benefits-and-tax-credits-at-1-percent",
+      }
+    ]
+  },
+  {
+    "title": "Housing Benefit and Universal Credit in the Social Housing Sector (Regular Payments)",
+    "id": 105609,
+    "date": "2014-02-12",
+    "number": 211,
+    "debate": "https://www.theyworkforyou.com/debates/?id=2014-02-12b.869.0",
+    "categories": [
+      {
+        "handle": "economic-equality",
+        "desiredOutcome": "yes",
+        "title": "End the bedroom tax",
+        "slug": "end-the-bedroom-tax",
+      }
+    ]
+  },
+  // No record at http://lda.data.parliament.uk/commonsdivisions
+  // Again it's from the the end of 2015
+  // {
+  //   "title": "Universal Credit Work Allowance - Decision to Cut",
+  //   "id": ???,
+  //   "date": "2016-01-06",
+  //   "number": 157,
+  //   "debate": "https://www.theyworkforyou.com/debates/?id=2016-01-06b.290.0",
+  //   "categories": [
+  //     {
+  //       "handle": "economic-equality",
+  //       "desiredOutcome": "",
+  //       "title": "Reverse cuts to the Universal Credit work allowance",
+  //       "slug": "reverse-cuts-to-the-universal-credit-work-allowance",
+  //     }
+  //   ]
+  // },
+  {
+    "title": "Universal Credit Roll-Out",
+    "id": 772511,
+    "date": "2017-10-18",
+    "number": 24,
+    "debate": "https://www.theyworkforyou.com/debates/?id=2017-10-18a.859.0",
+    "categories": [
+      {
+        "handle": "economic-equality",
+        "desiredOutcome": "yes",
+        "title": "Halt roll-out of Universal Credit",
+        "slug": "halt-roll-out-of-universal-credit",
+      }
+    ]
+  },
+  {
+    "title": "Zero-hours Contracts",
+    "id": 105499,
+    "date": "2013-10-16",
+    "number": 101,
+    "debate": "https://www.theyworkforyou.com/debates/?id=2013-10-16b.744.0",
+    "categories": [
+      {
+        "handle": "economic-equality",
+        "desiredOutcome": "yes",
+        "title": "Consult and propose preventative measures against abuses by employers of zero hours contracts",
+        "slug": "consult-and-propose-preventative-measures-against-abuses-by-employers-of-zero-hours-contracts",
+      }
+    ]
+  },
   // {
   //   "title": "",
   //   "id": ,
@@ -1071,7 +1323,7 @@ module.exports = [
   //   "debate": "",
   //   "categories": [
   //     {
-  //       "handle": "gender-equality",
+  //       "handle": "economic-equality",
   //       "desiredOutcome": "",
   //       "title": "",
   //       "slug": "",

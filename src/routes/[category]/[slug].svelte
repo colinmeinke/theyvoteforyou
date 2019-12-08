@@ -211,9 +211,8 @@
   const resultFormatOptions = ['Percentage', 'Vote Count']
   const orderByOptions = ['Highest Percentage', 'Highest Vote Count', 'A-Z']
   const mpsFilterByOptions = ['All', 'Yes', 'No', 'Abstained', 'Did Not Vote']
-  const description = `Which parties voted to ${division.title}?`
-
-  let selectedCategory = division.categories.find(({handle}) => handle === category)
+  const selectedCategory = division.categories.find(({handle}) => handle === category)
+  const description = `Which parties voted to ${selectedCategory.divisionTitle.charAt(0).toLowerCase()}${selectedCategory.divisionTitle.slice(1)}?`
   let selectedParties = ['Conservatives', 'Labour', 'Liberal Democrats']
   let currentParties = true
   let currentMps = true

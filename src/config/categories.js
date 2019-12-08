@@ -1,5 +1,10 @@
 module.exports = [
   {
+    "title": "Economic Equality",
+    "handle": "economic-equality",
+    "description": "Which parties vote to narrow the gap between rich and poor?"
+  },
+  {
     "title": "Education",
     "handle": "education",
     "description": "Which parties vote to keep education public, accessible and well funded?"
@@ -36,3 +41,19 @@ module.exports = [
   },
 ]
 
+// Data Privacy
+// Homelessness
+// Housing
+// Arts Funding
+// Animal Welfare
+// Welfare State
+// Public Services
+// Nationalisation / Privatisation
+// Transport & Mobility
+// Democracy
+// Media Reform - Monopolies, Bias, Lies, Propaganda etc.
+// Workers Rights
+// Police, Crime & Safety
+// Peace, Anti-war, Arms etc.
+// Mental Health
+// Disability Rights
