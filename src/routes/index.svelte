@@ -1,7 +1,13 @@
 <svelte:head>
-  <title>They want you to vote for them. But do they vote for you?</title>
-  <meta name="description" content="Politicians are notorious for saying one thing and then doing another. This site compiles voting records of MPs in the House of Commons to make it easier to understand how political parties vote in practice." />
-  <link rel="canonical" href={`https://theyvoteforyou.uk`} />
+  <title>{title}</title>
+  <meta name="description" content={description} />
+  <link rel="canonical" href="https://theyvoteforyou.uk" />
+  <meta name="twitter:title" content={title}>
+  <meta name="twitter:description" content={description}>
+  <meta name="twitter:url" content="https://theyvoteforyou.uk">
+  <meta property="og:title" content={title} />
+  <meta property="og:description" content={description} />
+  <meta property="og:url" content="https://theyvoteforyou.uk" />
 </svelte:head>
 
 <svelte:window on:resize={updateTransitions} />
@@ -442,6 +448,8 @@
 
   export let categories
 
+  const title = 'They want you to vote for them. But do they vote for you?'
+  const description = 'Politicians are notorious for saying one thing and then doing another. This site compiles voting records of MPs in the House of Commons to make it easier to understand how political parties vote in practice.'
   const [send, receive] = switchItems()
   const resultFormatOptions = ['Percentage', 'Vote Count']
   const orderByOptions = ['Highest Percentage', 'Highest Vote Count', 'A-Z']

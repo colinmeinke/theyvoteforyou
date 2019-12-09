@@ -1,10 +1,14 @@
 <svelte:head>
   <title>{selectedCategory.divisionTitle} | {selectedCategory.title}</title>
-  <meta name="description" content="{description}" />
-  <link
-    rel="canonical"
-    href={`https://theyvoteforyou.uk/${selectedCategory.handle}/${slug}`}
-  />
+  <meta name="description" content={description} />
+  <link rel="canonical" href="https://theyvoteforyou.uk/{selectedCategory.handle}/{slug}" />
+  <meta name="twitter:title" content="{selectedCategory.divisionTitle} | {selectedCategory.title}" />
+  <meta name="twitter:description" content={description} />
+  <meta name="twitter:url" content="https://theyvoteforyou.uk/{selectedCategory.handle}/{slug}" />
+  <meta name="twitter:creator" content="@colinmeinke" />
+  <meta property="og:title" content="{selectedCategory.divisionTitle} | {selectedCategory.title}" />
+  <meta property="og:description" content={description} />
+  <meta property="og:url" content="https://theyvoteforyou.uk/{selectedCategory.handle}/{slug}" />
 </svelte:head>
 
 <div in:fade={{delay:300, duration:300}} out:fade={{duration:300}}>

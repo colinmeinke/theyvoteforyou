@@ -1,7 +1,13 @@
 <svelte:head>
   <title>{category.title}</title>
-  <meta name="description" content="{category.description}" />
-  <link rel="canonical" href={`https://theyvoteforyou.uk/${category.handle}`} />
+  <meta name="description" content={category.description} />
+  <link rel="canonical" href="https://theyvoteforyou.uk/{category.handle}" />
+  <meta name="twitter:title" content={category.title}>
+  <meta name="twitter:description" content={category.description}>
+  <meta name="twitter:url" content="https://theyvoteforyou.uk/{category.handle}">
+  <meta property="og:title" content={category.title} />
+  <meta property="og:description" content={category.description} />
+  <meta property="og:url" content="https://theyvoteforyou.uk/{category.handle}" />
 </svelte:head>
 
 <div in:fade={{delay:300, duration:300}} out:fade={{duration:300}}>

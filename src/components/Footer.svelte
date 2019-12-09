@@ -17,6 +17,7 @@
       You can
       <a href="https://github.com/colinmeinke/theyvoteforyou" target="_blank" rel="noopener">view the full source code</a>
       on Github.
+      No cookies are used on this site.
     </p>
   </div>
 </footer>
