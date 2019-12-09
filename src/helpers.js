@@ -168,13 +168,13 @@ const normaliseVoteType = type => {
 }
 
 const getMpsFromVotes = (votes, currentMps = true, currentParties = true) => votes
-  .filter(({a, h}) => !currentMps || a && h === 'commons')
-  .map(({id, n, p, c, v}) => ({
+  .filter(({current, house}) => !currentMps || current && house === 'commons')
+  .map(({id, names, party, constituency, current, type: vote}) => ({
     id,
-    name: n,
-    party: p[currentParties ? 0 : 1],
-    constituency: c,
-    vote: v,
+    name: names[0],
+    party: party[currentParties ? 'current' : 'atVote'],
+    constituency,
+    vote,
   }))
 
 const initialVoteCount = JSON.stringify({
@@ -186,12 +186,12 @@ const initialVoteCount = JSON.stringify({
   other: {title: 'Other', 'Vote Count': 0},
 })
 
-const getPartiesFromMps = (mps, desiredOutcome) => Object.entries(mps.reduce((parties, {party, vote}) => {
+const getPartiesFromMps = (mps, desiredOutcome) => Object.entries(mps.reduce((parties, {party, vote, good}) => {
   if (!parties[party]) {
     parties[party] = {...JSON.parse(initialVoteCount)}
   }
 
-  parties[party][vote[0]]['Vote Count']++
+  parties[party][vote.handle]['Vote Count']++
   parties[party].totalCount++
 
   Object.keys(parties[party]).forEach(handle => {

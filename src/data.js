@@ -107,16 +107,6 @@ const getMembersData = async () => {
   return mps
 }
 
-const minimiseVotes = votes => votes.map(({id, names, party, constituency, current, house, type}) => ({
-  id,
-  n: names[0],
-  p: [party.current, party.atVote],
-  c: constituency,
-  a: current,
-  h: house,
-  v: [type.handle, type.title],
-}))
-
 const mergeMps = (data1, data2) => data1.map(a => {
   const b = data2.find(b => a.id === b.id)
   return {...a, ...b}
@@ -208,6 +198,7 @@ const normaliseVotes = (votes, mps) => votes.map(({
   .filter(({party, type}) => !party.atVote.includes('Speaker') || type.handle !== 'didNotVote')
 
 const normaliseDivision = ({
+  date: {_value: date},
   AbstainCount: [{_value: abstain}],
   AyesCount: [{_value: yes}],
   Didnotvotecount: [{_value: didNotVote}],
@@ -235,8 +226,11 @@ const normaliseDivision = ({
     : 'tied'
 
   return {
+    date,
+    count,
     outcome,
-    votes: minimiseVotes(normaliseVotes(votes, mps)),
+    margin,
+    votes: normaliseVotes(votes, mps),
   }
 }
 
@@ -245,10 +239,7 @@ const getDivisions = async (divisions, mps) => (
     const {result: {primaryTopic: result}} = await request(`http://lda.data.parliament.uk/commonsdivisions/${division.id}.json`)
 
     return {
-      id: division.id,
-      date: division.date,
-      number: division.number,
-
+      ...division,
       ...normaliseDivision(result, mps),
       categories: division.categories
         .map(category => ({
