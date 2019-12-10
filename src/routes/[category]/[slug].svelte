@@ -116,14 +116,14 @@
       />
 
       <Grid>
-        {#each filteredMps as {id, name, vote, party, constituency} (id)}
+        {#each filteredMps as {id, name, party, constituency, vote} (id)}
           <li class="flex">
             <Card category={party} repaint={mpRepaint}>
               <h2 slot="title">{name}</h2>
               <div slot="content">
                 <DivisionMp
-                  vote={`${['yes', 'no'].includes(vote.handle) ? 'Voted ' : ''}${vote.title}`}
-                  good={vote.handle === selectedCategory.desiredOutcome}
+                  vote={`${['yes', 'no'].includes(vote[0]) ? 'Voted ' : ''}${vote[1]}`}
+                  good={vote[0] === selectedCategory.desiredOutcome}
                   {party}
                   {constituency}
                 />
@@ -239,7 +239,7 @@
 
   $: filteredMps = mps
     .filter(({party}) => availableParties.includes(party))
-    .filter(({vote}) => mpsFilterBy === 'All' || vote.title === mpsFilterBy)
+    .filter(({vote}) => mpsFilterBy === 'All' || vote[1] === mpsFilterBy)
     .sort((a, b) => {
       const surnameA = a.name.split(' ').pop()
       const surnameB = b.name.split(' ').pop()

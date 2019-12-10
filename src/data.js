@@ -13,6 +13,8 @@ const {
   normaliseParty,
   normaliseName,
   normaliseVoteType,
+  getPartyKey,
+  partyNames,
 } = require('./helpers')
 
 const outputDir = path.join(__dirname, '..', 'static/data')
@@ -20,7 +22,7 @@ const divisionsDir = path.join(outputDir, 'divisions')
 
 const rm = async dir => await rimraf(dir)
 
-const request = async (url, type = 'json', timeout = 10000) => {
+const request = async (url, type = 'json', timeout = 15000) => {
   console.log(`|    Requesting data from ${url}\n`)
   const t = setTimeout(() => {
     throw new Error(`${url} did not resolve after ${timeout / 1000} seconds.`)
@@ -49,7 +51,7 @@ const normaliseCommonsMembers = ({items}) => items.map(({
   return {
     id: parseInt(url.split('/').pop()),
     names: names.filter(n => n.includes(' ')),
-    party: normaliseParty(party),
+    party: getPartyKey(normaliseParty(party)),
     constituency: normaliseConstituency(constituency),
   }
 })
@@ -92,7 +94,7 @@ const normaliseMembersData = ({Members: {Member: members}}) => {
     return {
       id: parseInt(id, 10),
       names: names.filter(n => n.includes(' ')),
-      party: normaliseParty(party),
+      party: getPartyKey(normaliseParty(party)),
       constituency: normaliseConstituency(MemberFrom),
       current: isActive === 'True' || !endDate || new Date(endDate) >= currentMemberDate,
       house: house.toLowerCase(),
@@ -124,7 +126,7 @@ const normaliseVote = (id, name, party, type, mps) => {
   return {
     ...(mp || {name}),
     party: {
-      current: normaliseParty(mp && mp.party || party),
+      current: normaliseParty(mp && partyNames[mp.party] || party),
       atVote: normaliseParty(party),
     },
     type: normaliseVoteType(type),
@@ -196,9 +198,22 @@ const normaliseVotes = (votes, mps) => votes.map(({
   .reduce(mergeDuplicatesWhereVotedBoth, [])
   .reduce(mergeDuplicateSpeakerAndDeputies, [])
   .filter(({party, type}) => !party.atVote.includes('Speaker') || type.handle !== 'didNotVote')
+  .map(({party, ...vote}) => ({
+    ...vote,
+    party: {current: getPartyKey(party.current), atVote: getPartyKey(party.atVote)},
+  }))
 
+const minimiseVotes = votes => votes.map(({id, name, party, constituency, current, house, type}) => ({
+  id,
+  n: name,
+  p: [party.current, party.atVote],
+  c: constituency,
+  a: current,
+  h: house,
+  v: [type.handle, type.title],
+}))
+  
 const normaliseDivision = ({
-  date: {_value: date},
   AbstainCount: [{_value: abstain}],
   AyesCount: [{_value: yes}],
   Didnotvotecount: [{_value: didNotVote}],
@@ -226,11 +241,8 @@ const normaliseDivision = ({
     : 'tied'
 
   return {
-    date,
-    count,
     outcome,
-    margin,
-    votes: normaliseVotes(votes, mps),
+    votes: minimiseVotes(normaliseVotes(votes, mps)),
   }
 }
 
@@ -239,7 +251,9 @@ const getDivisions = async (divisions, mps) => (
     const {result: {primaryTopic: result}} = await request(`http://lda.data.parliament.uk/commonsdivisions/${division.id}.json`)
 
     return {
-      ...division,
+      id: division.id,
+      date: division.date,
+      number: division.number,
       ...normaliseDivision(result, mps),
       categories: division.categories
         .map(category => ({
@@ -260,6 +274,7 @@ const getDivisions = async (divisions, mps) => (
     ])
 
     const mps = mergeMps(membersData, commonsMembers)
+      .map(({names, ...mp}) => ({...mp, name: names[0]}))
 
     const divisions = await getDivisions(divisionsConfig, mps)
 

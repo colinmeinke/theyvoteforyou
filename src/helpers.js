@@ -90,6 +90,27 @@ const normaliseParty = party => {
   }
 }
 
+const partyNames = [
+  'Alliance',
+  'Conservatives',
+  'DUP',
+  'Green Party',
+  'Independent',
+  'Independent Group for Change',
+  'Independent Unionist',
+  'Labour',
+  'Liberal Democrats',
+  'Plaid Cymru',
+  'Respect',
+  'SDLP',
+  'SNP',
+  'Sinn Féin',
+  'UKIP',
+  'UUP',
+]
+
+const getPartyKey = name => partyNames.findIndex(party => party === name)
+
 const normaliseName = name => {
   const n = name && name
     .replace(
@@ -168,13 +189,13 @@ const normaliseVoteType = type => {
 }
 
 const getMpsFromVotes = (votes, currentMps = true, currentParties = true) => votes
-  .filter(({current, house}) => !currentMps || current && house === 'commons')
-  .map(({id, names, party, constituency, current, type: vote}) => ({
+  .filter(({a, h}) => !currentMps || a && h === 'commons')
+  .map(({id, n, p, c, v}) => ({
     id,
-    name: names[0],
-    party: party[currentParties ? 'current' : 'atVote'],
-    constituency,
-    vote,
+    name: n,
+    party: partyNames[p[currentParties ? 0 : 1]],
+    constituency: c,
+    vote: v,
   }))
 
 const initialVoteCount = JSON.stringify({
@@ -186,12 +207,16 @@ const initialVoteCount = JSON.stringify({
   other: {title: 'Other', 'Vote Count': 0},
 })
 
-const getPartiesFromMps = (mps, desiredOutcome) => Object.entries(mps.reduce((parties, {party, vote, good}) => {
+const getPartiesFromMps = (mps, desiredOutcome) => Object.entries(mps.reduce((parties, {party, vote}) => {
+  if (typeof party === 'undefined') {
+    return parties
+  }
+
   if (!parties[party]) {
     parties[party] = {...JSON.parse(initialVoteCount)}
   }
 
-  parties[party][vote.handle]['Vote Count']++
+  parties[party][vote[0]]['Vote Count']++
   parties[party].totalCount++
 
   Object.keys(parties[party]).forEach(handle => {
@@ -320,4 +345,6 @@ module.exports = {
   round,
   switchItems,
   hide,
+  getPartyKey,
+  partyNames,
 }
