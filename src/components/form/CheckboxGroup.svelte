@@ -108,6 +108,7 @@
   .item {
     display: flex;
     margin-top: var(--baseline);
+    white-space: nowrap;
   }
 
   input {
