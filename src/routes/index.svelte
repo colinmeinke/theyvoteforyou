@@ -401,20 +401,7 @@
     try {
       const res = await this.fetch(`data/categories.json`)
       const categories = await res.json()
-
-      const expandedCategories = await Promise.all(categories.map(async category => {
-        const divisions = await Promise.all(
-          category.divisions.map(([date, number]) => new Promise(async res => {
-            const r = await this.fetch(`data/divisions/${date}-${number}.json`)
-            const division = await r.json()
-            res(division)
-          }))
-        )
-
-        return {...category, divisions}
-      }))
-
-      return {categories: expandedCategories}
+      return {categories}
     } catch (err) {
       this.error(500, err)
     }
@@ -489,22 +476,24 @@
   let titleWidth = 0
   let transitioning = false
   let fancyCheckboxes = true
+  let expandedCategories = []
 
   $: suffix = resultFormat === 'Percentage' ? '%' : ''
-  $: filteredCategories = categories.filter(({handle}) => selectedCategories.includes(handle))
 
-  $: categoriesWithOverall = filteredCategories.map(({divisions, ...category}) => {
-    const ds = divisions.map(({handle, title, date, categories, outcome, votes}) => {
-      const {desiredOutcome} = categories.find(({handle}) => category.handle)
-      const mps = getMpsFromVotes(votes, currentMps, currentParties)
-      const parties = getPartiesFromMps(mps, desiredOutcome)
-      return {handle, title, date, desiredOutcome, outcome, parties}
+  $: categoriesWithOverall = expandedCategories
+    .filter(({handle}) => selectedCategories.includes(handle))
+    .map(({divisions, ...category}) => {
+      const ds = divisions.map(({handle, title, date, categories, outcome, votes}) => {
+        const {desiredOutcome} = categories.find(({handle}) => category.handle)
+        const mps = getMpsFromVotes(votes, currentMps, currentParties)
+        const parties = getPartiesFromMps(mps, desiredOutcome)
+        return {handle, title, date, desiredOutcome, outcome, parties}
+      })
+
+      const parties = orderParties(getPartiesFromDivisions(ds), orderBy)
+
+      return {...category, parties}
     })
-
-    const parties = orderParties(getPartiesFromDivisions(ds), orderBy)
-
-    return {...category, parties}
-  })
 
   $: overallParties = Object.entries(categoriesWithOverall.reduce((parties, category) => {
     category.parties.forEach(({party, totalCount, desiredOutcome, undesiredOutcome}) => {
@@ -682,5 +671,21 @@
     titleTransition = createTitleTransition()
   }
 
-  onMount(updateTransitions)
+  onMount(async () => {
+    updateTransitions()
+
+    const cats = await Promise.all(categories.map(async category => {
+      const divisions = await Promise.all(
+        category.divisions.map(([date, number]) => new Promise(async res => {
+          const r = await fetch(`data/divisions/${date}-${number}.json`)
+          const division = await r.json()
+          res(division)
+        }))
+      )
+
+      return {...category, divisions}
+    }))
+
+    expandedCategories = cats
+  })
 </script>

@@ -134,14 +134,18 @@
     .item25, .item26 {grid-row: 13 / 14;}
     .item27, .item28 {grid-row: 14 / 15;}
     .item29, .item30 {grid-row: 15 / 16;}
+    .item31, .item32 {grid-row: 16 / 17;}
+    .item33, .item34 {grid-row: 17 / 18;}
+    .item35, .item36 {grid-row: 18 / 19;}
 
     .item1, .item3, .item5, .item7, .item9, .item11, .item13, .item15, .item17, .item19,
-    .item21, .item23, .item25, .item27, .item29 {
+    .item21, .item23, .item25, .item27, .item29, .item31, .item33, .item35 {
       grid-column: 1 / 2;
     }
 
     .item2, .item4, .item6, .item8, .item10, .item12, .item14, .item16, .item18,
-    .item20, .item22, .item24, .item26, .item28, .item30 {
+    .item20, .item22, .item24, .item26, .item28, .item30, .item32, .item34,
+    .item36 {
       grid-column: 2 / 3;
     }
   }
@@ -162,19 +166,25 @@
     .item37, .item38, .item39 { grid-row: 13 / 14; }
     .item40, .item41, .item42 { grid-row: 14 / 15; }
     .item43, .item44, .item45 { grid-row: 15 / 16; }
+    .item44, .item45, .item46 { grid-row: 16 / 17; }
+    .item47, .item48, .item49 { grid-row: 17 / 18; }
+    .item50, .item51, .item52 { grid-row: 18 / 19; }
 
     .item1, .item4, .item7, .item10, .item13, .item16, .item19, .item22,
-    .item25, .item28, .item31, .item34, .item37, .item40, .item43 {
+    .item25, .item28, .item31, .item34, .item37, .item40, .item43, .item46,
+    .item49, .item52 {
       grid-column: 1 / 2;
     }
 
     .item2, .item5, .item8, .item11, .item14, .item17, .item20, .item23,
-    .item26, .item29, .item32, .item35, .item38, .item41, .item44 {
+    .item26, .item29, .item32, .item35, .item38, .item41, .item44, .item47,
+    .item50 {
       grid-column: 2 / 3;
     }
 
     .item3, .item6, .item9, .item12, .item15, .item18, .item21, .item24,
-    .item27, .item30, .item33, .item36, .item39, .item42, .item45 {
+    .item27, .item30, .item33, .item36, .item39, .item42, .item45, .item48,
+    .item51 {
       grid-column: 3 / 4;
     }
   }
@@ -195,24 +205,31 @@
     .item49, .item50, .item51, .item52 { grid-row: 13 / 14; }
     .item53, .item54, .item55, .item56 { grid-row: 14 / 15; }
     .item57, .item58, .item59, .item60 { grid-row: 15 / 16; }
+    .item61, .item62, .item63, .item64 { grid-row: 16 / 17; }
+    .item65, .item66, .item67, .item68 { grid-row: 17 / 18; }
+    .item69, .item70, .item71, .item72 { grid-row: 18 / 19; }
 
     .item1, .item5, .item9, .item13, .item17, .item21, .item25, .item29,
-    .item33, .item37, .item41, .item45, .item49, .item53, .item57 {
+    .item33, .item37, .item41, .item45, .item49, .item53, .item57, .item61,
+    .item65, .item69 {
       grid-column: 1 / 2;
     }
 
     .item2, .item6, .item10, .item14, .item18, .item22, .item26, .item30,
-    .item34, .item38, .item42, .item46, .item50, .item54, .item58 {
+    .item34, .item38, .item42, .item46, .item50, .item54, .item58, .item62,
+    .item66, .item70 {
       grid-column: 2 / 3;
     }
 
     .item3, .item7, .item11, .item15, .item19, .item23, .item27, .item31,
-    .item35, .item39, .item43, .item47, .item51, .item55, .item59 {
+    .item35, .item39, .item43, .item47, .item51, .item55, .item59, .item63,
+    .item67, .item71 {
       grid-column: 3 / 4;
     }
 
     .item4, .item8, .item12, .item16, .item20, .item24, .item28, .item32,
-    .item36, .item40, .item44, .item48, .item52, .item56, .item60 {
+    .item36, .item40, .item44, .item48, .item52, .item56, .item60, .item64,
+    .item68, .item72 {
       grid-column: 4 / 5;
     }
   }
