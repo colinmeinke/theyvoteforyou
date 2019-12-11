@@ -122,8 +122,8 @@
               <h2 slot="title">{name}</h2>
               <div slot="content">
                 <DivisionMp
-                  vote={`${['yes', 'no'].includes(vote[0]) ? 'Voted ' : ''}${vote[1]}`}
-                  good={vote[0] === selectedCategory.desiredOutcome}
+                  vote={`${['yes', 'no'].includes(vote.handle) ? 'Voted ' : ''}${vote.title}`}
+                  good={vote.handle === selectedCategory.desiredOutcome}
                   {party}
                   {constituency}
                 />
@@ -170,14 +170,43 @@
     try {
       const [date] = slug.match(/^[0-9]{4}-[0-9]{2}-[0-9]{2}/)
       const [number] = slug.substr(11).match(/^[0-9]+/)
-      const res = await this.fetch(`data/divisions/${date}-${number}.json`)
-      const division = await res.json()
+      const [divisionResponse, mpsResponse, constituenciesResponse] = await Promise.all([
+        this.fetch(`data/divisions/${date}-${number}.json`),
+        this.fetch(`data/mps.json`),
+        this.fetch(`data/constituencies.json`),
+      ])
+
+      const [division, mps, constituencies] = await Promise.all([
+        divisionResponse.json(),
+        mpsResponse.json(),
+        constituenciesResponse.json()
+      ])
 
       if (!division.categories.map(({handle}) => handle).includes(category)) {
         throw new Error(`Division ${date} ${number} does not include category "${category}"`)
       }
 
-      return {category, slug, division}
+      const divisionWithConstituencyNames = {
+        ...division,
+        votes: division.votes.map(vote => {
+          const v = {
+            ...vote,
+            name: mps.find(({id}) => id === vote.id).name,
+          }
+
+          if (vote.a) {
+            const constituency = constituencies.find(({id}) => id === vote.c)
+
+            if (constituency) {
+              v.c = constituency.name
+            }
+          }
+
+          return v
+        })
+      }
+
+      return {category, slug, division: divisionWithConstituencyNames}
     } catch (err) {
       this.error(404, 'Not found')
     }
@@ -239,7 +268,7 @@
 
   $: filteredMps = mps
     .filter(({party}) => availableParties.includes(party))
-    .filter(({vote}) => mpsFilterBy === 'All' || vote[1] === mpsFilterBy)
+    .filter(({vote}) => mpsFilterBy === 'All' || vote.title === mpsFilterBy)
     .sort((a, b) => {
       const surnameA = a.name.split(' ').pop()
       const surnameB = b.name.split(' ').pop()

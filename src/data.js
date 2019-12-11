@@ -15,6 +15,7 @@ const {
   normaliseVoteType,
   getPartyKey,
   partyNames,
+  voteTypes,
 } = require('./helpers')
 
 const outputDir = path.join(__dirname, '..', 'static/data')
@@ -34,13 +35,36 @@ const request = async (url, type = 'json', timeout = 15000) => {
   return await response[type]()
 }
 
+const normaliseConstituencies = ({items}) => items
+  .filter(({endedDate}) => !endedDate)
+  .map(({label: {_value: name}, _about: url}) => ({
+    id: parseInt(url.split('/').pop(), 10),
+    name
+  }))
+
+const getConstituencies = async () => {
+  let constituencies = []
+  let page = 0
+  let next = true
+
+  while (next) {
+    const url = `http://lda.data.parliament.uk/constituencies.json?_pageSize=500${page ? `&_page=${page}` : ''}`
+    const { result } = await request(url)
+    constituencies = [...constituencies, ...normaliseConstituencies(result)]
+    next = !!result.next
+    if (next) page++
+  }
+
+  return constituencies
+}
+
 const normaliseCommonsMembers = ({items}) => items.map(({
   _about: url,
   fullName: {_value: fullName},
   givenName: {_value: firstName},
   familyName: {_value: lastName},
   party: {_value: party},
-  constituency: {label: {_value: constituency}}
+  constituency: {_about: constituencyUrl}
 }) => {
   const n1 = normaliseName(fullName)
   const n2 = normaliseName(`${firstName} ${lastName}`)
@@ -52,7 +76,7 @@ const normaliseCommonsMembers = ({items}) => items.map(({
     id: parseInt(url.split('/').pop()),
     names: names.filter(n => n.includes(' ')),
     party: getPartyKey(normaliseParty(party)),
-    constituency: normaliseConstituency(constituency),
+    constituency: parseInt(constituencyUrl.split('/').pop(), 10),
   }
 })
 
@@ -73,13 +97,12 @@ const getCommonsMembers = async () => {
 }
 
 const normaliseMembersData = ({Members: {Member: members}}) => {
-  const currentMemberDate = new Date('2019-11-06T00:00:00')
+  const activeMemberDate = new Date('2019-11-06T00:00:00')
 
   return members.map(({
     Member_Id: id,
     DisplayAs: displayName,
     Party:{$t: party},
-    MemberFrom,
     HouseEndDate: endDate,
     CurrentStatus: {IsActive: isActive},
     BasicDetails: {GivenForename: firstName, GivenSurname: lastName},
@@ -95,9 +118,7 @@ const normaliseMembersData = ({Members: {Member: members}}) => {
       id: parseInt(id, 10),
       names: names.filter(n => n.includes(' ')),
       party: getPartyKey(normaliseParty(party)),
-      constituency: normaliseConstituency(MemberFrom),
-      current: isActive === 'True' || !endDate || new Date(endDate) >= currentMemberDate,
-      house: house.toLowerCase(),
+      active: (isActive === 'True' || !endDate || new Date(endDate) >= activeMemberDate) && house.toLowerCase() === 'commons',
     }
   })
 }
@@ -114,19 +135,19 @@ const mergeMps = (data1, data2) => data1.map(a => {
   return {...a, ...b}
 })
 
-const normaliseVote = (id, name, party, type, mps) => {
-  name = normaliseName(name)
-
+const normaliseVote = (id, party, type, mps) => {
   const mp = mps.find(mp => mp.id === id)
 
   if (!mp) {
-    console.error(`Could not find MP: ${name}`)
+    console.error(`Could not find MP: ${id}`)
   }
 
   return {
-    ...(mp || {name}),
+    id,
+    active: mp.active,
+    constituency: mp.constituency,
     party: {
-      current: normaliseParty(mp && partyNames[mp.party] || party),
+      current: normaliseParty(partyNames[mp.party]),
       atVote: normaliseParty(party),
     },
     type: normaliseVoteType(type),
@@ -139,11 +160,11 @@ const mergeDuplicatesWhereVotedBoth = (mps, mp) => {
   if (
     i !== -1 &&
     (
-      (mps[i].type.handle === 'yes' && mp.type.handle === 'no') ||
-      (mps[i].type.handle === 'no' && mp.type.handle === 'yes')
+      (voteTypes[mps[i].type].handle === 'yes' && voteTypes[mp.type].handle === 'no') ||
+      (voteTypes[mps[i].type].handle === 'no' && voteTypes[mp.type].handle === 'yes')
     )
   ) {
-    mps[i].type = {handle: 'abstained', title: 'Abstained'}
+    mps[i].type = voteTypes.findIndex(({handle}) => handle === 'abstained')
   } else {
     mps.push(mp)
   }
@@ -185,32 +206,30 @@ const normaliseVotes = (votes, mps) => votes.map(({
 
     return printedName.map(({_value: name}, i) => {
       const p = Array.isArray(party) ? party[i] : party
-      return normaliseVote(ids[i], name, p, type, mps)
+      return normaliseVote(ids[i], p, type, mps)
     })
   } else {
     const id = parseInt(member[0]._about.split('/').pop(), 10)
     const {_value: name} = printedName
 
-    return normaliseVote(id, name, party, type, mps)
+    return normaliseVote(id, party, type, mps)
   }
 })
   .reduce((acc, x) => acc.concat(x), [])
   .reduce(mergeDuplicatesWhereVotedBoth, [])
   .reduce(mergeDuplicateSpeakerAndDeputies, [])
-  .filter(({party, type}) => !party.atVote.includes('Speaker') || type.handle !== 'didNotVote')
+  .filter(({party, type}) => !party.atVote.includes('Speaker') || voteTypes[type].handle !== 'didNotVote')
   .map(({party, ...vote}) => ({
     ...vote,
     party: {current: getPartyKey(party.current), atVote: getPartyKey(party.atVote)},
   }))
 
-const minimiseVotes = votes => votes.map(({id, name, party, constituency, current, house, type}) => ({
+const minimiseVotes = votes => votes.map(({id, party, constituency, active, type}) => ({
   id,
-  n: name,
   p: [party.current, party.atVote],
   c: constituency,
-  a: current,
-  h: house,
-  v: [type.handle, type.title],
+  a: active,
+  v: type,
 }))
   
 const normaliseDivision = ({
@@ -273,14 +292,19 @@ const getDivisions = async (divisions, mps) => (
       rm(outputDir),
     ])
 
+    await fs.mkdir(outputDir, {mode: 0744})
+    await fs.mkdir(path.join(divisionsDir), {mode: 0744})
+
     const mps = mergeMps(membersData, commonsMembers)
       .map(({names, ...mp}) => ({...mp, name: names[0]}))
 
-    const divisions = await getDivisions(divisionsConfig, mps)
-
-    await fs.mkdir(outputDir, {mode: 0744})
-    await fs.mkdir(path.join(divisionsDir), {mode: 0744})
     await fs.writeFile(path.join(outputDir, 'mps.json'), JSON.stringify(mps))
+
+    const constituencies = await getConstituencies()
+
+    await fs.writeFile(path.join(outputDir, 'constituencies.json'), JSON.stringify(constituencies))
+
+    const divisions = await getDivisions(divisionsConfig, mps)
 
     await Promise.all(divisions.map(async division => (
       await fs.writeFile(
