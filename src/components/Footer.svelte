@@ -77,6 +77,7 @@
   }
 
   a {
+    outline: none;
     transition: all 0.3s ease-in-out;
   }
 
@@ -86,7 +87,6 @@
     margin-bottom: calc(var(--baseline) * 0.5);
     margin-top: calc(var(--baseline) * 1.5);
     max-width: 1000px;
-    opacity: 0.8;
   }
 
   p + p {

@@ -1,6 +1,6 @@
 <svelte:window on:resize={() => !userPressedButton && allowHide && updateShow()} />
 
-<aside>
+<aside class:sticky={sticky}>
   {#if allowHide}
     <div
       class="container"
@@ -28,9 +28,12 @@
 
 <style>
   aside {
+    padding-top: calc(var(--baseline) * 1);
+  }
+
+  .sticky {
     max-height: 100vh;
     overflow: auto;
-    padding-top: calc(var(--baseline) * 1);
     position: sticky;
     top: 0;
   }
@@ -77,6 +80,7 @@
 
   export let breakpoint = 1000
   export let allowHide = true
+  export let sticky = true
 
   let userPressedButton = false
   let show = true

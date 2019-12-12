@@ -7,6 +7,7 @@ const {promisify} = require('util')
 const categoriesConfig = require('./config/categories')
 const divisionsConfig = require('./config/divisions')
 const rimraf = promisify(rimrafSync)
+const xlsx = require('node-xlsx').default
 
 const {
   normaliseConstituency,
@@ -35,14 +36,18 @@ const request = async (url, type = 'json', timeout = 15000) => {
   return await response[type]()
 }
 
-const normaliseConstituencies = ({items}) => items
+const normaliseConstituencies = ({items}, electionResults) => items
   .filter(({endedDate}) => !endedDate)
-  .map(({label: {_value: name}, _about: url}) => ({
+  .map(({label: {_value: name}, _about: url, gssCode: ons}) => ({
     id: parseInt(url.split('/').pop(), 10),
-    name
+    ons,
+    name,
+    results: electionResults[ons],
   }))
 
 const getConstituencies = async () => {
+  const electionResults = getElectionResults()
+
   let constituencies = []
   let page = 0
   let next = true
@@ -50,7 +55,7 @@ const getConstituencies = async () => {
   while (next) {
     const url = `http://lda.data.parliament.uk/constituencies.json?_pageSize=500${page ? `&_page=${page}` : ''}`
     const { result } = await request(url)
-    constituencies = [...constituencies, ...normaliseConstituencies(result)]
+    constituencies = [...constituencies, ...normaliseConstituencies(result, electionResults)]
     next = !!result.next
     if (next) page++
   }
@@ -283,6 +288,49 @@ const getDivisions = async (divisions, mps) => (
     }
   }))
 )
+
+const sortVotes = (a, b) => {
+  if (a.count > b.count) {
+    return -1
+  }
+
+  return 1
+}
+
+const getElectionResults = () => {
+  const data = xlsx.parse(`${__dirname}/data/election-2017.xls`)
+
+  const totals = data
+    .filter(({name}) => name === 'Administrative data')
+    .map(({data}) => data)
+    .reduce((acc, x) => acc.concat(x), [])
+    .filter(([col1]) => !['RESULTS', 'ADMINISTRATIVE DATA'].includes(col1))
+    .map(([ons,,,,total]) => ({ons, total}))
+    .reduce((constituencies, {ons, total}) => {
+      constituencies[ons] = total
+      return constituencies
+    }, {})
+
+  const results = data
+    .filter(({name}) => name === 'Results')
+    .map(({data}) => data)
+    .reduce((acc, x) => acc.concat(x), [])
+    .filter(([col1]) => !['RESULTS', 'ONS Code'].includes(col1))
+    .map(([ons,,,,,, party, count]) => ({ons, party: normaliseParty(party), count}))
+    .filter(({party}) => partyNames.includes(party))
+    .reduce((constituencies, {ons, party, count}) => {
+      if (!constituencies[ons]) {
+        constituencies[ons] = {total: totals[ons], votes: []}
+      }
+
+      constituencies[ons].votes = [...constituencies[ons].votes, {party, count}]
+      constituencies[ons].votes.sort(sortVotes)
+
+      return constituencies
+    }, {})
+
+  return results
+}
 
 ;(async () => {
   try {

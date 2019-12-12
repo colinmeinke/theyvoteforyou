@@ -24,6 +24,7 @@
     class:settings={comparing}
     on:submit|preventDefault={handleSubmit}
     bind:this={asideEl}
+    autocomplete="off"
   >
     {#if !comparing}
       <h1
@@ -43,7 +44,11 @@
       </h1>
     {/if}
 
-    <Settings breakpoint={1000} allowHide={comparing && !transitioning}>
+    <Settings
+      breakpoint={1000}
+      sticky={comparing}
+      allowHide={comparing && !transitioning}
+    >
       <CheckboxGroup
         id="categories"
         label="Select the issues that matter to you:"
@@ -53,6 +58,13 @@
         drawAttention={highlightCategorySelect}
         fancy={fancyCheckboxes}
         {transitionDuration}
+      />
+
+      <Constituency
+        {constituencies}
+        {constituency}
+        handleClear={() => {constituency = null}}
+        handleUpdate={c => constituency = c}
       />
 
       {#if comparing}
@@ -105,6 +117,7 @@
         </div>
       {:else}
         <button
+          class="compare"
           in:hide|local={{
             delay: transitionOutDelay,
             duration: transitionDuration,
@@ -358,7 +371,7 @@
     }
   }
 
-  button {
+  .compare {
     animation: buttonAnimation 15s linear infinite;
     background-color: hsl(0,90%,50%);
     border: none;
@@ -377,8 +390,8 @@
     transition: all 0.3s ease-in-out;
   }
 
-  button:hover,
-  button:focus {
+  .compare:hover,
+  .compare:focus {
     animation: none;
     background-color: var(--selectedColor);
     box-shadow: -1px -1px hsl(200,90%,70%);
@@ -432,6 +445,7 @@
   import CheckboxGroup from '../components/form/CheckboxGroup.svelte'
   import Checkbox from '../components/form/Checkbox.svelte'
   import Select from '../components/form/Select.svelte'
+  import Constituency from '../components/form/Constituency.svelte'
 
   export let categories
 
@@ -477,6 +491,16 @@
   let transitioning = false
   let fancyCheckboxes = true
   let expandedCategories = []
+  let constituencies = []
+  let constituency = null
+
+  $: {
+    if (constituency) {
+      selectedParties = constituency.results.votes
+        .filter(({party, count}) => count >= constituency.results.votes[1].count - constituency.results.total / 10)
+        .map(({party}) => party)
+    }
+  }
 
   $: suffix = resultFormat === 'Percentage' ? '%' : ''
 
@@ -687,5 +711,9 @@
     }))
 
     expandedCategories = cats
+
+    const constituenciesResult = await fetch('data/constituencies.json')
+    const cons = await constituenciesResult.json()
+    constituencies = cons
   })
 </script>
