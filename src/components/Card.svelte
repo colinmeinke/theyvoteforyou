@@ -17,6 +17,7 @@
     border-bottom-left-radius: 10px;
     border-radius: calc(var(--baseline) / 2);
     box-shadow: 0 2px 2px hsla(0, 0%, 10%, 0.1);
+    flex-grow: 1;
     min-width: calc(100% / 3);
     position: relative;
     transition: all var(--duration) ease-in-out;

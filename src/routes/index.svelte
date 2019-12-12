@@ -182,7 +182,7 @@
           <Grid>
             {#each filteredOverallParties as {party, desiredOutcome, undesiredOutcome} (party)}
               <li
-                class="flex"
+                class="overall"
                 in:receive|local={{key: party}}
                 out:send|local={{key: party}}
                 animate:flip={{duration: 300}}
@@ -196,6 +196,12 @@
                     />
                   </div>
                 </Card>
+
+                {#if constituency}
+                  <p class="votes">
+                    {@html selectedPartyResults[party]}
+                  </p>
+                {/if}
               </li>
             {/each}
           </Grid>
@@ -407,6 +413,22 @@
   .flex {
     display: flex;
   }
+
+  .overall {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .votes {
+    color: hsl(0,0%,70%);
+    font-size: var(--fontSizeSmall);
+    margin-bottom: calc(var(--baseline) * 0.5);
+    margin-top: calc(var(--baseline) * 0.5);
+  }
+
+  .votes :global(strong) {
+    color: hsl(0,0%,100%);
+  }
 </style>
 
 <script context="module">
@@ -556,6 +578,14 @@
   $: filteredOverallParties = orderParties(overallParties.filter(({party}) => (
     availableParties.includes(party)
   )), orderBy)
+
+  $: selectedPartyResults = constituency
+    ? selectedParties.reduce((results, party) => {
+      const vote = constituency.results.votes.find(v => v.party === party)
+      results[party] = `${vote ? `<strong>${vote.count.toLocaleString('en-GB')} votes</strong> (${round(vote.count / (constituency.results.total / 100))}%) in ${constituency.name} in 2017` : `Did not stand in ${constituency.name} in 2017`}`
+      return results
+    }, {})
+    : []
 
   $: highestPercentage = filteredOverallParties.reduce((highest, {desiredOutcome}) => (
     desiredOutcome['Percentage'] > highest ? desiredOutcome['Percentage'] : highest
